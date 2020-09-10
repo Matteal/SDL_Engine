@@ -1,7 +1,7 @@
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <iostream>
 
-#include "Window.h"
+#include "src/Window.h"
 
 
 
@@ -11,11 +11,7 @@ int main(int argc, char **argv)
 
     Window window("SDL2", 800, 500, SDL_WINDOW_SHOWN);
 
-    // Initialisation de la scène
-    window.initWindow();
-
-    // Boucle Principale
-    window.mainloop();
+    window.Update();
 
 
     return 0;
