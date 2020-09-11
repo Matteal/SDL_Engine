@@ -1,6 +1,4 @@
 #include "Window.h"
-//#include "Menu.h"
-#include "Button.h"
 
 #include <stdlib.h>
 
@@ -69,11 +67,9 @@ void Window::initWindow()
         }
         else
         {
-            m_jouer = Texture::Charger("data/jouer.png",m_renderer);
-            m_quitter = Texture::Charger("data/quitter.png",m_renderer);
+            m_textureArray[0] = chargerTexture("data/jouer.png",m_renderer);
+            m_textureArray[1] = chargerTexture("data/quitter.png",m_renderer);
         }
-
-
 }
 
 void Window::AffJeu()
@@ -81,8 +77,8 @@ void Window::AffJeu()
     SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
     SDL_RenderClear(m_renderer);
 
-    SDL_RenderCopy(m_renderer,m_jouer,NULL,m_play.getSDL_Rect());
-    SDL_RenderCopy(m_renderer,m_quitter,NULL,m_quit.getSDL_Rect());
+    SDL_RenderCopy(m_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
+    SDL_RenderCopy(m_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
     SDL_RenderPresent(m_renderer);
 }
 
@@ -145,5 +141,21 @@ void Window::Update()
     {
         AffJeu();
         mainloop();
+    }
+}
+
+SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* renderer)
+{
+    SDL_Surface* surface = IMG_Load(chemin.c_str());
+    if (surface == NULL)
+    {
+        std::cout << "Erreur de chargement de surface " <<std::endl;
+        return NULL;
+    }
+    else
+    {
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
+        SDL_FreeSurface(surface);
+        return texture;
     }
 }
