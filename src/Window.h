@@ -23,6 +23,7 @@ class Window
         void mainloop();
         void AffJeu();
         void Update();
+        SDL_Window* getWindow();
 
     protected:
 
@@ -38,6 +39,7 @@ class Window
         SDL_Event m_events;
 
         SDL_Texture* m_textureArray[NB_IMAGE];
+
 
         Button m_play;
         Button m_quit;
