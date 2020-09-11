@@ -16,3 +16,15 @@ SDL_Rect* Button::getSDL_Rect()
     return &m_dimensions;
 }
 
+bool Button::estTouche(int curseurx,int curseury)
+{
+    if((curseurx < m_dimensions.w + m_dimensions.x) && (curseurx > m_dimensions.x) && (curseury < m_dimensions.h + m_dimensions.y) && (curseury > m_dimensions.y))
+    {
+      return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
