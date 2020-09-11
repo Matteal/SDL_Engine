@@ -1,12 +1,15 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "Texture.h"
+#define NB_IMAGE 1
+
+//#include "Texture.h"
 #include <iostream>
 
 #include "Input.h"
 #include "Button.h"
-#include <SDL_ttf.h>
+
+#include <SDL_image.h>
 
 
 
@@ -34,14 +37,14 @@ class Window
         SDL_Renderer* m_renderer;
         SDL_Event m_events;
 
-        SDL_Texture* m_jouer;
-        SDL_Texture* m_quitter;
-
+        SDL_Texture* m_textureArray[NB_IMAGE];
 
         Button m_play;
         Button m_quit;
 
         Input m_input;
 };
+
+SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* rendu);
 
 #endif // WINDOW_H
