@@ -20,6 +20,7 @@ class Window
         void mainloop();
         void AffJeu();
         void Update();
+        SDL_Window* getWindow();
 
     protected:
 
@@ -36,6 +37,7 @@ class Window
 
         SDL_Texture* m_jouer;
         SDL_Texture* m_quitter;
+
 
 
         Button m_play;

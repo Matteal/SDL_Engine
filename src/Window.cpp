@@ -76,6 +76,11 @@ void Window::initWindow()
 
 }
 
+SDL_Window* Window::getWindow()
+{
+    return m_window;
+}
+
 void Window::AffJeu()
 {
     SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
@@ -114,13 +119,24 @@ void Window::mainloop()
         //SDL_RenderClear(m_renderer);
 
 
+        if(m_play.estTouche(m_input.getX(),m_input.getY()))
+        {
+           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
+           {
 
+           }
+        }
+        else if (m_quit.estTouche(m_input.getX(),m_input.getY()))
+        {
+           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
+           {
+               SDL_HideWindow(m_window);
+           }
+        }
 
 
         // Affichage du renderer
         //SDL_SetRenderDrawColor(m_renderer, 0,0,0,0);
-
-
 
 
 
@@ -137,6 +153,8 @@ void Window::mainloop()
     }
 
 }
+
+
 
 void Window::Update()
 {
