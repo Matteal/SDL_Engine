@@ -10,25 +10,20 @@ class Texture
 {
     public:
         Texture();
-<<<<<<< HEAD
         bool Charger(const std::string &chemin, SDL_Renderer* rendu);
         SDL_Texture* getTexture();
-=======
-        static SDL_Texture* Charger(const std::string &chemin, SDL_Renderer* rendu);
->>>>>>> dev-Colep
 
+        //SDL_Texture* Charger(const std::string &chemin, SDL_Renderer* rendu);
     protected:
 
     private:
-<<<<<<< HEAD
+
         SDL_Texture* m_texture;
-=======
->>>>>>> dev-Colep
+
 
 
 };
 
-<<<<<<< HEAD
 //class TextureArray
 //{
 //    public:
@@ -43,6 +38,4 @@ class Texture
 //        std::vector<int> m_TextureID;
 //};
 
-=======
->>>>>>> dev-Colep
 #endif // TEXTURE_H

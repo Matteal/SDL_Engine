@@ -69,8 +69,12 @@ void Window::initWindow()
         }
         else
         {
-            m_jouer = Texture::Charger("data/jouer.png",m_renderer);
-            m_quitter = Texture::Charger("data/quitter.png",m_renderer);
+             Texture j, q;
+            j.Charger("data/jouer.png",m_renderer);
+            q.Charger("data/quitter.png",m_renderer);
+            m_jouer = j.getTexture();
+            m_quitter = q.getTexture();
+
         }
 
 
