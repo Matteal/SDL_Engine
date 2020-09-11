@@ -60,6 +60,24 @@ void Window::initWindow()
 
         std::cout << "Warning! RENDERER SOFTWARE ENABLED" << std::endl;
     }
+<<<<<<< Updated upstream
+=======
+    int IMGflags = IMG_INIT_PNG;
+    if (! ( IMG_Init(IMGflags) & IMGflags ))
+        {
+            std::cout << "Erreur : " << IMG_GetError();
+            std::cout << std::endl;
+            IMG_Quit();
+        }
+        else
+        {
+            Texture j, q;
+            j.Charger("data/jouer.png",m_renderer);
+            q.Charger("data/quitter.png",m_renderer);
+            m_jouer = j.getTexture();
+            m_quitter = q.getTexture();
+        }
+>>>>>>> Stashed changes
 
 
 }
