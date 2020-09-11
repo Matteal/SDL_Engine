@@ -1,13 +1,13 @@
 #include "Window.h"
-#include "Menu.h"
+//#include "Menu.h"
 #include "Button.h"
 
 #include <stdlib.h>
 
 Window::Window(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags) : m_title(titleWindow), m_width(widhtWindow),
-                                                                                             m_height(heightWindow), m_flags(flags), m_window(0), m_renderer(0), m_input()
+                                                                                             m_height(heightWindow), m_flags(flags), m_window(0), m_renderer(0), m_input(), m_play(m_renderer,250,100,300,50), m_quit(m_renderer,250,300,300,50)
 {
-    //ctor
+
 }
 
 Window::~Window()
@@ -60,8 +60,6 @@ void Window::initWindow()
 
         std::cout << "Warning! RENDERER SOFTWARE ENABLED" << std::endl;
     }
-<<<<<<< Updated upstream
-=======
     int IMGflags = IMG_INIT_PNG;
     if (! ( IMG_Init(IMGflags) & IMGflags ))
         {
@@ -71,15 +69,21 @@ void Window::initWindow()
         }
         else
         {
-            Texture j, q;
-            j.Charger("data/jouer.png",m_renderer);
-            q.Charger("data/quitter.png",m_renderer);
-            m_jouer = j.getTexture();
-            m_quitter = q.getTexture();
+            m_jouer = Texture::Charger("data/jouer.png",m_renderer);
+            m_quitter = Texture::Charger("data/quitter.png",m_renderer);
         }
->>>>>>> Stashed changes
 
 
+}
+
+void Window::AffJeu()
+{
+    SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
+    SDL_RenderClear(m_renderer);
+
+    SDL_RenderCopy(m_renderer,m_jouer,NULL,m_play.getSDL_Rect());
+    SDL_RenderCopy(m_renderer,m_quitter,NULL,m_quit.getSDL_Rect());
+    SDL_RenderPresent(m_renderer);
 }
 
 void Window::mainloop()
@@ -88,10 +92,7 @@ void Window::mainloop()
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
-    Menu mainMenu(m_renderer, m_height, m_width);
-
-    Button button1(m_renderer, 0, 0, 100, 100);
-    Button button2(m_renderer, 300, 300, 300, 100);
+    //Menu mainMenu(m_renderer, m_height, m_width);
 
     // Boucle principale
     while(!m_input.terminer())
@@ -105,19 +106,20 @@ void Window::mainloop()
 
         // Fermer la fenêtre
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
-           break;
-
-
+        {
+            bool b = true;
+            m_input.SetTerminer(b);
+        }
         // *** Affichage ***
-        SDL_RenderClear(m_renderer);
+        //SDL_RenderClear(m_renderer);
 
 
-        button1.draw(m_input.getX(), m_input.getY());
-        button2.draw(m_input.getX(), m_input.getY());
+
+
 
         // Affichage du renderer
-        SDL_SetRenderDrawColor(m_renderer, 255,255,255,255);
-        SDL_RenderPresent(m_renderer);
+        //SDL_SetRenderDrawColor(m_renderer, 0,0,0,0);
+
 
 
 
@@ -127,10 +129,21 @@ void Window::mainloop()
         // Calcul du temps écoulé
         finBoucle = SDL_GetTicks();
         tempsEcoule = finBoucle - debutBoucle;
-        std::cout<< tempsEcoule <<std::endl;
+        //std::cout<< tempsEcoule <<std::endl;
 
         // Si nécessaire, on met en pause le programme
         if(tempsEcoule < frameRate)
             SDL_Delay(frameRate - tempsEcoule);
+    }
+
+}
+
+void Window::Update()
+{
+    initWindow();
+    while(!m_input.terminer())
+    {
+        AffJeu();
+        mainloop();
     }
 }

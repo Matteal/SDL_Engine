@@ -388,7 +388,11 @@
 	<string>
 	<iostream>
 
+<<<<<<< HEAD
 1561870368 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+=======
+1561873968 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+>>>>>>> dev-Colep
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -402,6 +406,7 @@
 	"begin_code.h"
 	"close_code.h"
 
+<<<<<<< HEAD
 1599777900 source:c:\users\33669\documents\github\alakajam\main.cpp
 	<SDL.h>
 	<iostream>
@@ -440,3 +445,5 @@
 	"Button.h"
 	<stdlib.h>
 
+=======
+>>>>>>> dev-Colep

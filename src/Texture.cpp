@@ -1,10 +1,15 @@
 #include "Texture.h"
 
+<<<<<<< HEAD
 Texture::Texture() : m_texture(NULL)
+=======
+Texture::Texture()
+>>>>>>> dev-Colep
 {
     //ctor
 }
 
+<<<<<<< HEAD
 bool Texture::Charger(const std::string &chemin, SDL_Renderer* rendu)
 {
     SDL_Surface* surface = IMG_Load(chemin.c_str());
@@ -70,4 +75,23 @@ SDL_Texture* Texture::getTexture()
 //    std::cout << "Erreur : L'acces a la texture <" << textureID << "> est impossible";
 //    return NULL;
 //}
+=======
+SDL_Texture* Texture::Charger(const std::string &chemin, SDL_Renderer* rendu)
+{
+    SDL_Surface* surface = IMG_Load(chemin.c_str());
+    SDL_Texture* texture;
+    if (surface == NULL)
+    {
+        std::cout << "Erreur de chargement de surface " <<std::endl;
+        texture = NULL;
+    }
+    else
+    {
+        texture = SDL_CreateTextureFromSurface(rendu,surface);
+        SDL_FreeSurface(surface);
+    }
+    return texture;
+}
+
+>>>>>>> dev-Colep
 

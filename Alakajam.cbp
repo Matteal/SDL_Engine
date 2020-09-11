@@ -24,7 +24,10 @@
 			<Add library="mingw32" />
 			<Add library="SDL2main" />
 			<Add library="SDL2.dll" />
+<<<<<<< HEAD
 			<Add library="SDL2_image" />
+=======
+>>>>>>> dev-Colep
 			<Add library="user32" />
 			<Add library="gdi32" />
 			<Add library="winmm" />
@@ -35,6 +38,7 @@
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
 		<Unit filename="main.cpp" />
+<<<<<<< HEAD
 		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/Button.h" />
 		<Unit filename="src/Input.cpp" />
@@ -44,6 +48,12 @@
 		<Unit filename="src/Window.cpp" />
 		<Unit filename="src/Window.h" />
 		<Extensions>
+=======
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+>>>>>>> dev-Colep
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

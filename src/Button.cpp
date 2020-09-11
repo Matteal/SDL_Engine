@@ -10,16 +10,9 @@ Button::~Button()
     //dtor
 }
 
-Button::draw(int cursorX, int cursorY)
+SDL_Rect* Button::getSDL_Rect()
 {
-    if(cursorX > m_dimensions.x && cursorY > m_dimensions.y && cursorX < m_dimensions.x + m_dimensions.w && cursorY < m_dimensions.y + m_dimensions.h)
-    {
-        // Overlay
-        SDL_SetRenderDrawColor(m_renderer, 200, 50, 50, 255);
-    }else
-    {
-        SDL_SetRenderDrawColor(m_renderer, 190, 0, 0, 255);
-    }
 
-    SDL_RenderFillRect(m_renderer, &m_dimensions);
+    return &m_dimensions;
 }
+
