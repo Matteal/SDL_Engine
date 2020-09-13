@@ -415,7 +415,7 @@
 	<iostream>
 	"src/Window.h"
 
-1599860623 c:\users\33669\documents\github\alakajam\src\window.h
+1600012333 c:\users\33669\documents\github\alakajam\src\window.h
 	<iostream>
 	"Input.h"
 	"Button.h"
@@ -431,7 +431,7 @@
 1599815924 c:\users\33669\documents\github\alakajam\src\input.h
 	<SDL.h>
 
-1599815924 c:\users\33669\documents\github\alakajam\src\button.h
+1600012333 c:\users\33669\documents\github\alakajam\src\button.h
 	"SDL.h"
 
 1599815924 source:c:\users\33669\documents\github\alakajam\src\button.cpp
