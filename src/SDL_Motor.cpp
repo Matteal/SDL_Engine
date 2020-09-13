@@ -1,13 +1,8 @@
 #include "SDL_Motor.h"
 
-SDL_Motor::SDL_Motor(SDL_Renderer* renderer) : m_input(), m_renderer(renderer), m_play(renderer,250,100,300,50), m_quit(renderer,250,300,300,50)
+SDL_Motor::SDL_Motor() : m_window("SDL2", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer(), /* TODO : Move this */ m_play(NULL,250,100,300,50), m_quit(NULL,250,300,300,50)
 {
-//    m_window.initWindow();
-//    m_renderer = m_window.getRenderer();
-
-    // Loading Textures
-    m_textureArray[0] = chargerTexture("data/jouer.png",m_renderer);
-    m_textureArray[1] = chargerTexture("data/quitter.png",m_renderer);
+    // ctor
 }
 
 SDL_Motor::~SDL_Motor()
@@ -15,47 +10,63 @@ SDL_Motor::~SDL_Motor()
     //dtor
 }
 
+bool SDL_Motor::init()
+{
+    if(!m_window.initWindow())
+    {
+        return false;
+    }
+
+    m_play = Button(m_window.getRenderer(),250,100,300,50);
+    m_quit = Button(m_window.getRenderer(),250,300,300,50);
+
+    // Loading Textures
+    m_textureArray[0] = chargerTexture("data/jouer.png",m_window.getRenderer());
+    m_textureArray[1] = chargerTexture("data/quitter.png",m_window.getRenderer());
+
+    // Keep this after any renderer modification
+    m_renderer = m_window.getRenderer();
+
+    return true;
+}
+
 void SDL_Motor::mainloop()
 {
 
-    //TODO: Move this
-    SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
-    SDL_RenderClear(m_renderer);
-
-    SDL_RenderCopy(m_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
-    SDL_RenderCopy(m_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
-    SDL_RenderPresent(m_renderer);
-
-    SDL_Delay(200);
-
-    // Variables framerate
+    // Framerate variables
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
-    // Boucle principale
+    // Core Loop
     while(!m_input.terminer())
     {
-        //std::cout<<"Debug"<<std::endl;
+        std::cout<<"Debug"<<std::endl;
 
 
-        // On définit le temps de début de boucle
+        // Defining timestamp
         debutBoucle = SDL_GetTicks();
 
 
-        // *** Gestion des évènements ***
+        // *** Managing Events ***
         m_input.updateEvenements();
 
-        // Fermer la fenêtre
+        // Close the window when asked
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
         {
-            bool b = true;
-            m_input.SetTerminer(b);
+            m_input.SetTerminer(true);
         }
-        // *** Affichage ***
-        //SDL_RenderClear(m_renderer);
 
 
+        // *** GRAPHICS ***
 
+        // Clear the SDL_Renderer
+        SDL_RenderClear(m_renderer);
+        SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
+
+        // Render
+        SDL_RenderCopy(m_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
+        SDL_RenderCopy(m_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
+        SDL_RenderPresent(m_renderer);
 
 
         // Affichage du renderer
@@ -65,7 +76,7 @@ void SDL_Motor::mainloop()
 
 
 
-        // *** Framerate ***
+        // *** FRAMERATE ***
 
         // Calcul du temps écoulé
         finBoucle = SDL_GetTicks();

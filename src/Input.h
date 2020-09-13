@@ -34,7 +34,7 @@ class Input
 
     void afficherPointeur(bool reponse) const;
     void capturerPointeur(bool reponse) const;
-    void SetTerminer(bool &b);
+    void SetTerminer(bool b);
 
     private:
 

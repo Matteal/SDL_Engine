@@ -8,17 +8,15 @@
 
 int main(int argc, char **argv)
 {
-    Window window("SDL2", 800, 500, SDL_WINDOW_SHOWN);
+    SDL_Motor motor;
 
-    // Trying to initiate window
-    if(!window.initWindow())
+    // If an error occur during the init phase
+    if(!motor.init())
     {
-        std::cout<<"Error found when trying to create a window"<<std::cout;
+        std::cout << "Initialisation Failed" << std::endl;
+        std::cout << "Ending program ..." << std::endl;
         return 0;
     }
-
-
-    SDL_Motor motor(window.getRenderer());
 
     motor.mainloop();
 

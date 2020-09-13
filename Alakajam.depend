@@ -410,13 +410,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1600027985 source:c:\users\33669\documents\github\alakajam\main.cpp
+1600031627 source:c:\users\33669\documents\github\alakajam\main.cpp
 	<SDL.h>
 	<iostream>
 	"src/SDL_Motor.h"
 	"src/Window.h"
 
-1600025942 c:\users\33669\documents\github\alakajam\src\window.h
+1600029297 c:\users\33669\documents\github\alakajam\src\window.h
 	<iostream>
 	<SDL_image.h>
 
@@ -427,33 +427,34 @@
 	<iostream>
 	<vector>
 
-1600017049 c:\users\33669\documents\github\alakajam\src\input.h
+1600031979 c:\users\33669\documents\github\alakajam\src\input.h
 	<SDL.h>
 
-1600017049 c:\users\33669\documents\github\alakajam\src\button.h
+1600029297 c:\users\33669\documents\github\alakajam\src\button.h
 	"SDL.h"
 
-1600018789 source:c:\users\33669\documents\github\alakajam\src\button.cpp
+1600029297 source:c:\users\33669\documents\github\alakajam\src\button.cpp
 	"Button.h"
 
-1600017049 source:c:\users\33669\documents\github\alakajam\src\input.cpp
+1600031979 source:c:\users\33669\documents\github\alakajam\src\input.cpp
 	"Input.h"
 
 1599859730 source:c:\users\33669\documents\github\alakajam\src\texture.cpp
 	"Texture.h"
 
-1600026597 source:c:\users\33669\documents\github\alakajam\src\window.cpp
+1600031627 source:c:\users\33669\documents\github\alakajam\src\window.cpp
 	"Window.h"
 	<stdlib.h>
 
 1599811988 
 
-1600026597 source:c:\users\33669\documents\github\alakajam\src\sdl_motor.cpp
+1600031896 source:c:\users\33669\documents\github\alakajam\src\sdl_motor.cpp
 	"SDL_Motor.h"
 
-1600025964 c:\users\33669\documents\github\alakajam\src\sdl_motor.h
+1600030075 c:\users\33669\documents\github\alakajam\src\sdl_motor.h
 	<iostream>
 	<SDL_image.h>
+	"Window.h"
 	"Input.h"
 	"Button.h"
 

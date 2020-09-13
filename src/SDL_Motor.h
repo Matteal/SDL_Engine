@@ -6,6 +6,7 @@
 #define NB_IMAGE 1
 #include <SDL_image.h>
 
+#include "Window.h"
 #include "Input.h"
 #include "Button.h"
 
@@ -13,15 +14,16 @@
 class SDL_Motor
 {
     public:
-        SDL_Motor(SDL_Renderer* renderer);
+        SDL_Motor();
         ~SDL_Motor();
 
+        bool init();
         void mainloop();
 
     protected:
 
     private:
-        //Window m_window;
+        Window m_window;
         Input m_input;
 
         SDL_Texture* m_textureArray[NB_IMAGE];

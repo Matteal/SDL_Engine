@@ -22,7 +22,7 @@ bool Window::initWindow()
     // Init SDL
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-        std::cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << std::endl;
+        std::cout << "Error occurred during SDL initialization : " << SDL_GetError() << std::endl;
         SDL_Quit();
 
         return false;
@@ -34,7 +34,7 @@ bool Window::initWindow()
 
     if(m_window == 0)
     {
-        std::cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << std::endl;
+        std::cout << "Error occurred during window creation phase : " << SDL_GetError() << std::endl;
 
         return false;
     }
@@ -49,17 +49,17 @@ bool Window::initWindow()
 
         if(m_renderer == NULL)
         {
-            std::cout << "Erreur lors de la création du renderer : " << SDL_GetError() << std::endl;
+            std::cout << "Error occurred during renderer initialization : " << SDL_GetError() << std::endl;
 
             return false;
         }
 
-        std::cout << "Warning! RENDERER SOFTWARE ENABLED" << std::endl;
+        std::cout << "WARNING! RENDERER SOFTWARE ENABLED" << std::endl;
     }
     int IMGflags = IMG_INIT_PNG;
     if (! ( IMG_Init(IMGflags) & IMGflags ))
     {
-        std::cout << "Erreur : " << IMG_GetError() << std::endl;
+        std::cout << "Error : " << IMG_GetError() << std::endl;
         IMG_Quit();
         return false;
     }
