@@ -5,7 +5,7 @@
 Window::Window(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags) : m_title(titleWindow), m_width(widhtWindow),
                                                                                              m_height(heightWindow), m_flags(flags), m_window(0), m_renderer(0), m_input(), m_play(m_renderer,250,100,300,50), m_quit(m_renderer,250,300,300,50)
 {
-
+    test = NULL;
 }
 
 Window::~Window()
@@ -13,7 +13,11 @@ Window::~Window()
     //dtor
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
+    Mix_FreeChunk(test);
     SDL_Quit();
+    IMG_Quit();
+    Mix_Quit();
+
 }
 
 // initialise SDL2
@@ -70,6 +74,19 @@ void Window::initWindow()
             m_textureArray[0] = chargerTexture("data/jouer.png",m_renderer);
             m_textureArray[1] = chargerTexture("data/quitter.png",m_renderer);
         }
+        if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+                {
+                    std::cout<<"SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError()<<std::endl;
+                    //success = false;
+                }
+                else
+                {
+                    test = Mix_LoadWAV("data/music.wav");
+                    if(test == NULL)
+                    {
+                        std::cout<<"Erreur"<<std::endl;
+                    }
+                }
 }
 
 SDL_Window* Window::getWindow()
@@ -111,11 +128,17 @@ void Window::mainloop()
             bool b = true;
             m_input.SetTerminer(b);
         }
+
+         if(m_input.getTouche(SDL_SCANCODE_EQUALS))
+         {
+             Mix_PlayChannel( -1, test, 0 );
+         }
+
         // *** Affichage ***
         //SDL_RenderClear(m_renderer);
 
 
-        if(m_play.estTouche(m_input.getX(),m_input.getY()))
+        /*if(m_play.estTouche(m_input.getX(),m_input.getY()))
         {
            if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
            {
@@ -128,7 +151,7 @@ void Window::mainloop()
            {
                SDL_HideWindow(m_window);
            }
-        }
+        }*/
 
 
         // Affichage du renderer

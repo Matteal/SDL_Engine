@@ -390,7 +390,7 @@
 
 1547325890 D
 
-1561870368 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+1561873968 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -450,4 +450,41 @@
 	<vector>
 
 1599811988 
+
+1599867451 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\main.cpp
+	<SDL.h>
+	<iostream>
+	"src/Window.h"
+
+1600031755 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.h
+	<iostream>
+	"Input.h"
+	"Button.h"
+	<SDL_mixer.h>
+	<SDL_image.h>
+
+1599867451 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.h
+	<SDL.h>
+
+1599867451 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\button.h
+	"SDL.h"
+
+1599867451 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\button.cpp
+	"Button.h"
+
+1599867451 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.cpp
+	"Input.h"
+
+1600031761 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.cpp
+	"Window.h"
+	<stdlib.h>
+
+1541001592 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
 

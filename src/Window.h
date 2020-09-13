@@ -3,12 +3,13 @@
 
 #define NB_IMAGE 1
 
-//#include "Texture.h"
+
 #include <iostream>
 
 #include "Input.h"
 #include "Button.h"
 
+#include <SDL_mixer.h>
 #include <SDL_image.h>
 
 
@@ -34,6 +35,9 @@ class Window
         const int m_height;
         const Uint32 m_flags;
 
+        Mix_Chunk *test;
+
+
         SDL_Window* m_window;
         SDL_Renderer* m_renderer;
         SDL_Event m_events;
@@ -45,6 +49,8 @@ class Window
         Button m_quit;
 
         Input m_input;
+
+
 };
 
 SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* rendu);
