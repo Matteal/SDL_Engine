@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -25,7 +26,6 @@
 			<Add library="SDL2main" />
 			<Add library="SDL2.dll" />
 			<Add library="SDL2_image" />
-			<Add library="SDL2_mixer" />
 			<Add library="user32" />
 			<Add library="gdi32" />
 			<Add library="winmm" />
@@ -40,13 +40,12 @@
 		<Unit filename="src/Button.h" />
 		<Unit filename="src/Input.cpp" />
 		<Unit filename="src/Input.h" />
+		<Unit filename="src/SDL_Motor.cpp" />
+		<Unit filename="src/SDL_Motor.h" />
 		<Unit filename="src/Window.cpp" />
 		<Unit filename="src/Window.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
-			<code_completion />
-			<envvars />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

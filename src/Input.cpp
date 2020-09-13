@@ -85,7 +85,7 @@ bool Input::terminer() const
     return m_terminer;
 }
 
-void Input::SetTerminer (bool &b)
+void Input::SetTerminer (bool b)
 {
     m_terminer = b;
 }
