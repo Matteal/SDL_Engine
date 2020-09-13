@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -39,8 +40,8 @@
 		<Unit filename="src/Button.h" />
 		<Unit filename="src/Input.cpp" />
 		<Unit filename="src/Input.h" />
-		<Unit filename="src/Texture.cpp" />
-		<Unit filename="src/Texture.h" />
+		<Unit filename="src/SDL_Motor.cpp" />
+		<Unit filename="src/SDL_Motor.h" />
 		<Unit filename="src/Window.cpp" />
 		<Unit filename="src/Window.h" />
 		<Extensions>

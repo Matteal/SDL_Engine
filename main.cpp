@@ -1,18 +1,15 @@
 #include <SDL.h>
 #include <iostream>
 
-#include "src/Window.h"
+#include "src/SDL_Motor.h"
 
 
 
 int main(int argc, char **argv)
 {
-    // Création de la scène
+    SDL_Motor motor;
 
-    Window window("SDL2", 800, 500, SDL_WINDOW_SHOWN);
-
-    window.Update();
-
+    motor.mainloop();
 
     return 0;
 }
