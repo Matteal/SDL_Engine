@@ -35,7 +35,6 @@ bool Window::initWindow()
     if(m_window == 0)
     {
         std::cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << std::endl;
-        SDL_Quit();
 
         return false;
     }
@@ -51,7 +50,6 @@ bool Window::initWindow()
         if(m_renderer == NULL)
         {
             std::cout << "Erreur lors de la création du renderer : " << SDL_GetError() << std::endl;
-            SDL_Quit();
 
             return false;
         }
@@ -61,8 +59,7 @@ bool Window::initWindow()
     int IMGflags = IMG_INIT_PNG;
     if (! ( IMG_Init(IMGflags) & IMGflags ))
     {
-        std::cout << "Erreur : " << IMG_GetError();
-        std::cout << std::endl;
+        std::cout << "Erreur : " << IMG_GetError() << std::endl;
         IMG_Quit();
         return false;
     }

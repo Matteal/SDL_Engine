@@ -1,9 +1,9 @@
 #include "SDL_Motor.h"
 
-SDL_Motor::SDL_Motor() : m_window("SDL2", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_play(m_renderer,250,100,300,50), m_quit(m_renderer,250,300,300,50), m_renderer(NULL)
+SDL_Motor::SDL_Motor(SDL_Renderer* renderer) : m_input(), m_renderer(renderer), m_play(renderer,250,100,300,50), m_quit(renderer,250,300,300,50)
 {
-    m_window.initWindow();
-    m_renderer = m_window.getRenderer();
+//    m_window.initWindow();
+//    m_renderer = m_window.getRenderer();
 
     // Loading Textures
     m_textureArray[0] = chargerTexture("data/jouer.png",m_renderer);
@@ -35,7 +35,9 @@ void SDL_Motor::mainloop()
     // Boucle principale
     while(!m_input.terminer())
     {
-        std::cout<<"Debug"<<std::endl;
+        //std::cout<<"Debug"<<std::endl;
+
+
         // On définit le temps de début de boucle
         debutBoucle = SDL_GetTicks();
 

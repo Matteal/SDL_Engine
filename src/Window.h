@@ -1,11 +1,9 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#define NB_IMAGE 1
 
 #include <iostream>
 
-#include "Button.h"
 
 #include <SDL_image.h>
 
