@@ -3,12 +3,13 @@
 
 #include <iostream>
 
-#define NB_IMAGE 1
+#define NB_IMAGE 2
 #include <SDL_image.h>
 
 #include "Window.h"
 #include "Input.h"
 #include "Button.h"
+#include <SDL_mixer.h>
 
 
 class SDL_Motor
@@ -19,6 +20,7 @@ class SDL_Motor
 
         bool init();
         void mainloop();
+        void aff();
 
     protected:
 

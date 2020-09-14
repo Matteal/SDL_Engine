@@ -63,10 +63,28 @@ bool Window::initWindow()
         IMG_Quit();
         return false;
     }
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+    {
+        std::cout<<"SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError()<<std::endl;
+        return false;
+    }
+    else
+    {
+        test_music = Mix_LoadWAV("data/music.wav");
+        if(test_music == NULL)
+        {
+            std::cout<<"Erreur"<<std::endl;
+        }
+    }
     return true;
 }
 
 SDL_Renderer* Window::getRenderer()
 {
     return m_renderer;
+}
+
+Mix_Chunk* Window::getMusic()
+{
+    return test_music;
 }

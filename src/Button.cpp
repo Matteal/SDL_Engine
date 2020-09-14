@@ -26,5 +26,6 @@ bool Button::estTouche(int curseurx,int curseury)
     {
         return false;
     }
+    return false;
 }
 

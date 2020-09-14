@@ -10,6 +10,18 @@ SDL_Motor::~SDL_Motor()
     //dtor
 }
 
+void SDL_Motor::aff()
+{
+    // Clear the SDL_Renderer
+        SDL_RenderClear(m_renderer);
+        SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
+
+        // Render
+        SDL_RenderCopy(m_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
+        SDL_RenderCopy(m_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
+        SDL_RenderPresent(m_renderer);
+}
+
 bool SDL_Motor::init()
 {
     if(!m_window.initWindow())
@@ -22,6 +34,7 @@ bool SDL_Motor::init()
 
     // Loading Textures
     m_textureArray[0] = chargerTexture("data/jouer.png",m_window.getRenderer());
+
     m_textureArray[1] = chargerTexture("data/quitter.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
@@ -40,7 +53,7 @@ void SDL_Motor::mainloop()
     // Core Loop
     while(!m_input.terminer())
     {
-        std::cout<<"Debug"<<std::endl;
+
 
 
         // Defining timestamp
@@ -55,23 +68,34 @@ void SDL_Motor::mainloop()
         {
             m_input.SetTerminer(true);
         }
+        if (m_input.getTouche(SDL_SCANCODE_EQUALS))
+        {
+            Mix_PlayChannel(-1,m_window.getMusic(),0);
+        }
 
 
         // *** GRAPHICS ***
 
-        // Clear the SDL_Renderer
-        SDL_RenderClear(m_renderer);
-        SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
-
-        // Render
-        SDL_RenderCopy(m_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
-        SDL_RenderCopy(m_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
-        SDL_RenderPresent(m_renderer);
+        aff();
 
 
-        // Affichage du renderer
-        //SDL_SetRenderDrawColor(m_renderer, 0,0,0,0);
 
+
+        if(m_play.estTouche(m_input.getX(),m_input.getY()))
+        {
+           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
+           {
+                std::cout<<"Ok"<<std::endl;
+           }
+        }
+        else if (m_quit.estTouche(m_input.getX(),m_input.getY()))
+        {
+           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
+           {
+               SDL_Quit();
+               m_input.SetTerminer(true);
+           }
+        }
 
 
 
@@ -87,6 +111,7 @@ void SDL_Motor::mainloop()
         if(tempsEcoule < frameRate)
             SDL_Delay(frameRate - tempsEcoule);
     }
+
 }
 
 
