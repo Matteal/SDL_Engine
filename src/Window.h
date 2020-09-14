@@ -19,7 +19,7 @@ class Window
         bool initWindow();
 
         SDL_Renderer* getRenderer();
-        Mix_Chunk* getMusic();
+        Mix_Music* getMusic();
 
     protected:
 
@@ -32,7 +32,7 @@ class Window
 
         SDL_Window* m_window;
         SDL_Renderer* m_renderer;
-        Mix_Chunk* test_music;
+        Mix_Music* test_music;
 //        SDL_Event m_events;
 };
 

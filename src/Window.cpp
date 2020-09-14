@@ -5,7 +5,7 @@
 Window::Window(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags) : m_title(titleWindow), m_width(widhtWindow),
                                                                                              m_height(heightWindow), m_flags(flags), m_window(0), m_renderer(0)
 {
-
+    test_music = NULL;
 }
 
 Window::~Window()
@@ -14,6 +14,8 @@ Window::~Window()
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
     SDL_Quit();
+    Mix_FreeMusic(test_music);
+
 }
 
 // initialise SDL2
@@ -70,7 +72,7 @@ bool Window::initWindow()
     }
     else
     {
-        test_music = Mix_LoadWAV("data/music.wav");
+        test_music = Mix_LoadMUS("data/music.wav");
         if(test_music == NULL)
         {
             std::cout<<"Erreur"<<std::endl;
@@ -84,7 +86,7 @@ SDL_Renderer* Window::getRenderer()
     return m_renderer;
 }
 
-Mix_Chunk* Window::getMusic()
+Mix_Music* Window::getMusic()
 {
     return test_music;
 }

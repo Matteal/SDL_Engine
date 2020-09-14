@@ -464,20 +464,19 @@
 	"src/SDL_Motor.h"
 	"src/Window.h"
 
-1600082522 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl_motor.h
+1600122508 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl_motor.h
 	<iostream>
-	<SDL_image.h>
 	"Window.h"
 	"Input.h"
 	"Button.h"
-	<SDL_mixer.h>
+	"Scene.h"
 
-1600083380 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.h
+1600122795 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.h
 	<iostream>
 	<SDL_image.h>
 	<SDL_mixer.h>
 
-1600083609 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.h
+1600120319 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.h
 	<SDL.h>
 
 1600036850 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\button.h
@@ -486,14 +485,14 @@
 1600082925 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\button.cpp
 	"Button.h"
 
-1600036859 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.cpp
+1600120347 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.cpp
 	"Input.h"
 
-1600083411 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.cpp
+1600117037 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.cpp
 	"Window.h"
 	<stdlib.h>
 
-1600083572 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl_motor.cpp
+1600121518 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl_motor.cpp
 	"SDL_Motor.h"
 
 1541001592 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_mixer.h
@@ -504,4 +503,11 @@
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
+
+1600118024 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\scene.cpp
+	"Scene.h"
+	<iostream>
+
+1600118037 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\scene.h
+	<SDL.h>
 

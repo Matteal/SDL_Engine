@@ -1,7 +1,7 @@
 #include "Input.h"
 
 
-Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false)
+Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false),m_change(false)
 {
     // Initialisation du tableau m_touches[]
 
@@ -85,9 +85,19 @@ bool Input::terminer() const
     return m_terminer;
 }
 
+bool Input::Change() const
+{
+    return m_change;
+}
+
 void Input::SetTerminer (bool b)
 {
     m_terminer = b;
+}
+
+void Input::SetChange(bool c)
+{
+    m_change = c;
 }
 
 bool Input::getTouche(const SDL_Scancode touche) const

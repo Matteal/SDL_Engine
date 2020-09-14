@@ -18,6 +18,8 @@ class Input
 
     void updateEvenements();
     bool terminer() const;
+    bool Change() const;
+
 
     //Gestion évènement
     bool getTouche(const SDL_Scancode touche) const;
@@ -35,6 +37,7 @@ class Input
     void afficherPointeur(bool reponse) const;
     void capturerPointeur(bool reponse) const;
     void SetTerminer(bool b);
+    void SetChange(bool c);
 
     private:
 
@@ -48,6 +51,7 @@ class Input
     int m_yRel;
 
     bool m_terminer;
+    bool m_change;
 };
 
 #endif // INPUT_H
