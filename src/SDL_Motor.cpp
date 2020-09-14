@@ -1,6 +1,6 @@
 #include "SDL_Motor.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN),m_scene("Scene", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_Window_renderer(),m_play(m_window.getRenderer(),250,100,300,50),m_quit(m_window.getRenderer(),250,300,300,50),m_button(m_scene.getRenderer(),250,300,300,50)
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_Window_renderer(),m_play(m_window.getRenderer(),250,100,300,50),m_quit(m_window.getRenderer(),250,300,300,50),m_button(m_window.getRenderer(),250,300,300,50)
 {
     // ctor
 }
@@ -10,18 +10,30 @@ SDL_Motor::~SDL_Motor()
     //dtor
 }
 
-void SDL_Motor::aff()
+void SDL_Motor::aff_Menu()
 {
     // Clear the SDL_Renderer
         SDL_RenderClear(m_Window_renderer);
         SDL_SetRenderDrawColor(m_Window_renderer,0,255,255,255);
 
         // Render
-        SDL_SetRenderDrawColor(m_Scene_renderer,255,0,0,0);
-        SDL_RenderFillRect(m_Scene_renderer,m_button.getSDL_Rect());
 
         SDL_RenderCopy(m_Window_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
         SDL_RenderCopy(m_Window_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
+        SDL_RenderPresent(m_Window_renderer);
+}
+
+void SDL_Motor::aff_Scene()
+{
+    // Clear the SDL_Renderer
+        SDL_SetRenderDrawColor(m_Window_renderer,0,255,255,255);
+        SDL_RenderClear(m_Window_renderer);
+
+
+        // Render
+        SDL_SetRenderDrawColor(m_Window_renderer,255,0,0,0);
+        SDL_RenderFillRect(m_Window_renderer,m_button.getSDL_Rect());
+
         SDL_RenderPresent(m_Window_renderer);
 }
 
@@ -72,15 +84,23 @@ void SDL_Motor::mainloop()
         }
         if( Mix_PlayingMusic() == 0 )
         {
-            //Play the music
+            //Play the music & manage the music
+            Mix_VolumeMusic(30);
             Mix_PlayMusic(m_window.getMusic(), -1 );
         }
 
 
 
         // *** GRAPHICS ***
+        if(m_input.Change())
+        {
+            aff_Scene();
+        }
+        else
+        {
+            aff_Menu();
+        }
 
-        aff();
 
 
 
@@ -89,7 +109,7 @@ void SDL_Motor::mainloop()
         {
            if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
            {
-                std::cout<<"Ok"<<std::endl;
+                m_input.SetChange(true);
            }
         }
         else if (m_quit.estTouche(m_input.getX(),m_input.getY()))

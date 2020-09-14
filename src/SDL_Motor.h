@@ -9,7 +9,6 @@
 #include "Window.h"
 #include "Input.h"
 #include "Button.h"
-#include "Scene.h"
 
 
 
@@ -21,13 +20,13 @@ class SDL_Motor
 
         bool init();
         void mainloop();
-        void aff();
+        void aff_Menu();
+        void aff_Scene();
 
     protected:
 
     private:
         Window m_window;
-        Scene m_scene;
         Input m_input;
 
         SDL_Texture* m_textureArray[NB_IMAGE];
