@@ -1,7 +1,7 @@
 #include "Input.h"
 
 
-Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false),m_change(false)
+Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false), m_selectedScene(0)
 {
     // Initialisation du tableau m_touches[]
 
@@ -80,26 +80,6 @@ void Input::updateEvenements()
     }
 }
 
-bool Input::terminer() const
-{
-    return m_terminer;
-}
-
-bool Input::Change() const
-{
-    return m_change;
-}
-
-void Input::SetTerminer (bool b)
-{
-    m_terminer = b;
-}
-
-void Input::SetChange(bool c)
-{
-    m_change = c;
-}
-
 bool Input::getTouche(const SDL_Scancode touche) const
 {
     return m_touches[touche];
@@ -159,4 +139,24 @@ void Input::capturerPointeur(bool reponse) const
 
     else
         SDL_SetRelativeMouseMode(SDL_FALSE);
+}
+
+bool Input::terminer() const
+{
+    return m_terminer;
+}
+
+void Input::SetTerminer (bool b)
+{
+    m_terminer = b;
+}
+
+int Input::getSelectedScene() const
+{
+    return m_selectedScene;
+}
+
+void Input::setSelectedScene(int select)
+{
+    m_selectedScene = select;
 }

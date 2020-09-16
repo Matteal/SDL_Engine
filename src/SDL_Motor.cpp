@@ -1,6 +1,6 @@
 #include "SDL_Motor.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_Window_renderer(),m_play(m_window.getRenderer(),250,100,300,50),m_quit(m_window.getRenderer(),250,300,300,50),m_button(m_window.getRenderer(),250,300,300,50)
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_Window_renderer(), m_selectedScene(0)
 {
     // ctor
 }
@@ -10,32 +10,7 @@ SDL_Motor::~SDL_Motor()
     //dtor
 }
 
-void SDL_Motor::aff_Menu()
-{
-    // Clear the SDL_Renderer
-        SDL_RenderClear(m_Window_renderer);
-        SDL_SetRenderDrawColor(m_Window_renderer,0,255,255,255);
 
-        // Render
-
-        //SDL_RenderCopy(m_Window_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
-        SDL_RenderCopy(m_Window_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
-        //SDL_RenderPresent(m_Window_renderer);
-}
-
-void SDL_Motor::aff_Scene()
-{
-    // Clear the SDL_Renderer
-        SDL_SetRenderDrawColor(m_Window_renderer,0,255,255,255);
-        SDL_RenderClear(m_Window_renderer);
-
-
-        // Render
-        SDL_SetRenderDrawColor(m_Window_renderer,255,0,0,0);
-        SDL_RenderFillRect(m_Window_renderer,m_button.getSDL_Rect());
-
-        SDL_RenderPresent(m_Window_renderer);
-}
 
 bool SDL_Motor::init()
 {
@@ -46,7 +21,6 @@ bool SDL_Motor::init()
 
     // Loading Textures
     m_textureArray[0] = chargerTexture("data/jouer.png",m_window.getRenderer());
-
     m_textureArray[1] = chargerTexture("data/quitter.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
@@ -64,7 +38,11 @@ void SDL_Motor::mainloop()
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
-    Scene sceneTest(m_Window_renderer, m_textureArray);
+    MainMenu mainMenu(m_Window_renderer, m_textureArray);
+    Scene scene(m_Window_renderer, m_textureArray);
+
+    Mix_VolumeMusic(30);
+
 
     // Core Loop
     while(!m_input.terminer())
@@ -84,41 +62,64 @@ void SDL_Motor::mainloop()
         {
             m_input.SetTerminer(true);
         }
+
+        // TODO : Move the music section into each Scene::update
         if( Mix_PlayingMusic() == 0 )
         {
             //Play the music & manage the music
-            Mix_VolumeMusic(30);
             Mix_PlayMusic(m_window.getMusic(), -1 );
+
         }
 
-        // Update
-        if(m_play.estTouche(m_input.getX(),m_input.getY()))
+//        // Update
+//        if(m_play.estTouche(m_input.getX(),m_input.getY()))
+//        {
+//           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
+//           {
+//                m_input.SetChange(true);
+//           }
+//        }
+//        else if (m_quit.estTouche(m_input.getX(),m_input.getY()))
+//        {
+//           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
+//           {
+//               //SDL_Quit();
+//               m_input.SetTerminer(true);
+//           }
+//        }
+
+
+        switch(m_selectedScene)
         {
-           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
-           {
-                m_input.SetChange(true);
-           }
-        }
-        else if (m_quit.estTouche(m_input.getX(),m_input.getY()))
-        {
-           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
-           {
-               //SDL_Quit();
-               m_input.SetTerminer(true);
-           }
+            case 0:
+                mainMenu.update(&m_input);
+                break;
+            case 1:
+                //scene.update(m_input);
+                break;
+            default:
+                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
         }
 
         // *** GRAPHICS ***
-        if(m_input.Change())
+
+        // Clear the Canvas
+        SDL_RenderClear(m_Window_renderer);
+
+        switch(m_input.getSelectedScene())
         {
-            aff_Scene();
+            case 0:
+                mainMenu.render();
+                break;
+            case 1:
+                scene.render();
+                break;
+            default:
+                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
         }
-        else
-        {
-            aff_Menu();
-            sceneTest.render();
-            SDL_RenderPresent(m_Window_renderer);
-        }
+
+        // Print the Canvas
+        SDL_RenderPresent(m_Window_renderer);
 
 
 

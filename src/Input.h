@@ -17,8 +17,10 @@ class Input
     ~Input();
 
     void updateEvenements();
-    bool terminer() const;
-    bool Change() const;
+
+
+
+
 
 
     //Gestion évènement
@@ -33,11 +35,16 @@ class Input
     int getXRel() const;
     int getYRel() const;
 
-
     void afficherPointeur(bool reponse) const;
     void capturerPointeur(bool reponse) const;
+
+
+    bool terminer() const;
     void SetTerminer(bool b);
-    void SetChange(bool c);
+
+    int getSelectedScene() const;
+    void setSelectedScene(int select);
+
 
     private:
 
@@ -51,7 +58,10 @@ class Input
     int m_yRel;
 
     bool m_terminer;
-    bool m_change;
+    int m_selectedScene;
+    /*  0 -> Main Menu
+        1 -> Game Scene
+        2 -> Pause Menu */
 };
 
 #endif // INPUT_H
