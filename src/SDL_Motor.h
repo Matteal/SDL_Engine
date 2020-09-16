@@ -3,13 +3,14 @@
 
 #include <iostream>
 
-#define NB_IMAGE 2
+
 
 
 #include "Window.h"
 #include "Input.h"
 #include "Button.h"
 
+#include "Scene.h"
 
 
 class SDL_Motor
@@ -31,7 +32,7 @@ class SDL_Motor
 
         SDL_Texture* m_textureArray[NB_IMAGE];
         SDL_Renderer* m_Window_renderer;
-        SDL_Renderer* m_Scene_renderer;
+        //SDL_Renderer* m_Scene_renderer;
 
         Button m_play;
         Button m_quit;

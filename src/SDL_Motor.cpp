@@ -18,9 +18,9 @@ void SDL_Motor::aff_Menu()
 
         // Render
 
-        SDL_RenderCopy(m_Window_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
+        //SDL_RenderCopy(m_Window_renderer,m_textureArray[0],NULL,m_play.getSDL_Rect());
         SDL_RenderCopy(m_Window_renderer,m_textureArray[1],NULL,m_quit.getSDL_Rect());
-        SDL_RenderPresent(m_Window_renderer);
+        //SDL_RenderPresent(m_Window_renderer);
 }
 
 void SDL_Motor::aff_Scene()
@@ -50,7 +50,7 @@ bool SDL_Motor::init()
     m_textureArray[1] = chargerTexture("data/quitter.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
-     m_Window_renderer = m_window.getRenderer();
+    m_Window_renderer = m_window.getRenderer();
 
 
 
@@ -63,6 +63,8 @@ void SDL_Motor::mainloop()
     // Framerate variables
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
+
+    Scene sceneTest(m_Window_renderer, m_textureArray);
 
     // Core Loop
     while(!m_input.terminer())
@@ -89,22 +91,7 @@ void SDL_Motor::mainloop()
             Mix_PlayMusic(m_window.getMusic(), -1 );
         }
 
-
-
-        // *** GRAPHICS ***
-        if(m_input.Change())
-        {
-            aff_Scene();
-        }
-        else
-        {
-            aff_Menu();
-        }
-
-
-
-
-
+        // Update
         if(m_play.estTouche(m_input.getX(),m_input.getY()))
         {
            if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
@@ -116,10 +103,27 @@ void SDL_Motor::mainloop()
         {
            if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
            {
-               SDL_Quit();
+               //SDL_Quit();
                m_input.SetTerminer(true);
            }
         }
+
+        // *** GRAPHICS ***
+        if(m_input.Change())
+        {
+            aff_Scene();
+        }
+        else
+        {
+            aff_Menu();
+            sceneTest.render();
+            SDL_RenderPresent(m_Window_renderer);
+        }
+
+
+
+
+
 
 
 

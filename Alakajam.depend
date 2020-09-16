@@ -390,7 +390,7 @@
 
 1547325890 D
 
-1561873968 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+1561870368 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -410,15 +410,16 @@
 	"begin_code.h"
 	"close_code.h"
 
-1600031627 source:c:\users\33669\documents\github\alakajam\main.cpp
+1600033041 source:c:\users\33669\documents\github\alakajam\main.cpp
 	<SDL.h>
 	<iostream>
 	"src/SDL_Motor.h"
 	"src/Window.h"
 
-1600029297 c:\users\33669\documents\github\alakajam\src\window.h
+1600254679 c:\users\33669\documents\github\alakajam\src\window.h
 	<iostream>
 	<SDL_image.h>
+	<SDL_mixer.h>
 
 1599859994 c:\users\33669\documents\github\alakajam\src\texture.h
 	<SDL.h>
@@ -427,36 +428,36 @@
 	<iostream>
 	<vector>
 
-1600031979 c:\users\33669\documents\github\alakajam\src\input.h
+1600254679 c:\users\33669\documents\github\alakajam\src\input.h
 	<SDL.h>
 
-1600029297 c:\users\33669\documents\github\alakajam\src\button.h
+1600260397 c:\users\33669\documents\github\alakajam\src\button.h
 	"SDL.h"
 
-1600029297 source:c:\users\33669\documents\github\alakajam\src\button.cpp
+1600260397 source:c:\users\33669\documents\github\alakajam\src\button.cpp
 	"Button.h"
 
-1600031979 source:c:\users\33669\documents\github\alakajam\src\input.cpp
+1600254679 source:c:\users\33669\documents\github\alakajam\src\input.cpp
 	"Input.h"
 
 1599859730 source:c:\users\33669\documents\github\alakajam\src\texture.cpp
 	"Texture.h"
 
-1600031627 source:c:\users\33669\documents\github\alakajam\src\window.cpp
+1600254679 source:c:\users\33669\documents\github\alakajam\src\window.cpp
 	"Window.h"
 	<stdlib.h>
 
 1599811988 
 
-1600031896 source:c:\users\33669\documents\github\alakajam\src\sdl_motor.cpp
+1600260017 source:c:\users\33669\documents\github\alakajam\src\sdl_motor.cpp
 	"SDL_Motor.h"
 
-1600030075 c:\users\33669\documents\github\alakajam\src\sdl_motor.h
+1600260096 c:\users\33669\documents\github\alakajam\src\sdl_motor.h
 	<iostream>
-	<SDL_image.h>
 	"Window.h"
 	"Input.h"
 	"Button.h"
+	"Scene.h"
 
 1600036859 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\main.cpp
 	<SDL.h>
@@ -509,4 +510,12 @@
 
 1600118037 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\scene.h
 	<SDL.h>
+
+1600259778 source:c:\users\33669\documents\github\alakajam\src\scene.cpp
+	"Scene.h"
+	<iostream>
+
+1600260889 c:\users\33669\documents\github\alakajam\src\scene.h
+	<SDL.h>
+	"Button.h"
 
