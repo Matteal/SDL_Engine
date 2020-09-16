@@ -1,27 +1,49 @@
 #ifndef SCENE_H
 #define SCENE_H
+
+#define MAX_SPRITE 100
+
 #include <SDL.h>
+
+#include "Button.h"
+#include "Input.h"
+#include <vector>
+
 
 
 class Scene
 {
     public:
-        Scene(const char* m_title, const int m_width, const int m_height, const Uint32 m_flags);
+        Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
         ~Scene();
 
-        bool InitScene();
-        SDL_Renderer* getRenderer();
+        void render();
 
     protected:
+        SDL_Renderer* m_renderer;
+        SDL_Texture* m_textureArray[NB_IMAGE];
+
+        std::vector<Sprite*> m_tabSprite;
 
     private:
-        const char* m_title;
-        const int m_width;
-        const int m_height;
-        const Uint32 m_flags;
 
-        SDL_Window* m_scene;
-        SDL_Renderer* m_renderer;
+};
+
+class MainMenu : public Scene
+{
+    public:
+        MainMenu (SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+
+        void update(Input* input);
+};
+
+class PauseMenu : public Scene
+{
+    public:
+        PauseMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+
+        void update(Input* input);
+        void render();
 };
 
 #endif // SCENE_H

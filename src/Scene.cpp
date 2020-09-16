@@ -1,60 +1,75 @@
 #include "Scene.h"
 #include <iostream>
 
-Scene::Scene(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags): m_title(titleWindow), m_width(widhtWindow),
-                                                                                             m_height(heightWindow), m_flags(flags), m_scene(0), m_renderer(0)
+Scene::Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_renderer(renderer)
 {
-    //ctor
+    for(int i=0; i<2; i++)
+    {
+        m_textureArray[i] = textureArray[i];
+    }
 }
 
 Scene::~Scene()
 {
-    SDL_DestroyWindow(m_scene);
-    SDL_DestroyRenderer(m_renderer);
-    SDL_Quit();
+    for(unsigned int i = 0; i < m_tabSprite.size(); i++)
+     delete(m_tabSprite[i]);
 }
 
-bool Scene::InitScene()
+
+void Scene::render()
 {
-    // Init SDL
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
+    SDL_SetRenderDrawColor(m_renderer,0,255,255,255);
+
+    for(unsigned int i = 0; i < m_tabSprite.size(); i++)
+        m_tabSprite[i]->render();
+}
+
+
+
+// ***** MAINMENU ***** //
+
+MainMenu::MainMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
+{
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[0], 250,100,300,50)); //Bouton Jouer
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[1], 250,300,300,50)); //Bouton Quitter
+}
+
+void MainMenu::update(Input* input)
+{
+    // If buttonClicked
+    if (input->getBoutonSouris(SDL_MOUSEBUTTONDOWN))
     {
-        std::cout << "Error occurred during SDL initialization : " << SDL_GetError() << std::endl;
-        SDL_Quit();
-
-        return false;
-    }
-
-
-    // Création de la fenêtre
-    m_scene = SDL_CreateWindow(m_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, m_flags);
-
-    if(m_scene == 0)
-    {
-        std::cout << "Error occurred during window creation phase : " << SDL_GetError() << std::endl;
-
-        return false;
-    }
-
-
-    // Création du renderer
-    m_renderer = SDL_CreateRenderer(m_scene, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
-    if(m_renderer == NULL)
-    {
-        m_renderer = SDL_CreateRenderer(m_scene, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
-
-        if(m_renderer == NULL)
+        // "Play" Button is pressed
+        if(m_tabSprite[0]->estTouche(input->getX(), input->getY()))
         {
-            std::cout << "Error occurred during renderer initialization : " << SDL_GetError() << std::endl;
-
-            return false;
+            input->setSelectedScene(1);
+        }
+        // "Quit" Button is pressed
+        else if(m_tabSprite[1]->estTouche(input->getX(), input->getY()))
+        {
+            input->SetTerminer(true);
         }
     }
-    return true;
 }
 
-SDL_Renderer* Scene::getRenderer()
+// ***** PAUSEMENU ***** //
+
+PauseMenu::PauseMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
 {
-    return m_renderer;
+
+}
+
+void PauseMenu::update(Input* input)
+{
+    // If Pause Button is Pressed
+    if (input->getTouche(SDL_SCANCODE_P))
+    {
+        input->setSelectedScene(1);
+    }
+
+}
+
+void PauseMenu::render()
+{
+    SDL_SetRenderDrawColor(m_renderer,0,0,0,255);
 }

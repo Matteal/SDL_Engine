@@ -1,31 +1,79 @@
 #include "Button.h"
 
-Button::Button(SDL_Renderer* renderer, int x1, int y1, int x2, int y2) : m_renderer(renderer), m_dimensions({x1, y1, x2, y2})
+Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2) : m_renderer(renderer), m_texture(texture), m_rect({x1, y1, x2, y2}), m_visible(true)
 {
     //ctor
 }
 
-Button::~Button()
+Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture): m_renderer(renderer), m_texture(m_texture), m_visible(true)
+{
+    //ctor
+}
+
+Sprite::~Sprite()
 {
     //dtor
 }
 
-SDL_Rect* Button::getSDL_Rect()
+//Re-size
+void Sprite::setDimensions(int dimensionX, int DimensionY)
 {
-
-    return &m_dimensions;
+    m_rect = SDL_Rect{m_rect.x, m_rect.y, dimensionX, DimensionY};
+}
+void Sprite::setPosition(int PositionX, int PositionY)
+{
+    m_rect = SDL_Rect{PositionX, PositionY, m_rect.w, m_rect.h};
 }
 
-bool Button::estTouche(int curseurx,int curseury)
+SDL_Rect* Sprite::getSDL_Rect()
 {
-    if((curseurx < m_dimensions.w + m_dimensions.x) && (curseurx > m_dimensions.x) && (curseury < m_dimensions.h + m_dimensions.y) && (curseury > m_dimensions.y))
-    {
-      return true;
-    }
-    else
-    {
-        return false;
-    }
-    return false;
+
+    return &m_rect;
 }
+
+bool Sprite::estTouche(int curseurX,int curseurY)
+{
+    return ((curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y));
+
+}
+
+void Sprite::render()
+{
+    if(m_visible)
+    {
+        SDL_RenderCopy(m_renderer,m_texture,NULL,&m_rect);
+    }
+}
+
+
+
+//
+//Button::Button(SDL_Renderer* renderer, int x1, int y1, int x2, int y2) : m_renderer(renderer), m_dimensions({x1, y1, x2, y2})
+//{
+//    //ctor
+//}
+//
+//Button::~Button()
+//{
+//    //dtor
+//}
+//
+//SDL_Rect* Button::getSDL_Rect()
+//{
+//
+//    return &m_dimensions;
+//}
+//
+//bool Button::estTouche(int curseurx,int curseury)
+//{
+//    if((curseurx < m_dimensions.w + m_dimensions.x) && (curseurx > m_dimensions.x) && (curseury < m_dimensions.h + m_dimensions.y) && (curseury > m_dimensions.y))
+//    {
+//      return true;
+//    }
+//    else
+//    {
+//        return false;
+//    }
+//    return false;
+//}
 
