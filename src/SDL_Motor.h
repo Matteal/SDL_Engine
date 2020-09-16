@@ -9,6 +9,7 @@
 #include "Button.h"
 
 #include "Scene.h"
+#include "Game.h"
 
 
 class SDL_Motor
@@ -27,10 +28,7 @@ class SDL_Motor
         Input m_input;
 
         SDL_Texture* m_textureArray[NB_IMAGE];
-        SDL_Renderer* m_Window_renderer;
-        //SDL_Renderer* m_Scene_renderer;
-
-        int m_selectedScene;
+        SDL_Renderer* m_renderer;
 };
 
 SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* rendu);

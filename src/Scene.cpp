@@ -51,3 +51,25 @@ void MainMenu::update(Input* input)
         }
     }
 }
+
+// ***** PAUSEMENU ***** //
+
+PauseMenu::PauseMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
+{
+
+}
+
+void PauseMenu::update(Input* input)
+{
+    // If Pause Button is Pressed
+    if (input->getTouche(SDL_SCANCODE_P))
+    {
+        input->setSelectedScene(1);
+    }
+
+}
+
+void PauseMenu::render()
+{
+    SDL_SetRenderDrawColor(m_renderer,0,0,0,255);
+}

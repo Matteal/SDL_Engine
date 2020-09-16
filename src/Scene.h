@@ -37,4 +37,13 @@ class MainMenu : public Scene
         void update(Input* input);
 };
 
+class PauseMenu : public Scene
+{
+    public:
+        PauseMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+
+        void update(Input* input);
+        void render();
+};
+
 #endif // SCENE_H

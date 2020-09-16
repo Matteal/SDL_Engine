@@ -1,6 +1,6 @@
 #include "SDL_Motor.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_Window_renderer(), m_selectedScene(0)
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer()
 {
     // ctor
 }
@@ -24,7 +24,7 @@ bool SDL_Motor::init()
     m_textureArray[1] = chargerTexture("data/quitter.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
-    m_Window_renderer = m_window.getRenderer();
+    m_renderer = m_window.getRenderer();
 
 
 
@@ -38,17 +38,18 @@ void SDL_Motor::mainloop()
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
-    MainMenu mainMenu(m_Window_renderer, m_textureArray);
-    Scene scene(m_Window_renderer, m_textureArray);
+    // Objets Scène
+    MainMenu mainMenu(m_renderer, m_textureArray);
+    Game game(m_renderer, m_textureArray);
+    PauseMenu pause(m_renderer, m_textureArray);
 
+    //défini le volume initial de la musique
     Mix_VolumeMusic(30);
 
 
     // Core Loop
     while(!m_input.terminer())
     {
-
-
 
         // Defining timestamp
         debutBoucle = SDL_GetTicks();
@@ -71,40 +72,30 @@ void SDL_Motor::mainloop()
 
         }
 
-//        // Update
-//        if(m_play.estTouche(m_input.getX(),m_input.getY()))
-//        {
-//           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
-//           {
-//                m_input.SetChange(true);
-//           }
-//        }
-//        else if (m_quit.estTouche(m_input.getX(),m_input.getY()))
-//        {
-//           if (m_input.getBoutonSouris(SDL_MOUSEBUTTONDOWN))
-//           {
-//               //SDL_Quit();
-//               m_input.SetTerminer(true);
-//           }
-//        }
 
+        // *** UPDATE ***
 
-        switch(m_selectedScene)
+        switch(m_input.getSelectedScene())
         {
             case 0:
                 mainMenu.update(&m_input);
                 break;
             case 1:
-                //scene.update(m_input);
+                game.update(&m_input);
+                break;
+            case 2:
+                pause.update(&m_input);
                 break;
             default:
                 std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
         }
 
+
+
         // *** GRAPHICS ***
 
         // Clear the Canvas
-        SDL_RenderClear(m_Window_renderer);
+        SDL_RenderClear(m_renderer);
 
         switch(m_input.getSelectedScene())
         {
@@ -112,20 +103,17 @@ void SDL_Motor::mainloop()
                 mainMenu.render();
                 break;
             case 1:
-                scene.render();
+                game.render();
+                break;
+            case 2:
+                pause.render();
                 break;
             default:
                 std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
         }
 
         // Print the Canvas
-        SDL_RenderPresent(m_Window_renderer);
-
-
-
-
-
-
+        SDL_RenderPresent(m_renderer);
 
 
 
