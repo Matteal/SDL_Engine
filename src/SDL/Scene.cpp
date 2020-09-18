@@ -44,6 +44,7 @@ void MainMenu::update(Input* input)
         {
             input->setSelectedScene(2);
         }
+
         // "Quit" Button is pressed
         else if(m_tabSprite[1]->estTouche(input->getX(), input->getY()))
         {
