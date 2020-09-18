@@ -5,7 +5,7 @@
 
 #include <SDL.h>
 
-#include "Button.h"
+#include "Sprite.h"
 #include "Input.h"
 #include <vector>
 

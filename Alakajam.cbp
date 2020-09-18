@@ -38,21 +38,22 @@
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Button.cpp" />
-		<Unit filename="src/Button.h" />
-		<Unit filename="src/Input.cpp" />
-		<Unit filename="src/Input.h" />
-		<Unit filename="src/SDL_Motor.cpp" />
-		<Unit filename="src/SDL_Motor.h" />
-		<Unit filename="src/Scene.cpp" />
-		<Unit filename="src/Scene.h" />
-		<Unit filename="src/Window.cpp" />
-		<Unit filename="src/Window.h" />
+		<Unit filename="src/Fight/GameFight.cpp" />
+		<Unit filename="src/Fight/GameFight.h" />
+		<Unit filename="src/SDL/Input.cpp" />
+		<Unit filename="src/SDL/Input.h" />
+		<Unit filename="src/SDL/SDL_Motor.cpp" />
+		<Unit filename="src/SDL/SDL_Motor.h" />
+		<Unit filename="src/SDL/Scene.cpp" />
+		<Unit filename="src/SDL/Scene.h" />
+		<Unit filename="src/SDL/Sprite.cpp" />
+		<Unit filename="src/SDL/Sprite.h" />
+		<Unit filename="src/SDL/Window.cpp" />
+		<Unit filename="src/SDL/Window.h" />
+		<Unit filename="src/Tile/GameTile.cpp" />
+		<Unit filename="src/Tile/GameTile.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
-			<code_completion />
-			<envvars />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
