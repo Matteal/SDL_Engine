@@ -78,9 +78,6 @@ bool Window::initWindow()
             std::cout<<"Erreur"<<std::endl;
         }
     }
-    int x=0, y=0;
-    SDL_GetWindowPosition(m_window, &x, &y);
-    std::cout<<x<<" : "<<y;
     return true;
 }
 
