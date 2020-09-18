@@ -528,3 +528,64 @@
 1600269145 c:\users\33669\documents\github\alakajam\src\game.h
 	"Scene.h"
 
+1600419144 source:c:\users\33669\documents\github\alakajam\src\sdl\scene.cpp
+	"Scene.h"
+	<iostream>
+
+1600464954 c:\users\33669\documents\github\alakajam\src\sdl\scene.h
+	<SDL.h>
+	"Sprite.h"
+	"Input.h"
+	<vector>
+
+1600464836 c:\users\33669\documents\github\alakajam\src\sdl\sprite.h
+	"SDL.h"
+
+1600464836 c:\users\33669\documents\github\alakajam\src\sdl\input.h
+	<SDL.h>
+
+1600464836 source:c:\users\33669\documents\github\alakajam\src\sdl\input.cpp
+	"Input.h"
+
+1600464901 source:c:\users\33669\documents\github\alakajam\src\sdl\sprite.cpp
+	"Sprite.h"
+
+1600464836 source:c:\users\33669\documents\github\alakajam\src\sdl\window.cpp
+	"Window.h"
+	<stdlib.h>
+
+1600464836 c:\users\33669\documents\github\alakajam\src\sdl\window.h
+	<iostream>
+	<SDL_image.h>
+	<SDL_mixer.h>
+
+1600465052 source:c:\users\33669\documents\github\alakajam\src\gametile.cpp
+	"GameTile.h"
+
+1600465155 c:\users\33669\documents\github\alakajam\src\gametile.h
+	"SDL/Scene.h"
+
+1600465439 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
+	"SDL_Motor.h"
+
+1600465477 c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.h
+	<iostream>
+	"Window.h"
+	"Input.h"
+	"Sprite.h"
+	"Scene.h"
+	"../Tile/GameTile.h"
+	"../Fight/GameFight.h"
+
+1600465411 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
+	"GameTile.h"
+
+1600465428 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
+	"../SDL/Scene.h"
+
+1600465419 source:c:\users\33669\documents\github\alakajam\src\fight\gamefight.cpp
+	"GameFight.h"
+
+1600465432 c:\users\33669\documents\github\alakajam\src\fight\gamefight.h
+	"../SDL/Scene.h"
+

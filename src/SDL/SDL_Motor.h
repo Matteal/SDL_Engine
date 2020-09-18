@@ -6,10 +6,11 @@
 
 #include "Window.h"
 #include "Input.h"
-#include "Button.h"
+#include "Sprite.h"
 
 #include "Scene.h"
-#include "Game.h"
+#include "../Tile/GameTile.h"
+#include "../Fight/GameFight.h"
 
 
 class SDL_Motor

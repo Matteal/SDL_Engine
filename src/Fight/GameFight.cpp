@@ -1,16 +1,16 @@
-#include "Game.h"
+#include "GameFight.h"
 
-Game::Game(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
+GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
 {
     //ctor
 }
 
-Game::~Game()
+GameFight::~GameFight()
 {
 
 }
 
-void Game::update(Input* input)
+void GameFight::update(Input* input)
 {
     // If Pause Button is Pressed
     if (input->getTouche(SDL_SCANCODE_P))
@@ -19,7 +19,7 @@ void Game::update(Input* input)
     }
 }
 
-void Game::render()
+void GameFight::render()
 {
     int colorG = (SDL_GetTicks()/10) % 255;
     int colorB = (SDL_GetTicks()/20) % 255;

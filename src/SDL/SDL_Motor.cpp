@@ -40,7 +40,7 @@ void SDL_Motor::mainloop()
 
     // Objets Scène
     MainMenu mainMenu(m_renderer, m_textureArray);
-    Game game(m_renderer, m_textureArray);
+    GameTile game(m_renderer, m_textureArray);
     PauseMenu pause(m_renderer, m_textureArray);
 
     //défini le volume initial de la musique
