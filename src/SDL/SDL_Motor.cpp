@@ -1,6 +1,6 @@
 #include "SDL_Motor.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer()
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN), m_input(), m_renderer()
 {
     // ctor
 }
@@ -46,6 +46,9 @@ void SDL_Motor::mainloop()
 
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);
+
+
+
 
 
     // Core Loop
