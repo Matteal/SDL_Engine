@@ -42,13 +42,19 @@ void MainMenu::update(Input* input)
         // "Play" Button is pressed
         if(m_tabSprite[0]->estTouche(input->getX(), input->getY()))
         {
-            input->setSelectedScene(1);
+            input->setSelectedScene(2);
         }
         // "Quit" Button is pressed
         else if(m_tabSprite[1]->estTouche(input->getX(), input->getY()))
         {
-            input->SetTerminer(true);
+            input->setSelectedScene(3);
         }
+
+//         "Quit" Button is pressed
+//        else if(m_tabSprite[1]->estTouche(input->getX(), input->getY()))
+//        {
+//            input->SetTerminer(true);
+//        }
     }
 }
 
@@ -64,7 +70,7 @@ void PauseMenu::update(Input* input)
     // If Pause Button is Pressed
     if (input->getTouche(SDL_SCANCODE_P))
     {
-        input->setSelectedScene(1);
+        input->setSelectedScene(2);
     }
 
 }
