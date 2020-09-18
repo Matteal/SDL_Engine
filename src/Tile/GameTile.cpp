@@ -12,11 +12,7 @@ GameTile::~GameTile()
 
 void GameTile::update(Input* input)
 {
-    // If Pause Button is Pressed
-    if (input->getTouche(SDL_SCANCODE_P))
-    {
-        input->setSelectedScene(2);
-    }
+
 }
 
 void GameTile::render()

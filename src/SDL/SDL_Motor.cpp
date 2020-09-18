@@ -1,6 +1,6 @@
 #include "SDL_Motor.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer()
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
 {
     // ctor
 }
@@ -40,11 +40,15 @@ void SDL_Motor::mainloop()
 
     // Objets Scène
     MainMenu mainMenu(m_renderer, m_textureArray);
-    GameTile game(m_renderer, m_textureArray);
     PauseMenu pause(m_renderer, m_textureArray);
+    GameTile gameT(m_renderer, m_textureArray);
+    GameTile gameF(m_renderer, m_textureArray);
 
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);
+
+
+
 
 
     // Core Loop
@@ -81,10 +85,13 @@ void SDL_Motor::mainloop()
                 mainMenu.update(&m_input);
                 break;
             case 1:
-                game.update(&m_input);
+                pause.update(&m_input);
                 break;
             case 2:
-                pause.update(&m_input);
+                gameT.update(&m_input);
+                break;
+            case 3:
+                gameF.update(&m_input);
                 break;
             default:
                 std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
@@ -103,10 +110,13 @@ void SDL_Motor::mainloop()
                 mainMenu.render();
                 break;
             case 1:
-                game.render();
+                pause.render();
                 break;
             case 2:
-                pause.render();
+                gameT.render();
+                break;
+            case 3:
+                gameF.render();
                 break;
             default:
                 std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
