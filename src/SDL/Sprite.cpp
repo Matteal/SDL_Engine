@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2) : m_renderer(renderer), m_texture(texture), m_rect({x1, y1, x2, y2}), m_visible(true)
+Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2) : m_renderer(renderer), m_texture(texture), m_rect({x1, y1, x2, y2}), m_visible(true), m_toggle(false)
 {
     //ctor
 }
@@ -31,34 +31,34 @@ SDL_Rect* Sprite::getSDL_Rect()
     return &m_rect;
 }
 
-bool Sprite::estTouche(int curseurX,int curseurY)
+bool Sprite::estTouche(int curseurX, int curseurY)
 {
     return (curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y);
 }
 
-bool Sprite::estTouche(int curseurX,int curseurY, bool bool1, bool bool2)
+// Allow not
+bool Sprite::estTouche(int curseurX, int curseurY, bool isDown, bool isUp)
 {
-    return (curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y);
-
-    // A tester
-    bool toggle = false;
-    if (bool1)
+    // if LeftClick pressed
+    if (isDown)
     {
-        if ((curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y))
+        if (estTouche(curseurX, curseurY))
         {
-            toggle = true;
+            m_toggle = true;
         }
     }
-    if (toggle)
+
+    // if LeftClick release
+    if (m_toggle)
     {
-        if (bool2)
+        if (isUp)
+        {
+            m_toggle = false;
+            if(estTouche(curseurX, curseurY))
             {
-                toggle = false;
-                if((curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y))
-                    {
-                        return true;
-                    }
+                return true;
             }
+        }
     }
     return false;
 }
