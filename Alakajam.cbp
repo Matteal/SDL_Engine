@@ -50,10 +50,15 @@
 		<Unit filename="src/SDL/Sprite.h" />
 		<Unit filename="src/SDL/Window.cpp" />
 		<Unit filename="src/SDL/Window.h" />
+		<Unit filename="src/Tile/Bateau.cpp" />
+		<Unit filename="src/Tile/Bateau.h" />
 		<Unit filename="src/Tile/GameTile.cpp" />
 		<Unit filename="src/Tile/GameTile.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

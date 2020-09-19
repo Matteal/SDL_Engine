@@ -41,6 +41,7 @@ class Input
 
     bool terminer() const;
     void SetTerminer(bool b);
+    bool clic();
 
     int getSelectedScene() const;
     void setSelectedScene(int select);

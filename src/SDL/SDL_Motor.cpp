@@ -68,6 +68,7 @@ void SDL_Motor::mainloop()
             m_input.SetTerminer(true);
         }
 
+
         // TODO : Move the music section into each Scene::update
         if( Mix_PlayingMusic() == 0 )
         {

@@ -20,6 +20,19 @@ Input::~Input()
     //dtor
 }
 
+bool Input::clic()
+{
+    if ((SDL_MOUSEBUTTONDOWN) && (SDL_MOUSEBUTTONUP))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    return false;
+}
+
 void Input::updateEvenements()
 {
 
