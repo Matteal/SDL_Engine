@@ -15,7 +15,7 @@ bool Tile::estTouche(int curseurX,int curseurY)
     //collision Sprite
     if(Sprite::estTouche(curseurX, curseurY))
     {
-        if(curseurX > m_rect.x+10  && curseurY > m_rect.y +10)
+        if(curseurX+20 > curseurY)
         {
             return true;
         }

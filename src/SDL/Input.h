@@ -42,6 +42,7 @@ class Input
     bool terminer() const;
     void SetTerminer(bool b);
     bool clic();
+
     bool getRoundUP();
     bool getRoundDOWN();
 

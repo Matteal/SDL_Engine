@@ -36,27 +36,23 @@ MainMenu::MainMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
 
 void MainMenu::update(Input* input)
 {
-    // If buttonClicked
-    if (input->getBoutonSouris(SDL_MOUSEBUTTONDOWN))
+    // "Play" Button is pressed
+    if(m_tabSprite[0]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
     {
-        // "Play" Button is pressed
-        if(m_tabSprite[0]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
-        {
-            input->setSelectedScene(2);
-        }
+        input->setSelectedScene(2);
+    }
 
-        // "Quit" Button is pressed
-        else if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
-        {
-            input->setSelectedScene(3);
-        }
+    // "Quit" Button is pressed
+    else if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+    {
+        input->setSelectedScene(3);
+    }
 
 //         "Quit" Button is pressed
 //        else if(m_tabSprite[1]->estTouche(input->getX(), input->getY()))
 //        {
 //            input->SetTerminer(true);
 //        }
-    }
 }
 
 // ***** PAUSEMENU ***** //

@@ -39,6 +39,7 @@ void Input::updateEvenements()
     // Pour éviter des mouvements fictifs de la souris, on réinitialise les coordonnées relatives
     m_xRel = 0;
     m_yRel = 0;
+
     m_DuringRoundDOWN = false;
     m_DuringRoundUP = false;
 
@@ -63,20 +64,20 @@ void Input::updateEvenements()
 
             // Cas de pression sur un bouton de la souris
             case SDL_MOUSEBUTTONDOWN:
+                m_boutonsSouris[m_evenements.button.button] = true;
                 if(SDL_BUTTON_LEFT)
                 {
                     m_DuringRoundDOWN = true;
-                    m_boutonsSouris[m_evenements.button.button] = true;
                 }
 
             break;
 
             // Cas du relâchement d'un bouton de la souris
             case SDL_MOUSEBUTTONUP:
+                m_boutonsSouris[m_evenements.button.button] = true;
                if(SDL_BUTTON_LEFT)
                 {
                     m_DuringRoundUP = true;
-                    m_boutonsSouris[m_evenements.button.button] = true;
                 }
             break;
 

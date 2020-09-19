@@ -31,6 +31,7 @@ class Sprite
         SDL_Rect m_rect;
 
         bool m_visible;
+        bool m_toggle;
 
         //SDL_Rect m_dimensions;
 };
