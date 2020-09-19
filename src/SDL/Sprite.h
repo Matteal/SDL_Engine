@@ -5,7 +5,7 @@
 
 #include "SDL.h"
 
-#define NB_IMAGE 10
+#define NB_IMAGE 50
 
 class Sprite
 {
