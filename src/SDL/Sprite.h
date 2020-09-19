@@ -22,7 +22,6 @@ class Sprite
 
     protected:
 
-    private:
         SDL_Renderer* m_renderer;
         SDL_Texture* m_texture;
 

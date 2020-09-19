@@ -25,6 +25,7 @@ class GameTile : public Scene
        Sprite m_hover;
 
        int m_hoverCordX, m_hoverCordY;
+       int boatPosX, boatPosY;
 };
 
 #endif // GAME_H

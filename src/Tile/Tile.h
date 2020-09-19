@@ -13,6 +13,8 @@ class Tile : public Sprite
         Tile(SDL_Renderer* renderer, SDL_Texture* texture);
         virtual ~Tile();
 
+        bool estTouche(int curseurx, int curseury);
+
         // TODO : accesseurs aux pointeurs des tuiles alentours
 
     private:
