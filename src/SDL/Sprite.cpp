@@ -31,8 +31,16 @@ SDL_Rect* Sprite::getSDL_Rect()
     return &m_rect;
 }
 
+bool Sprite::estTouche(int curseurX,int curseurY)
+{
+    return (curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y);
+}
+
 bool Sprite::estTouche(int curseurX,int curseurY, bool bool1, bool bool2)
 {
+    return (curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y);
+
+    // A tester
     bool toggle = false;
     if (bool1)
     {

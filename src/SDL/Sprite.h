@@ -1,6 +1,8 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include <iostream>
+
 #include "SDL.h"
 
 #define NB_IMAGE 10
@@ -16,6 +18,7 @@ class Sprite
         void setPosition(int PositionX, int PositionY);
 
         SDL_Rect* getSDL_Rect();
+        bool estTouche(int curseurx, int curseury);
         bool estTouche(int curseurx, int curseury, bool bool1, bool bool2);
 
         void render();
