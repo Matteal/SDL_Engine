@@ -24,6 +24,7 @@ class GameTile : public Scene
     private:
         Tile* m_map[NB_TILE_X][NB_TILE_Y];
         Sprite m_hover;
+        Sprite m_area;
         Boat m_boatP;
 
         bool inTravel;
@@ -32,6 +33,7 @@ class GameTile : public Scene
 
         int OriginCameraX, OriginCameraY;
         int m_hoverCordX, m_hoverCordY;
+
 
 };
 

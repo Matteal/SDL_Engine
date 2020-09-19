@@ -1,6 +1,7 @@
 #include "GameTile.h"
 
 GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_hover(m_renderer, textureArray[7], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
+                                                                                                                 m_area(m_renderer, textureArray[25], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
                                                                                                                  m_boatP(m_renderer, textureArray[8], TILE_RECT_WIDTH, TILE_RECT_HEIGHT)
 {
     char tab[NB_TILE_X][NB_TILE_Y];
@@ -26,6 +27,59 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
             }
 
             m_map[i][j] = new Tile(renderer, textureArray[rand()%4 +2]);
+        }
+    }
+
+    bool isRowEven;
+    for(int i=0; i<NB_TILE_X; i++)
+    {
+        for(int j=0; j<NB_TILE_Y; j++)
+        {
+            isRowEven = (j%2==0);
+
+            // tile 0
+            if(j==0 || j==1)
+                m_map[i][j]->SetTile(NULL, 0);
+            else
+                m_map[i][j]->SetTile(m_map[i][j-2], 0);
+
+            // tile 1
+            if(i==NB_TILE_X || j==0)
+                m_map[i][j]->SetTile(NULL, 1);
+            else if(isRowEven)
+                m_map[i][j]->SetTile(m_map[i][j-1], 1);
+            else
+                m_map[i][j]->SetTile(m_map[i+1][j-1], 1);
+
+            // tile 2
+            if(i==NB_TILE_X || j==NB_TILE_Y)
+                m_map[i][j]->SetTile(NULL, 2);
+            else if(isRowEven)
+                m_map[i][j]->SetTile(m_map[i][j+1], 2);
+            else
+                m_map[i][j]->SetTile(m_map[i+1][j+1], 2);
+
+            // tile 3
+            if(j==NB_TILE_Y || j==NB_TILE_Y-1)
+                m_map[i][j]->SetTile(NULL, 3);
+            else
+                m_map[i][j]->SetTile(m_map[i][j+2], 3);
+
+            // tile 4
+            if(i==0 || j==NB_TILE_Y)
+                m_map[i][j]->SetTile(NULL, 4);
+            else if(isRowEven)
+                m_map[i][j]->SetTile(m_map[i-1][j+1], 4);
+            else
+                m_map[i][j]->SetTile(m_map[i][j+1], 4);
+
+            // tile 5
+            if(i==0 || j==0)
+                m_map[i][j]->SetTile(NULL, 5);
+            else if(isRowEven)
+                m_map[i][j]->SetTile(m_map[i-1][j-1], 5);
+            else
+                m_map[i][j]->SetTile(m_map[i][j-1], 5);
         }
     }
 
@@ -109,6 +163,24 @@ void GameTile::render()
         {
             m_map[j+OriginCameraX][i+OriginCameraY]->render();
         }
+    }
+    int BoatX = m_boatP.getCurrentTileX();
+    int BoatY = m_boatP.getCurrentTileY();
+    Tile* tilePtr;
+    for(int i=0; i<6; i++)
+    {
+        tilePtr = static_cast <Tile*> (m_map[BoatX][BoatY]->getTile(i));
+        if(tilePtr!=NULL)
+        {
+            if(tilePtr->getIsEmpty())
+            {
+                SDL_Rect* rect = tilePtr->getSDL_Rect();
+                m_area.setPosition(rect->x, rect->y);
+                m_area.render();
+
+            }
+        }
+
     }
     m_hover.render();
 
