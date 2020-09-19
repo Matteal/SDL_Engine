@@ -1,6 +1,6 @@
 #include "Boat.h"
 
-Boat::Boat(SDL_Renderer* renderer, SDL_Texture* texture, int posx, int posy) : Sprite(renderer, texture, 0, 0, 78, 40), m_currentTileX (0), m_currentTileY (0)
+Boat::Boat(SDL_Renderer* renderer, SDL_Texture* texture, int posx, int posy) : Sprite(renderer, texture, 0, 0, 78, 40)
 {
     //ctor
 }
@@ -16,20 +16,14 @@ void Boat::attack(Boat &target)
     //init Fight
 }
 
-int Boat::getCurrentTileX()
+void Boat::setCurrentTile(Tile* tile)
 {
-    return m_currentTileX;
+    m_currentTile = tile;
 }
 
-int Boat::getCurrentTileY()
+Tile* Boat::getCurrentTile()
 {
-    return m_currentTileY;
-}
-
-void Boat::setCurrentTile(int x, int y)
-{
-    m_currentTileX = x;
-    m_currentTileY = y;
+    return m_currentTile;
 }
 
 
