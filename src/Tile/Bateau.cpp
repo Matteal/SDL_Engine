@@ -1,6 +1,6 @@
 #include "Bateau.h"
 
-Bateau::Bateau(int posx,int posy,float vie,float degat,bool vivant,int argent, bool tour, int armor)
+Bateau::Bateau(int posx, int posy)
 {
     //ctor
 }
@@ -8,16 +8,6 @@ Bateau::Bateau(int posx,int posy,float vie,float degat,bool vivant,int argent, b
 Bateau::~Bateau()
 {
     //dstror
-}
-
-bool Bateau::Vivant()
-{
-    if (m_vie > 0)
-    {
-        m_vivant = false;
-        return m_vivant;
-    }
-    return m_vivant;
 }
 
 int Bateau::Haut()
@@ -45,52 +35,38 @@ bool Bateau::getTour()
     return m_tour;
 }
 
-void Bateau::Dammage(int dammages,int armor)
+
+void Bateau::attack(Bateau &target)
 {
-    // ALGO QUI CALCULE LES DEGATS SELON DEGATS (ATT) ET ARMURE (DEF)
-    // m_vie -= degats IMPORTANT
+    //init Fight
 }
 
-void Bateau::attack(Bateau &target, int dammages)
-{
-    Dammage(dammages,target.getArmor());
-}
-
-int Bateau::getDammage()
-{
-    return m_degat;
-}
-
-int Bateau::getArmor()
-{
-    return m_armor;
-}
 
 
 
 
 // Player
-
-Player::Player(int posx,int posy,float vie,float degat,int type,bool vivant,int argent, int level, bool tour, int armor): Bateau(posx,posy,vie,degat,vivant,argent,tour,armor), m_level(level)
-{
-
-}
-
-int Player::Depense(int retrait)
-{
-    if (m_argent > retrait)
-    {
-        m_argent -= retrait;
-        return m_argent;
-    }
-    return m_argent;
-}
-
-
-// Ennemy
-
-Ennemy::Ennemy(int posx,int posy,float vie, float degat,bool vivant,int argent,bool tour,int armor): Bateau(posx,posy,vie,degat,vivant,argent,tour,armor)
-{
-
-}
-
+//
+//Player::Player(int posx,int posy,float vie,float degat,int type,bool vivant,int argent, int level, bool tour, int armor): Bateau(posx,posy,vie,degat,vivant,argent,tour,armor), m_level(level)
+//{
+//
+//}
+//
+//int Player::Depense(int retrait)
+//{
+//    if (m_argent > retrait)
+//    {
+//        m_argent -= retrait;
+//        return m_argent;
+//    }
+//    return m_argent;
+//}
+//
+//
+//// Ennemy
+//
+//Ennemy::Ennemy(int posx,int posy,float vie, float degat,bool vivant,int argent,bool tour,int armor): Bateau(posx,posy,vie,degat,vivant,argent,tour,armor)
+//{
+//
+//}
+//

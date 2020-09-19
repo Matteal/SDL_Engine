@@ -22,10 +22,16 @@ class GameTile : public Scene
 
     private:
         Tile* m_map[NB_TILE_X][NB_TILE_Y];
-       Sprite m_hover;
+        Sprite m_hover;
+        Sprite m_boat;
 
-       int m_hoverCordX, m_hoverCordY;
-       int boatPosX, boatPosY;
+        bool inTravel;
+        int boatPosX, boatPosY;
+        int boatLastPosX, boatLastPosY;
+
+        int OriginCameraX, OriginCameraY;
+        int m_hoverCordX, m_hoverCordY;
+
 };
 
 #endif // GAME_H
