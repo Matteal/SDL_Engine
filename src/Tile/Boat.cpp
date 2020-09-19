@@ -38,7 +38,6 @@ void Boat::render(float interpolation)
     SDL_Rect* rectLast = m_lastTile->getSDL_Rect();
     SDL_Rect* rectCurrent = m_currentTile->getSDL_Rect();
     setPosition((1-interpolation)*rectLast->x + interpolation*rectCurrent->x, (1-interpolation)*rectLast->y + interpolation*rectCurrent->y -8);
-    std::cout<<(1-interpolation)*rectLast->x + interpolation*rectCurrent->x<<std::endl;
     Sprite::render();
 }
 
