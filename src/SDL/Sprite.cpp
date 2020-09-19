@@ -31,10 +31,28 @@ SDL_Rect* Sprite::getSDL_Rect()
     return &m_rect;
 }
 
-bool Sprite::estTouche(int curseurX,int curseurY)
+bool Sprite::estTouche(int curseurX,int curseurY, bool bool1, bool bool2)
 {
-    return ((curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y));
-
+    bool toggle = false;
+    if (bool1)
+    {
+        if ((curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y))
+        {
+            toggle = true;
+        }
+    }
+    if (toggle)
+    {
+        if (bool2)
+            {
+                toggle = false;
+                if((curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y))
+                    {
+                        return true;
+                    }
+            }
+    }
+    return false;
 }
 
 void Sprite::render()

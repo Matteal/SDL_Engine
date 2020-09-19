@@ -40,13 +40,13 @@ void MainMenu::update(Input* input)
     if (input->getBoutonSouris(SDL_MOUSEBUTTONDOWN))
     {
         // "Play" Button is pressed
-        if(m_tabSprite[0]->estTouche(input->getX(), input->getY()))
+        if(m_tabSprite[0]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
         {
             input->setSelectedScene(2);
         }
 
         // "Quit" Button is pressed
-        else if(m_tabSprite[1]->estTouche(input->getX(), input->getY()))
+        else if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
         {
             input->setSelectedScene(3);
         }
