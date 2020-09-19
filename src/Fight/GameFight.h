@@ -13,14 +13,11 @@ class GameFight : public Scene
 
         void update(Input* input);
         void render();
-        void fight(bool tour1, bool tour2);
 
 
     protected:
 
     private:
-        Player b;
-        Ennemy e;
 };
 
 #endif // GAME_FIGHT_H
