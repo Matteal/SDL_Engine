@@ -5,7 +5,7 @@ Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int
     //ctor
 }
 
-Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture): m_renderer(renderer), m_texture(m_texture), m_visible(true)
+Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture): m_renderer(renderer), m_texture(texture), m_visible(true)
 {
     //ctor
 }

@@ -6,6 +6,7 @@
 
 #include "../SDL/Sprite.h"
 
+//0 haut, puis clockwork
 
 class Tile : public Sprite
 {
@@ -15,9 +16,17 @@ class Tile : public Sprite
 
         bool estTouche(int curseurx, int curseury);
 
+
         // TODO : accesseurs aux pointeurs des tuiles alentours
+//        void SetTile(Tile* tile, int orientation);
+//
+//        Tile* getTile(int orientation);
+
+
 
     private:
+
+        Tile* m_tile[6];
 
 };
 

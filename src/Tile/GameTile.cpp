@@ -29,6 +29,7 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
         }
     }
 
+
     boatPosX = 50;
     boatPosY = 50;
 
