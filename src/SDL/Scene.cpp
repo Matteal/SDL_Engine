@@ -3,7 +3,7 @@
 
 Scene::Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_renderer(renderer)
 {
-    for(int i=0; i<2; i++)
+    for(int i=0; i<NB_IMAGE; i++)
     {
         m_textureArray[i] = textureArray[i];
     }
