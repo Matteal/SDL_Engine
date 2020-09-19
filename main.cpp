@@ -1,8 +1,8 @@
 #include <SDL.h>
 #include <iostream>
 
-#include "src/SDL_Motor.h"
-#include "src/Window.h"
+#include "src/SDL/SDL_Motor.h"
+#include "src/SDL/Window.h"
 
 
 

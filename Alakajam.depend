@@ -410,11 +410,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1600033041 source:c:\users\33669\documents\github\alakajam\main.cpp
+1600480740 source:c:\users\33669\documents\github\alakajam\main.cpp
 	<SDL.h>
 	<iostream>
-	"src/SDL_Motor.h"
-	"src/Window.h"
+	"src/SDL/SDL_Motor.h"
+	"src/SDL/Window.h"
 
 1600254679 c:\users\33669\documents\github\alakajam\src\window.h
 	<iostream>
@@ -565,7 +565,7 @@
 1600465155 c:\users\33669\documents\github\alakajam\src\gametile.h
 	"SDL/Scene.h"
 
-1600477642 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
+1600481956 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
 	"SDL_Motor.h"
 
 1600465477 c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.h
@@ -577,13 +577,14 @@
 	"../Tile/GameTile.h"
 	"../Fight/GameFight.h"
 
-1600478543 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
+1600483241 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
 	"GameTile.h"
 
-1600477953 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
+1600482711 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
 	<iostream>
 	"../SDL/Scene.h"
 	"Tile.h"
+	<stdlib.h>
 
 1600466741 source:c:\users\33669\documents\github\alakajam\src\fight\gamefight.cpp
 	"GameFight.h"
@@ -591,7 +592,7 @@
 1600465432 c:\users\33669\documents\github\alakajam\src\fight\gamefight.h
 	"../SDL/Scene.h"
 
-1600472644 source:c:\users\33669\documents\github\alakajam\src\tile\tile.cpp
+1600481124 source:c:\users\33669\documents\github\alakajam\src\tile\tile.cpp
 	"Tile.h"
 
 1600475161 c:\users\33669\documents\github\alakajam\src\tile\tile.h

@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add directory="include" />
 					<Add directory="C:/Users/joaki/OneDrive/Documents/GameJam/Projet/Alakajam/" />
+					<Add directory="src/Tile" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -52,6 +53,8 @@
 		<Unit filename="src/SDL/Window.h" />
 		<Unit filename="src/Tile/GameTile.cpp" />
 		<Unit filename="src/Tile/GameTile.h" />
+		<Unit filename="src/Tile/Tile.cpp" />
+		<Unit filename="src/Tile/Tile.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

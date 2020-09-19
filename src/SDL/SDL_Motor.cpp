@@ -23,6 +23,11 @@ bool SDL_Motor::init()
     m_textureArray[0] = chargerTexture("data/jouer.png",m_window.getRenderer());
     m_textureArray[1] = chargerTexture("data/quitter.png",m_window.getRenderer());
     m_textureArray[2] = chargerTexture("data/tile1.png",m_window.getRenderer());
+    m_textureArray[3] = chargerTexture("data/tile2.png",m_window.getRenderer());
+    m_textureArray[4] = chargerTexture("data/tile3.png",m_window.getRenderer());
+    m_textureArray[5] = chargerTexture("data/tile4.png",m_window.getRenderer());
+    m_textureArray[6] = chargerTexture("data/tileIsland1.png",m_window.getRenderer());
+    m_textureArray[7] = chargerTexture("data/tileOutline.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();

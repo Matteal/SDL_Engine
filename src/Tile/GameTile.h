@@ -8,6 +8,8 @@
 #include "../SDL/Scene.h"
 #include "Tile.h"
 
+#include <stdlib.h>
+
 
 class GameTile : public Scene
 {
@@ -20,6 +22,9 @@ class GameTile : public Scene
 
     private:
         Tile* m_map[NB_TILE_X][NB_TILE_Y];
+       Sprite m_hover;
+
+       int m_hoverCordX, m_hoverCordY;
 };
 
 #endif // GAME_H
