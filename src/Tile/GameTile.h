@@ -7,6 +7,7 @@
 
 #include "../SDL/Scene.h"
 #include "Tile.h"
+#include "Boat.h"
 
 #include <stdlib.h>
 
@@ -23,7 +24,7 @@ class GameTile : public Scene
     private:
         Tile* m_map[NB_TILE_X][NB_TILE_Y];
         Sprite m_hover;
-        Sprite m_boat;
+        Boat m_boatP;
 
         bool inTravel;
         int boatPosX, boatPosY;

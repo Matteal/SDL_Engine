@@ -51,8 +51,8 @@
 		<Unit filename="src/SDL/Sprite.h" />
 		<Unit filename="src/SDL/Window.cpp" />
 		<Unit filename="src/SDL/Window.h" />
-		<Unit filename="src/Tile/Bateau.cpp" />
-		<Unit filename="src/Tile/Bateau.h" />
+		<Unit filename="src/Tile/Boat.cpp" />
+		<Unit filename="src/Tile/Boat.h" />
 		<Unit filename="src/Tile/GameTile.cpp" />
 		<Unit filename="src/Tile/GameTile.h" />
 		<Unit filename="src/Tile/Tile.cpp" />

@@ -23,3 +23,13 @@ bool Tile::estTouche(int curseurX,int curseurY)
     }
     return false;
 }
+
+//void Tile::SetTile(Tile* tile, int orientation)
+//{
+//    m_tile[orientation] = tile;
+//}
+//
+//Tile* Tile::SetTile(int orientation)
+//{
+//    return  m_tile[orientation];
+//}

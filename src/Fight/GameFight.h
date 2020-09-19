@@ -2,7 +2,6 @@
 #define GAME_FIGHT_H
 
 #include "../SDL/Scene.h"
-#include "../Tile/Bateau.h"
 
 
 class GameFight : public Scene
