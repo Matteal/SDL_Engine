@@ -28,11 +28,12 @@ class GameTile : public Scene
         Boat m_boatP;
 
         bool inTravel;
-        int boatPosX, boatPosY;
         int boatLastPosX, boatLastPosY;
 
-        int OriginCameraX, OriginCameraY;
+        int m_OriginCameraX, m_OriginCameraY;
         int m_hoverCordX, m_hoverCordY;
+
+        float m_interpolate;
 
 
 };

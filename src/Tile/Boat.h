@@ -19,9 +19,12 @@ class Boat : public Sprite
 
         Tile* getCurrentTile();
 
+        void render(float interpolation);
+
     protected:
 
         Tile* m_currentTile;
+        Tile* m_lastTile;
 
         int m_posRenderX;
         int m_posRenderY;

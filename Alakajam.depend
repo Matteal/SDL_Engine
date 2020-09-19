@@ -566,7 +566,7 @@
 1600465155 c:\users\33669\documents\github\alakajam\src\gametile.h
 	"SDL/Scene.h"
 
-1600532470 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
+1600544318 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
 	"SDL_Motor.h"
 
 1600523457 c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.h
@@ -578,26 +578,26 @@
 	"../Tile/GameTile.h"
 	"../Fight/GameFight.h"
 
-1600543271 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
+1600552919 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
 	"GameTile.h"
 
-1600536897 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
+1600552565 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
 	<iostream>
 	"../SDL/Scene.h"
 	"Tile.h"
 	"Boat.h"
 	<stdlib.h>
 
-1600531025 source:c:\users\33669\documents\github\alakajam\src\fight\gamefight.cpp
+1600544318 source:c:\users\33669\documents\github\alakajam\src\fight\gamefight.cpp
 	"GameFight.h"
 
 1600531041 c:\users\33669\documents\github\alakajam\src\fight\gamefight.h
 	"../SDL/Scene.h"
 
-1600536992 source:c:\users\33669\documents\github\alakajam\src\tile\tile.cpp
+1600550099 source:c:\users\33669\documents\github\alakajam\src\tile\tile.cpp
 	"Tile.h"
 
-1600536992 c:\users\33669\documents\github\alakajam\src\tile\tile.h
+1600550378 c:\users\33669\documents\github\alakajam\src\tile\tile.h
 	"../SDL/Sprite.h"
 
 1600523800 c:\users\33669\documents\github\alakajam\src\tile\bateau.h
@@ -605,10 +605,10 @@
 1600522559 source:c:\users\33669\documents\github\alakajam\src\tile\bateau.cpp
 	"Bateau.h"
 
-1600543376 source:c:\users\33669\documents\github\alakajam\src\tile\boat.cpp
+1600552669 source:c:\users\33669\documents\github\alakajam\src\tile\boat.cpp
 	"Boat.h"
 
-1600543553 c:\users\33669\documents\github\alakajam\src\tile\boat.h
+1600550951 c:\users\33669\documents\github\alakajam\src\tile\boat.h
 	"../SDL/Sprite.h"
 	"Tile.h"
 
