@@ -42,6 +42,8 @@ class Input
     bool terminer() const;
     void SetTerminer(bool b);
     bool clic();
+    bool getRoundUP();
+    bool getRoundDOWN();
 
     int getSelectedScene() const;
     void setSelectedScene(int select);
@@ -59,6 +61,8 @@ class Input
     int m_yRel;
 
     bool m_terminer;
+    bool m_DuringRoundUP;
+    bool m_DuringRoundDOWN;
     int m_selectedScene;
     /*  0 -> Main Menu
         1 -> Game Scene

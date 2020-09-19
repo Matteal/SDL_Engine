@@ -589,10 +589,10 @@
 1600465432 c:\users\33669\documents\github\alakajam\src\fight\gamefight.h
 	"../SDL/Scene.h"
 
-1600470045 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\sprite.cpp
+1600483340 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\sprite.cpp
 	"Sprite.h"
 
-1600470045 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\sprite.h
+1600483334 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\sprite.h
 	"SDL.h"
 
 1600470045 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\window.cpp
@@ -604,16 +604,17 @@
 	<SDL_image.h>
 	<SDL_mixer.h>
 
-1600475750 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\tile\bateau.cpp
+1600500667 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\tile\bateau.cpp
 	"Bateau.h"
 
-1600475761 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\tile\bateau.h
+1600500681 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\tile\bateau.h
 
-1600478399 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\fight\gamefight.cpp
+1600485142 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\fight\gamefight.cpp
 	"GameFight.h"
 
-1600470045 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\fight\gamefight.h
+1600500835 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\fight\gamefight.h
 	"../SDL/Scene.h"
+	"../Tile/Bateau.h"
 
 1600470045 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\scene.h
 	<SDL.h>
@@ -621,17 +622,17 @@
 	"Input.h"
 	<vector>
 
-1600479520 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\input.h
+1600483311 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\input.h
 	<SDL.h>
 
-1600478865 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\input.cpp
+1600483313 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\input.cpp
 	"Input.h"
 
-1600478399 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\scene.cpp
+1600483243 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\scene.cpp
 	"Scene.h"
 	<iostream>
 
-1600478915 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\sdl_motor.cpp
+1600479570 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\sdl_motor.cpp
 	"SDL_Motor.h"
 
 1600470045 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl\sdl_motor.h

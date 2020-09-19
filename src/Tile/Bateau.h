@@ -11,14 +11,17 @@ enum Type
 class Bateau
 {
     public:
-        Bateau(int posx,int posy,float vie,float degat,int type, bool vivant, int argent, int level);
+        Bateau(int posx,int posy,float vie,float degat, bool vivant, int argent, bool tour, int armor);
         ~Bateau();
         bool Vivant();
         int Haut();
         int Bas();
         int Gauche();
         int Droite();
-        int Depense(int retrait);
+        bool getTour();
+        void Dammage (int dammage, int armor);
+        int getDammage();
+        int getArmor();
 
 
     protected:
@@ -26,10 +29,10 @@ class Bateau
         int m_posy;
         float m_vie;
         float m_degat;
-        int m_type;
         bool m_vivant;
         int m_argent;
-        int m_level;
+        int m_tour;
+        int m_armor;
 
 
     private:
@@ -38,7 +41,14 @@ class Bateau
 class Player : public Bateau
 {
     public:
+        Player(int posx,int posy,float vie,float degat,int type,bool vivant,int argent, int level,bool tour, int armor);
         int LevelUp(int m_level);
+        int Depense(int retrait);
+
+    private:
+        int m_level;
+        int m_type;
+
 
 
 
@@ -47,7 +57,7 @@ class Player : public Bateau
 class Ennemy : public Bateau
 {
     public:
-
+        Ennemy(int posx, int posy, float vie, float degat, bool vivant,int argent, bool tour, int armor);
 };
 
 #endif // BATEAU_H

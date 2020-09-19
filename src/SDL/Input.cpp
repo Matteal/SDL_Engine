@@ -39,7 +39,8 @@ void Input::updateEvenements()
     // Pour éviter des mouvements fictifs de la souris, on réinitialise les coordonnées relatives
     m_xRel = 0;
     m_yRel = 0;
-
+    m_DuringRoundDOWN = false;
+    m_DuringRoundUP = false;
 
     //boucle d'évènements
     while(SDL_PollEvent(&m_evenements))
@@ -62,12 +63,21 @@ void Input::updateEvenements()
 
             // Cas de pression sur un bouton de la souris
             case SDL_MOUSEBUTTONDOWN:
-                m_boutonsSouris[m_evenements.button.button] = true;
+                if(SDL_BUTTON_LEFT)
+                {
+                    m_DuringRoundDOWN = true;
+                    m_boutonsSouris[m_evenements.button.button] = true;
+                }
+
             break;
 
             // Cas du relâchement d'un bouton de la souris
             case SDL_MOUSEBUTTONUP:
-                m_boutonsSouris[m_evenements.button.button] = false;
+               if(SDL_BUTTON_LEFT)
+                {
+                    m_DuringRoundUP = true;
+                    m_boutonsSouris[m_evenements.button.button] = true;
+                }
             break;
 
 
@@ -91,6 +101,16 @@ void Input::updateEvenements()
             break;
         }
     }
+}
+
+bool Input::getRoundUP()
+{
+    return m_DuringRoundUP;
+}
+
+bool Input::getRoundDOWN()
+{
+    return m_DuringRoundDOWN;
 }
 
 bool Input::getTouche(const SDL_Scancode touche) const
