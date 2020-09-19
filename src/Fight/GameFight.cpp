@@ -29,10 +29,6 @@ void GameFight::render()
         m_tabSprite[i]->render();
 }
 
-void GameFight::attack(Bateau attacker, Bateau &target)
-{
-    //target.Dammage(attacker.getDammage,target.getArmor);
-}
 
 void GameFight::fight(bool tour1,bool tour2)
 {
@@ -44,7 +40,7 @@ void GameFight::fight(bool tour1,bool tour2)
         if (tour1)
         {
             // A PAUFFINER
-            attack(b,&e);
+            b.attack(e,b.getDammage());
             tour1 = false;
             tour2 = true;
             if (!e.Vivant())
@@ -54,7 +50,7 @@ void GameFight::fight(bool tour1,bool tour2)
         }
         else if (tour2)
         {
-            attack(e,&b);
+            e.attack(b,e.getDammage());
             if (!b.Vivant())
             {
                 finish = true;

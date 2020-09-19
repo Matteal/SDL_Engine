@@ -45,10 +45,15 @@ bool Bateau::getTour()
     return m_tour;
 }
 
-void Bateau::Dammage(int dammage,int armor)
+void Bateau::Dammage(int dammages,int armor)
 {
     // ALGO QUI CALCULE LES DEGATS SELON DEGATS (ATT) ET ARMURE (DEF)
     // m_vie -= degats IMPORTANT
+}
+
+void Bateau::attack(Bateau &target, int dammages)
+{
+    Dammage(dammages,target.getArmor());
 }
 
 int Bateau::getDammage()

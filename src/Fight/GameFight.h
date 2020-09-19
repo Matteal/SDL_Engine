@@ -13,7 +13,6 @@ class GameFight : public Scene
 
         void update(Input* input);
         void render();
-        void attack(Bateau attacker,Bateau &target);
         void fight(bool tour1, bool tour2);
 
 

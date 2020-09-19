@@ -19,7 +19,8 @@ class Bateau
         int Gauche();
         int Droite();
         bool getTour();
-        void Dammage (int dammage, int armor);
+        void Dammage (int dammages, int armor);
+        void attack(Bateau &target, int dammages);
         int getDammage();
         int getArmor();
 
