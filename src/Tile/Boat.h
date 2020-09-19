@@ -3,6 +3,7 @@
 
 //#include "SDL.h"
 #include "../SDL/Sprite.h"
+#include "Tile.h"
 
 
 class Boat : public Sprite
@@ -13,15 +14,14 @@ class Boat : public Sprite
 
         void attack(Boat &target);
 
-        int getCurrentTileX();
-        int getCurrentTileY();
-
         void setCurrentTile(int x, int y);
+        void setCurrentTile(Tile* tile);
+
+        Tile* getCurrentTile();
 
     protected:
 
-        int m_currentTileX;
-        int m_currentTileY;
+        Tile* m_currentTile;
 
         int m_posRenderX;
         int m_posRenderY;

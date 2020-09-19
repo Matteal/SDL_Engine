@@ -89,6 +89,9 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
 
     OriginCameraX = 50;
     OriginCameraY = 40;
+
+    // starting point
+    m_boatP.setCurrentTile(m_map[52][52]);
 }
 
 GameTile::~GameTile()
@@ -113,17 +116,27 @@ void GameTile::update(Input* input)
     int CameraX = 50;
     int CameraY = 50;
 
-    int boatPosX = 50;
-    int boatPosY = 50;
 
     int offset = 0;
-    //std::cout<<"debug";
+
+
+    // Update the Boat's position
+    for(int i=0; i<6; i++)
+    {
+        Tile* tile = static_cast <Tile*> (m_boatP.getCurrentTile()->getTile(i));
+        if(tile!= NULL)
+        {
+            if(tile->Sprite::estTouche(input->getX(), input->getY(), input->getRoundDOWN(), input->getRoundUP()))
+            {
+                m_boatP.setCurrentTile(tile);
+            }
+        }
+    }
 
     for(int i=0; i<26; i++)
     {
         for(int j=0; j<8; j++)
         {
-            //TODO : Separate Camera X/Y and BoatPos X/Y
             m_map[j+OriginCameraX][i+OriginCameraY]->setPosition( j * (TILE_RECT_WIDTH + 39) + offset -(CameraX%TILE_RECT_WIDTH),  i * (TILE_RECT_HEIGHT-21) -(CameraY%TILE_RECT_HEIGHT));
 
             // hover update
@@ -134,12 +147,6 @@ void GameTile::update(Input* input)
 
                 SDL_Rect* rectHover = m_map[m_hoverCordX][m_hoverCordY]->getSDL_Rect();
                 m_hover.setPosition(rectHover->x, rectHover->y);
-
-                //si cliqué
-                if(m_map[j+OriginCameraX][i+OriginCameraY]->estTouche(input->getX(), input->getY()), input->getRoundDOWN(), input->getRoundUP())
-                {
-                    m_boatP.setCurrentTile(j+OriginCameraX, i+OriginCameraY);
-                }
             }
         }
 
@@ -149,14 +156,15 @@ void GameTile::update(Input* input)
         else
             offset=0;
     }
-    SDL_Rect* rectBoat = m_map[m_boatP.getCurrentTileX()][m_boatP.getCurrentTileY()]->getSDL_Rect();
+
+    // update the boat's Sprite
+    SDL_Rect* rectBoat = m_boatP.getCurrentTile()->getSDL_Rect();
     m_boatP.setPosition(rectBoat->x, rectBoat->y -8);
 }
 
 void GameTile::render()
 {
-
-
+    // render the map
     for(int i=0; i<26; i++)
     {
         for(int j=0; j<8; j++)
@@ -164,12 +172,12 @@ void GameTile::render()
             m_map[j+OriginCameraX][i+OriginCameraY]->render();
         }
     }
-    int BoatX = m_boatP.getCurrentTileX();
-    int BoatY = m_boatP.getCurrentTileY();
+
+    //render the area around the boat
     Tile* tilePtr;
     for(int i=0; i<6; i++)
     {
-        tilePtr = static_cast <Tile*> (m_map[BoatX][BoatY]->getTile(i));
+        tilePtr = static_cast <Tile*> (m_boatP.getCurrentTile()->getTile(i));
         if(tilePtr!=NULL)
         {
             if(tilePtr->getIsEmpty())
@@ -186,11 +194,4 @@ void GameTile::render()
 
     m_boatP.render();
 
-//    for(int i=0; i<NB_TILE_X; i++)
-//    {
-//        for(int j=0; j<NB_TILE_Y; j++)
-//        {
-//            m_map[i][j]->render();
-//        }
-//    }
 }
