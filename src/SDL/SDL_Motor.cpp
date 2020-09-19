@@ -32,6 +32,8 @@ bool SDL_Motor::init()
     m_textureArray[9] = chargerTexture("data/hp.png",m_window.getRenderer());
     m_textureArray[10] = chargerTexture("data/hpEmpty.png",m_window.getRenderer());
 
+    m_textureArray[25] = chargerTexture("data/tileOutline.png",m_window.getRenderer());
+
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();
 

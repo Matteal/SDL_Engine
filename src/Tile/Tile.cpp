@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-Tile::Tile(SDL_Renderer* renderer, SDL_Texture* texture) : Sprite(renderer, texture, 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT)
+Tile::Tile(SDL_Renderer* renderer, SDL_Texture* texture) : Sprite(renderer, texture, 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_isEmpty(true)
 {
     //ctor
 }
@@ -24,12 +24,17 @@ bool Tile::estTouche(int curseurX,int curseurY)
     return false;
 }
 
-//void Tile::SetTile(Tile* tile, int orientation)
-//{
-//    m_tile[orientation] = tile;
-//}
-//
-//Tile* Tile::SetTile(int orientation)
-//{
-//    return  m_tile[orientation];
-//}
+bool Tile::getIsEmpty()
+{
+    return m_isEmpty;
+}
+
+void Tile::SetTile(void* tile, int orientation)
+{
+    m_tile[orientation] = tile;
+}
+
+void* Tile::getTile(int orientation)
+{
+    return  m_tile[orientation];
+}

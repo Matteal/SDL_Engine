@@ -16,17 +16,18 @@ class Tile : public Sprite
 
         bool estTouche(int curseurx, int curseury);
 
+        bool getIsEmpty();
+
 
         // TODO : accesseurs aux pointeurs des tuiles alentours
-//        void SetTile(Tile* tile, int orientation);
-//
-//        Tile* getTile(int orientation);
+        void SetTile(void* tile, int orientation);
 
-
-
+        void* getTile(int orientation);
     private:
 
-        Tile* m_tile[6];
+        void* m_tile[6];
+
+        bool m_isEmpty;
 
 };
 
