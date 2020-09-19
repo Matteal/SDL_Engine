@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2) : m_renderer(renderer), m_texture(texture), m_rect({x1, y1, x2, y2}), m_visible(true), m_toggle(false)
+Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2, SDL_Texture* texture_toggle) : m_renderer(renderer), m_texture(texture), m_texture_toggle(texture_toggle), m_rect({x1, y1, x2, y2}), m_visible(true), m_toggle(false)
 {
     //ctor
 }
@@ -67,7 +67,14 @@ void Sprite::render()
 {
     if(m_visible)
     {
-        SDL_RenderCopy(m_renderer,m_texture,NULL,&m_rect);
+        if(m_toggle && m_texture_toggle != NULL)
+        {
+            SDL_RenderCopy(m_renderer,m_texture_toggle,NULL,&m_rect);
+        }else
+        {
+            SDL_RenderCopy(m_renderer,m_texture,NULL,&m_rect);
+        }
+
     }
 }
 

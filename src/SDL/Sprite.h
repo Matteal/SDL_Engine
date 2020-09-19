@@ -11,7 +11,7 @@ class Sprite
 {
     public:
         Sprite(SDL_Renderer* renderer, SDL_Texture* texture);
-        Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int w, int h, int posx, int posy);
+        Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int w, int h, int posx, int posy, SDL_Texture* texture_toggle = NULL);
         ~Sprite();
 
         void setDimensions(int dimensionX, int DimensionY);
@@ -27,6 +27,7 @@ class Sprite
 
         SDL_Renderer* m_renderer;
         SDL_Texture* m_texture;
+        SDL_Texture* m_texture_toggle;
 
         SDL_Rect m_rect;
 
