@@ -22,6 +22,7 @@ bool SDL_Motor::init()
     // Loading Textures
     m_textureArray[0] = chargerTexture("data/jouer.png",m_window.getRenderer());
     m_textureArray[1] = chargerTexture("data/quitter.png",m_window.getRenderer());
+    m_textureArray[2] = chargerTexture("data/tile1.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();
@@ -42,7 +43,7 @@ void SDL_Motor::mainloop()
     MainMenu mainMenu(m_renderer, m_textureArray);
     PauseMenu pause(m_renderer, m_textureArray);
     GameTile gameT(m_renderer, m_textureArray);
-    GameTile gameF(m_renderer, m_textureArray);
+    GameFight gameF(m_renderer, m_textureArray);
 
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);

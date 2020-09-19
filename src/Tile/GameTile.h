@@ -1,7 +1,12 @@
 #ifndef GAME_TILE_H
 #define GAME_TILE_H
+#include <iostream>
+
+#define NB_TILE_X 100
+#define NB_TILE_Y 100
 
 #include "../SDL/Scene.h"
+#include "Tile.h"
 
 
 class GameTile : public Scene
@@ -13,9 +18,8 @@ class GameTile : public Scene
         void update(Input* input);
         void render();
 
-    protected:
-
     private:
+        Tile* m_map[NB_TILE_X][NB_TILE_Y];
 };
 
 #endif // GAME_H

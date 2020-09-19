@@ -3,7 +3,7 @@
 
 #include "SDL.h"
 
-#define NB_IMAGE 2
+#define NB_IMAGE 10
 
 class Sprite
 {
