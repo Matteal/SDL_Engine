@@ -1,7 +1,7 @@
 #include "GameTile.h"
 
 GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_hover(m_renderer, textureArray[7], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
-                                                                                                                 m_boat(m_renderer, textureArray[8], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT)
+                                                                                                                 m_boatP(m_renderer, textureArray[8], TILE_RECT_WIDTH, TILE_RECT_HEIGHT)
 {
     char tab[NB_TILE_X][NB_TILE_Y];
     for(int i=0; i<NB_TILE_X; i++)
@@ -71,6 +71,8 @@ void GameTile::update(Input* input)
         {
             //TODO : Separate Camera X/Y and BoatPos X/Y
             m_map[j+OriginCameraX][i+OriginCameraY]->setPosition( j * (TILE_RECT_WIDTH + 39) + offset -(CameraX%TILE_RECT_WIDTH),  i * (TILE_RECT_HEIGHT-21) -(CameraY%TILE_RECT_HEIGHT));
+
+            // hover update
             if(m_map[j+OriginCameraX][i+OriginCameraY]->estTouche(input->getX(), input->getY()))
             {
                 m_hoverCordX = j+OriginCameraX;
@@ -79,6 +81,11 @@ void GameTile::update(Input* input)
                 SDL_Rect* rectHover = m_map[m_hoverCordX][m_hoverCordY]->getSDL_Rect();
                 m_hover.setPosition(rectHover->x, rectHover->y);
 
+                //si cliqué
+                if(m_map[j+OriginCameraX][i+OriginCameraY]->estTouche(input->getX(), input->getY()), input->getRoundDOWN(), input->getRoundUP())
+                {
+                    m_boatP.setCurrentTile(j+OriginCameraX, i+OriginCameraY);
+                }
             }
         }
 
@@ -88,8 +95,8 @@ void GameTile::update(Input* input)
         else
             offset=0;
     }
-    SDL_Rect* rectBoat = m_map[boatPosX][boatPosY]->getSDL_Rect();
-    m_boat.setPosition(rectBoat->x+TILE_RECT_WIDTH*3, rectBoat->y+TILE_RECT_HEIGHT*2 - 10);
+    SDL_Rect* rectBoat = m_map[m_boatP.getCurrentTileX()][m_boatP.getCurrentTileY()]->getSDL_Rect();
+    m_boatP.setPosition(rectBoat->x, rectBoat->y -8);
 }
 
 void GameTile::render()
@@ -105,7 +112,7 @@ void GameTile::render()
     }
     m_hover.render();
 
-    m_boat.render();
+    m_boatP.render();
 
 //    for(int i=0; i<NB_TILE_X; i++)
 //    {

@@ -16,8 +16,7 @@ class Boat : public Sprite
         int getCurrentTileX();
         int getCurrentTileY();
 
-        void setCurrentTileX(int x);
-        void setCurrentTileY(int y);
+        void setCurrentTile(int x, int y);
 
     protected:
 
