@@ -1,6 +1,6 @@
 #include "GameFight.h"
 
-GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE], Bridge* bridge) : Scene(renderer, textureArray), m_bridge(bridge)
+GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
 {
     //Background
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[11], 0,0,800,350));

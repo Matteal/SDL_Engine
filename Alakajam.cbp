@@ -42,10 +42,6 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Bridge.cpp" />
 		<Unit filename="src/Bridge.h" />
-		<Unit filename="src/Fight/Bateau.cpp" />
-		<Unit filename="src/Fight/Bateau.h" />
-		<Unit filename="src/Fight/Battleship.cpp" />
-		<Unit filename="src/Fight/Battleship.h" />
 		<Unit filename="src/Fight/GameFight.cpp" />
 		<Unit filename="src/Fight/GameFight.h" />
 		<Unit filename="src/SDL/Input.cpp" />

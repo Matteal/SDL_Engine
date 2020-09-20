@@ -79,7 +79,7 @@ void SDL_Motor::mainloop()
     MainMenu mainMenu(m_renderer, m_textureArray);
     PauseMenu pause(m_renderer, m_textureArray);
     GameTile gameT(m_renderer, m_textureArray, &bridge);
-    GameFight gameF(m_renderer, m_textureArray, &bridge);
+    GameFight gameF(m_renderer, m_textureArray);
 
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);
