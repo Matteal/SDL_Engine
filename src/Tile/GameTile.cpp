@@ -1,9 +1,11 @@
 #include "GameTile.h"
 
-GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_hover(m_renderer, textureArray[36], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
-                                                                                                                 m_area(m_renderer, textureArray[35], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
-                                                                                                                 m_player(m_renderer, textureArray[25], textureArray[26], TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_interpolate(1)
+GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_player(m_renderer, textureArray[25], textureArray[26], TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_interpolate(1)
 {
+    m_tabSprite.push_back(new Sprite(m_renderer, textureArray[35], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT)); //Bouton Jouer
+    m_tabSprite.push_back(new Sprite(m_renderer, textureArray[36], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT));
+    m_tabSprite.push_back(new Sprite(m_renderer, textureArray[37], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT));
+
     char tab[NB_TILE_X][NB_TILE_Y];
     for(int i=0; i<NB_TILE_X; i++)
     {
@@ -26,7 +28,7 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
                     break;
             }
 
-            m_map[i][j] = new Tile(renderer, textureArray[rand()%4 +37], i, j);
+            m_map[i][j] = new Tile(renderer, textureArray[rand()%4 +38], i, j);
         }
     }
 
@@ -86,9 +88,13 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
     // Creating ennemies
     for(int i=0; i<NB_ENNEMIES; i++)
     {
-        m_TabBoat[i] = new Boat(renderer, textureArray[25], textureArray[26], 5, 5);
-        int x = rand()%NB_TILE_X;
-        int y = rand()%NB_TILE_Y;
+        int x, y;
+        do{
+            x = rand()%NB_TILE_X;
+            y = rand()%NB_TILE_Y;
+        }while(!m_map[x][y]->getIsEmpty());
+        m_TabBoat[i] = new Boat(renderer, textureArray[25], textureArray[26], x, y);
+
         m_TabBoat[i]->setCurrentTile(m_map[x][y]);
         m_TabBoat[i]->setCurrentTile(m_map[x][y]);
     }
@@ -99,22 +105,20 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
     // starting point
     m_player.setCurrentTile(m_map[97][5]);
     m_player.setCurrentTile(m_map[4][97]);
+    m_player.getCurrentTile()->setIsEmpty(true);
 }
 
 GameTile::~GameTile()
 {
     for(int i=0; i<NB_TILE_X; i++)
-    {
         for(int j=0; j<NB_TILE_Y; j++)
-        {
             delete(m_map[i][j]);
-        }
-    }
 
     for(int i=0; i<NB_ENNEMIES; i++)
-    {
         delete(m_TabBoat[i]);
-    }
+
+    for(unsigned int i = 0; i < m_tabSprite.size(); i++)
+        delete(m_tabSprite[i]);
 }
 
 void GameTile::updateBoatPos(Boat* boat, int cursorX, int cursorY)
@@ -140,7 +144,16 @@ void GameTile::update(Input* input)
         {
             if(tile->Sprite::estTouche(input->getX(), input->getY(), input->getRoundDOWN(), input->getRoundUP()))
             {
-                m_player.setCurrentTile(tile);
+                // Combat detection
+                if(tile->getIsBoat())
+                {
+                    std::cout<<"Combat!";
+                    break;
+                }
+
+                // Move the Player
+                if(tile->getIsEmpty())
+                    m_player.setCurrentTile(tile);
 
                 // Updating Ennemies position
                 for(int i=0; i<NB_ENNEMIES; i++)
@@ -148,6 +161,7 @@ void GameTile::update(Input* input)
                     Tile* tileOpponent = static_cast <Tile*>(m_TabBoat[i]->getCurrentTile()->getTile(rand()%6));
                     if(tileOpponent != NULL)
                     {
+
                         if(tileOpponent->getIsEmpty())
                             m_TabBoat[i]->setCurrentTile(tileOpponent);
                     }
@@ -180,7 +194,7 @@ void GameTile::update(Input* input)
                 m_hoverCordY = i;
 
                 SDL_Rect* rectHover = m_map[m_hoverCordX][m_hoverCordY]->getSDL_Rect();
-                m_hover.setPosition(rectHover->x, rectHover->y);
+                m_tabSprite[2]->setPosition(rectHover->x, rectHover->y);
             }
         }
 
@@ -212,20 +226,29 @@ void GameTile::render()
             tilePtr = static_cast <Tile*> (m_player.getCurrentTile()->getTile(i));
             if(tilePtr!=NULL)
             {
+                SDL_Rect* rect = tilePtr->getSDL_Rect();
+
+                // Mark nearby ennemies
+                if(tilePtr->getIsBoat())
+                {
+                    m_tabSprite[1]->setPosition(rect->x, rect->y);
+                    m_tabSprite[1]->render();
+                }
+
+                // Render nearby Available tiles
                 if(tilePtr->getIsEmpty())
                 {
-                    SDL_Rect* rect = tilePtr->getSDL_Rect();
-                    m_area.setPosition(rect->x, rect->y);
-                    m_area.render();
+                    m_tabSprite[0]->setPosition(rect->x, rect->y);
+                    m_tabSprite[0]->render();
 
                 }
             }
         }
     }
-    m_hover.render();
+    m_tabSprite[2]->render();
 
     // Ships interpolation
-    m_interpolate += 0.01;
+    m_interpolate += 0.05;
     if (m_interpolate >= 1)
         m_interpolate = 1;
 

@@ -48,12 +48,13 @@ bool SDL_Motor::init()
 
     // Tiles
     m_textureArray[35] = chargerTexture("data/Tiles/tileOutline.png",m_window.getRenderer());
-    m_textureArray[36] = chargerTexture("data/Tiles/tileOutline2.png",m_window.getRenderer());
-    m_textureArray[37] = chargerTexture("data/Tiles/tile1.png",m_window.getRenderer());
-    m_textureArray[38] = chargerTexture("data/Tiles/tile2.png",m_window.getRenderer());
-    m_textureArray[39] = chargerTexture("data/Tiles/tile3.png",m_window.getRenderer());
-    m_textureArray[40] = chargerTexture("data/Tiles/tile4.png",m_window.getRenderer());
-    m_textureArray[41] = chargerTexture("data/Tiles/tileIsland1.png",m_window.getRenderer());
+    m_textureArray[36] = chargerTexture("data/Tiles/tileOutline1.png",m_window.getRenderer());
+    m_textureArray[37] = chargerTexture("data/Tiles/tileOutline2.png",m_window.getRenderer());
+    m_textureArray[38] = chargerTexture("data/Tiles/tile1.png",m_window.getRenderer());
+    m_textureArray[39] = chargerTexture("data/Tiles/tile2.png",m_window.getRenderer());
+    m_textureArray[40] = chargerTexture("data/Tiles/tile3.png",m_window.getRenderer());
+    m_textureArray[41] = chargerTexture("data/Tiles/tile4.png",m_window.getRenderer());
+    m_textureArray[42] = chargerTexture("data/Tiles/tileIsland1.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();

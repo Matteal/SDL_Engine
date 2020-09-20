@@ -1,6 +1,6 @@
 #include "Boat.h"
 
-Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posX, int posY) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true)
+Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posX, int posY) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true), m_currentTile(NULL), m_lastTile(NULL)
 
 {
     //ctor
@@ -19,8 +19,23 @@ void Boat::attack(Boat &target)
 
 void Boat::setCurrentTile(Tile* tile)
 {
-    m_lastTile = m_currentTile;
-    m_currentTile = tile;
+
+        if(m_currentTile != NULL)
+        {
+            m_currentTile->setIsEmpty(true);
+            m_currentTile->setIsBoat(false);
+        }
+
+
+        if(tile != NULL)
+        {
+            tile->setIsEmpty(false);
+            tile->setIsBoat(true);
+        }
+
+
+        m_lastTile = m_currentTile;
+        m_currentTile = tile;
 }
 
 Tile* Boat::getCurrentTile()
