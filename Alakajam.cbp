@@ -28,6 +28,7 @@
 			<Add library="SDL2main" />
 			<Add library="SDL2.dll" />
 			<Add library="SDL2_image" />
+			<Add library="SDL2_ttf" />
 			<Add library="SDL2_mixer" />
 			<Add library="user32" />
 			<Add library="gdi32" />
@@ -39,6 +40,8 @@
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Fight/Battleship.cpp" />
+		<Unit filename="src/Fight/Battleship.h" />
 		<Unit filename="src/Fight/GameFight.cpp" />
 		<Unit filename="src/Fight/GameFight.h" />
 		<Unit filename="src/SDL/Input.cpp" />
@@ -59,6 +62,9 @@
 		<Unit filename="src/Tile/Tile.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

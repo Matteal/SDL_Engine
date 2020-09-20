@@ -21,7 +21,7 @@ GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]
 
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 50,100,200,200));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 550,100,200,200));
-    police = NULL;
+    m_police = NULL;
     strike = Mix_LoadWAV("data/punch.wav");
     defense = Mix_LoadWAV("data/defense.wav");
     surprise = Mix_LoadWAV("data/surprise.wav");
@@ -63,9 +63,18 @@ void GameFight::render()
         m_tabSprite[i]->render();
 }
 
-void GameFight::Write(const char* file, int charsize)
+void GameFight::Write(TTF_Font* police,const char* file, int charsize, unsigned int r, unsigned int g, unsigned int b,char* text, SDL_Renderer* renderer, int width,int height, int posx, int posy)
 {
-
+    police = TTF_OpenFont(file,charsize);
+    SDL_Color color = {r,g,b};
+    SDL_Surface* MessageSurface = TTF_RenderText_Blended(police,text,color);
+    SDL_Texture* Text = SDL_CreateTextureFromSurface(renù,MessageSurface);
+    SDL_Rect rect;
+    rect.h = height;
+    rect.w = width;
+    rect.x = posx;
+    rect.y = posy;
+    SDL_RenderCopy(renderer,Text,NULL,&rect);
 }
 
 

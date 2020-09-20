@@ -15,13 +15,13 @@ class GameFight : public Scene
 
         void update(Input* input);
         void render();
-        void Write(const char* file, int charsize);
+        void Write(TTF_Font* police,const char* file, int charsize, unsigned int r, unsigned int g, unsigned int b,char* text, SDL_Renderer* renderer, int width,int height, int posx, int posy);
 
 
     protected:
 
     private:
-        TTF_Font* police;
+        TTF_Font* m_police;
         Mix_Chunk* strike;
         Mix_Chunk* surprise;
         Mix_Chunk* defense;
