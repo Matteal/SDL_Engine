@@ -1,18 +1,24 @@
 #include <SDL.h>
 #include <iostream>
 
-#include "src/Window.h"
+#include "src/SDL/SDL_Motor.h"
+#include "src/SDL/Window.h"
 
 
 
 int main(int argc, char **argv)
 {
-    // Création de la scène
+    SDL_Motor motor;
 
-    Window window("SDL2", 800, 500, SDL_WINDOW_SHOWN);
+    // If an error occur during the init phase
+    if(!motor.init())
+    {
+        std::cout << "Initialisation Failed" << std::endl;
+        std::cout << "Ending program ..." << std::endl;
+        return 0;
+    }
 
-    window.Update();
-
+    motor.mainloop();
 
     return 0;
 }

@@ -388,7 +388,15 @@
 	<string>
 	<iostream>
 
-1561873968 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+1547325890 D
+
+1561870368 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1599811988 -Colep
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -401,4 +409,206 @@
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
+
+1600523457 source:c:\users\33669\documents\github\alakajam\main.cpp
+	<SDL.h>
+	<iostream>
+	"src/SDL/SDL_Motor.h"
+	"src/SDL/Window.h"
+
+1600254679 c:\users\33669\documents\github\alakajam\src\window.h
+	<iostream>
+	<SDL_image.h>
+	<SDL_mixer.h>
+
+1599859994 c:\users\33669\documents\github\alakajam\src\texture.h
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+	<iostream>
+	<vector>
+
+1600266791 c:\users\33669\documents\github\alakajam\src\input.h
+	<SDL.h>
+
+1600267664 c:\users\33669\documents\github\alakajam\src\button.h
+	"SDL.h"
+
+1600267664 source:c:\users\33669\documents\github\alakajam\src\button.cpp
+	"Button.h"
+
+1600266803 source:c:\users\33669\documents\github\alakajam\src\input.cpp
+	"Input.h"
+
+1599859730 source:c:\users\33669\documents\github\alakajam\src\texture.cpp
+	"Texture.h"
+
+1600254679 source:c:\users\33669\documents\github\alakajam\src\window.cpp
+	"Window.h"
+	<stdlib.h>
+
+1599811988 
+
+1600268927 source:c:\users\33669\documents\github\alakajam\src\sdl_motor.cpp
+	"SDL_Motor.h"
+
+1600269504 c:\users\33669\documents\github\alakajam\src\sdl_motor.h
+	<iostream>
+	"Window.h"
+	"Input.h"
+	"Button.h"
+	"Scene.h"
+	"Game.h"
+
+1600036859 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\main.cpp
+	<SDL.h>
+	<iostream>
+	"src/SDL_Motor.h"
+	"src/Window.h"
+
+1600124051 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl_motor.h
+	<iostream>
+	"Window.h"
+	"Input.h"
+	"Button.h"
+
+1600123133 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.h
+	<iostream>
+	<SDL_image.h>
+	<SDL_mixer.h>
+
+1600120319 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.h
+	<SDL.h>
+
+1600036850 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\button.h
+	"SDL.h"
+
+1600082925 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\button.cpp
+	"Button.h"
+
+1600120347 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\input.cpp
+	"Input.h"
+
+1600124197 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\window.cpp
+	"Window.h"
+	<stdlib.h>
+
+1600123940 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\sdl_motor.cpp
+	"SDL_Motor.h"
+
+1541001592 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1600118024 source:c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\scene.cpp
+	"Scene.h"
+	<iostream>
+
+1600118037 c:\users\joaki\onedrive\documents\gamejam\projet\alakajam\src\scene.h
+	<SDL.h>
+
+1600269966 source:c:\users\33669\documents\github\alakajam\src\scene.cpp
+	"Scene.h"
+	<iostream>
+
+1600269773 c:\users\33669\documents\github\alakajam\src\scene.h
+	<SDL.h>
+	"Button.h"
+	"Input.h"
+	<vector>
+
+1600269966 source:c:\users\33669\documents\github\alakajam\src\game.cpp
+	"Game.h"
+
+1600269145 c:\users\33669\documents\github\alakajam\src\game.h
+	"Scene.h"
+
+1600530709 source:c:\users\33669\documents\github\alakajam\src\sdl\scene.cpp
+	"Scene.h"
+	<iostream>
+
+1600523457 c:\users\33669\documents\github\alakajam\src\sdl\scene.h
+	<SDL.h>
+	"Sprite.h"
+	"Input.h"
+	<vector>
+
+1600568806 c:\users\33669\documents\github\alakajam\src\sdl\sprite.h
+	<iostream>
+	"SDL.h"
+
+1600523457 c:\users\33669\documents\github\alakajam\src\sdl\input.h
+	<SDL.h>
+
+1600523457 source:c:\users\33669\documents\github\alakajam\src\sdl\input.cpp
+	"Input.h"
+
+1600568805 source:c:\users\33669\documents\github\alakajam\src\sdl\sprite.cpp
+	"Sprite.h"
+
+1600523457 source:c:\users\33669\documents\github\alakajam\src\sdl\window.cpp
+	"Window.h"
+	<stdlib.h>
+
+1600523457 c:\users\33669\documents\github\alakajam\src\sdl\window.h
+	<iostream>
+	<SDL_image.h>
+	<SDL_mixer.h>
+
+1600465052 source:c:\users\33669\documents\github\alakajam\src\gametile.cpp
+	"GameTile.h"
+
+1600465155 c:\users\33669\documents\github\alakajam\src\gametile.h
+	"SDL/Scene.h"
+
+1600544318 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
+	"SDL_Motor.h"
+
+1600523457 c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.h
+	<iostream>
+	"Window.h"
+	"Input.h"
+	"Sprite.h"
+	"Scene.h"
+	"../Tile/GameTile.h"
+	"../Fight/GameFight.h"
+
+1600565539 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
+	"GameTile.h"
+
+1600564326 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
+	<iostream>
+	"../SDL/Scene.h"
+	"Tile.h"
+	"Boat.h"
+	<stdlib.h>
+
+1600544318 source:c:\users\33669\documents\github\alakajam\src\fight\gamefight.cpp
+	"GameFight.h"
+
+1600531041 c:\users\33669\documents\github\alakajam\src\fight\gamefight.h
+	"../SDL/Scene.h"
+
+1600553170 source:c:\users\33669\documents\github\alakajam\src\tile\tile.cpp
+	"Tile.h"
+
+1600565116 c:\users\33669\documents\github\alakajam\src\tile\tile.h
+	"../SDL/Sprite.h"
+
+1600523800 c:\users\33669\documents\github\alakajam\src\tile\bateau.h
+
+1600522559 source:c:\users\33669\documents\github\alakajam\src\tile\bateau.cpp
+	"Bateau.h"
+
+1600568995 source:c:\users\33669\documents\github\alakajam\src\tile\boat.cpp
+	"Boat.h"
+
+1600565951 c:\users\33669\documents\github\alakajam\src\tile\boat.h
+	"../SDL/Sprite.h"
+	"Tile.h"
 
