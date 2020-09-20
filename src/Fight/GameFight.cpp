@@ -9,13 +9,17 @@ GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]
     }
 
     for(int i=0;i<5;i++){
-        m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[10], 600+40*i,0,40,50));
+        m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[10], 550+50*i,0,50,60));
     }
 
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[12], 0,350,400,150));
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[12], 400,350,400,150));
 
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[13], 50,100,200,200));
+    for(int i=0;i<3;i++){
+        m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[i+14], 10+i*127,360,128,130));
+    }
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[12], 0,350,400,150));
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[13], 400,350,400,150));
+
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 50,100,200,200));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 550,100,200,200));
 
 
