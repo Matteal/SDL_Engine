@@ -1,8 +1,8 @@
 #include "GameTile.h"
 
-GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_hover(m_renderer, textureArray[7], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
-                                                                                                                 m_area(m_renderer, textureArray[25], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
-                                                                                                                 m_boatP(m_renderer, textureArray[8], textureArray[6], TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_interpolate(1)
+GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_hover(m_renderer, textureArray[36], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
+                                                                                                                 m_area(m_renderer, textureArray[35], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
+                                                                                                                 m_boatP(m_renderer, textureArray[25], textureArray[26], TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_interpolate(1)
 {
     char tab[NB_TILE_X][NB_TILE_Y];
     for(int i=0; i<NB_TILE_X; i++)
@@ -26,7 +26,7 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
                     break;
             }
 
-            m_map[i][j] = new Tile(renderer, textureArray[rand()%4 +2], i, j);
+            m_map[i][j] = new Tile(renderer, textureArray[rand()%4 +37], i, j);
         }
     }
 
