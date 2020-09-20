@@ -390,7 +390,7 @@
 
 1547325890 D
 
-1561870368 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+1561873968 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -610,5 +610,84 @@
 
 1600543553 c:\users\33669\documents\github\alakajam\src\tile\boat.h
 	"../SDL/Sprite.h"
+	"Tile.h"
+
+1600526925 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\main.cpp
+	<SDL.h>
+	<iostream>
+	"src/SDL/SDL_Motor.h"
+	"src/SDL/Window.h"
+
+1600526925 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\sdl_motor.h
+	<iostream>
+	"Window.h"
+	"Input.h"
+	"Sprite.h"
+	"Scene.h"
+	"../Tile/GameTile.h"
+	"../Fight/GameFight.h"
+
+1600526925 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\window.h
+	<iostream>
+	<SDL_image.h>
+	<SDL_mixer.h>
+
+1600526925 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\input.h
+	<SDL.h>
+
+1600547415 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\sprite.h
+	<iostream>
+	"SDL.h"
+
+1600526925 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\scene.h
+	<SDL.h>
+	"Sprite.h"
+	"Input.h"
+	<vector>
+
+1600548109 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\tile\gametile.h
+	<iostream>
+	"../SDL/Scene.h"
+	"Tile.h"
+	"Boat.h"
+	<stdlib.h>
+
+1600548109 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\tile\tile.h
+	"../SDL/Sprite.h"
+
+1600548109 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\tile\boat.h
+	"../SDL/Sprite.h"
+	"Tile.h"
+
+1600547415 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\fight\gamefight.h
+	"../SDL/Scene.h"
+
+1600558989 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\fight\gamefight.cpp
+	"GameFight.h"
+
+1600526925 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\input.cpp
+	"Input.h"
+
+1600526925 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\scene.cpp
+	"Scene.h"
+	<iostream>
+
+1600547415 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\sprite.cpp
+	"Sprite.h"
+
+1600526925 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\window.cpp
+	"Window.h"
+	<stdlib.h>
+
+1600558359 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\sdl_motor.cpp
+	"SDL_Motor.h"
+
+1600548109 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\tile\boat.cpp
+	"Boat.h"
+
+1600548109 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\tile\gametile.cpp
+	"GameTile.h"
+
+1600548109 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\tile\tile.cpp
 	"Tile.h"
 

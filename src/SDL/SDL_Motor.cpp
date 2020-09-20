@@ -33,8 +33,12 @@ bool SDL_Motor::init()
     m_textureArray[10] = chargerTexture("data/hpEmpty.png",m_window.getRenderer());
     m_textureArray[11] = chargerTexture("data/bg.png",m_window.getRenderer());
     m_textureArray[12] = chargerTexture("data/fightMenu.png",m_window.getRenderer());
-    m_textureArray[13] = chargerTexture("data/Spide2.png",m_window.getRenderer());
-    
+    m_textureArray[13] = chargerTexture("data/fightMenu2.png",m_window.getRenderer());
+    m_textureArray[14] = chargerTexture("data/fightStrike.png",m_window.getRenderer());
+    m_textureArray[15] = chargerTexture("data/fightSurprise.png",m_window.getRenderer());
+    m_textureArray[16] = chargerTexture("data/fightDefend.png",m_window.getRenderer());
+
+
 	m_textureArray[25] = chargerTexture("data/tileOutline.png",m_window.getRenderer());
 
     // Keep this after any renderer modification
