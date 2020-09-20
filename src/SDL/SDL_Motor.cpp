@@ -80,9 +80,6 @@ void SDL_Motor::mainloop()
     Mix_VolumeMusic(30);
 
 
-
-
-
     // Core Loop
     while(!m_input.terminer())
     {

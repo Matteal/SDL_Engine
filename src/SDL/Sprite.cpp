@@ -63,6 +63,11 @@ bool Sprite::estTouche(int curseurX, int curseurY, bool isDown, bool isUp)
     return false;
 }
 
+void Sprite::setVisible(bool visible)
+{
+    m_visible = visible;
+}
+
 void Sprite::render()
 {
     if(m_visible)
