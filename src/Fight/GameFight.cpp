@@ -16,8 +16,8 @@ GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]
     }
 
     //Battle sprites
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[26], 50,100,200,200));
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[25], 550,100,200,200));
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[26], 50,100,78*4,40*4));
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[25], 450,100,78*4,40*4));
 
     //Battle menu
     for(int i=0;i<3;i++){
