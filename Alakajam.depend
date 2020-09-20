@@ -662,7 +662,7 @@
 1600547415 c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\fight\gamefight.h
 	"../SDL/Scene.h"
 
-1600558989 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\fight\gamefight.cpp
+1600596300 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\fight\gamefight.cpp
 	"GameFight.h"
 
 1600526925 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\input.cpp
@@ -675,7 +675,7 @@
 1600547415 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\sprite.cpp
 	"Sprite.h"
 
-1600526925 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\window.cpp
+1600596841 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\sdl\window.cpp
 	"Window.h"
 	<stdlib.h>
 

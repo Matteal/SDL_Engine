@@ -2,26 +2,29 @@
 
 GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
 {
+    //Background
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[11], 0,0,800,350));
 
+    //Player's lives
     for(int i=0;i<5;i++){
         m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[9], 50*i,0,50,60));
     }
 
+    //Enemy's lives
     for(int i=0;i<5;i++){
-        m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[10], 550+50*i,0,50,60));
+        m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[9], 550+50*i,0,50,60));
     }
 
+    //Battle sprites
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 50,100,200,200));
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 550,100,200,200));
 
+    //Battle menu
     for(int i=0;i<3;i++){
         m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[i+14], 10+i*127,360,128,130));
     }
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[12], 0,350,400,150));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[13], 400,350,400,150));
-
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 50,100,200,200));
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 550,100,200,200));
-
 
 }
 
