@@ -1,7 +1,12 @@
 #include "GameTile.h"
 
-GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_player(m_renderer, textureArray[25], textureArray[26], TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_interpolate(1)
+GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_player(m_renderer, textureArray[25], textureArray[26], Cruiser), m_interpolate(1)
 {
+    for(int i=0; i<NB_IMAGE; i++)
+    {
+        m_textureArray[i] = textureArray[i];
+    }
+
     m_tabSprite.push_back(new Sprite(m_renderer, textureArray[35], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT)); //Bouton Jouer
     m_tabSprite.push_back(new Sprite(m_renderer, textureArray[36], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT));
     m_tabSprite.push_back(new Sprite(m_renderer, textureArray[37], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT));
@@ -89,23 +94,25 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
     for(int i=0; i<NB_ENNEMIES; i++)
     {
         int x, y;
+
+        // randomize initial position
         do{
             x = rand()%NB_TILE_X;
             y = rand()%NB_TILE_Y;
         }while(!m_map[x][y]->getIsEmpty());
-        m_TabBoat[i] = new Boat(renderer, textureArray[25], textureArray[26], x, y);
 
-        m_TabBoat[i]->setCurrentTile(m_map[x][y]);
-        m_TabBoat[i]->setCurrentTile(m_map[x][y]);
+        // create a Boat from a random type
+        m_TabBoat[i] = createBoat(findType(rand()%3), m_map[x][y]);
     }
 
-    m_CameraX = 0*TILE_RECT_WIDTH;
-    m_CameraY = 0;
+
 
     // starting point
     m_player.setCurrentTile(m_map[97][5]);
     m_player.setCurrentTile(m_map[4][97]);
-    m_player.getCurrentTile()->setIsEmpty(true);
+
+    m_CameraX = m_player.getCurrentTile()->getPosX()*TILE_RECT_WIDTH*1.5 - 350;
+    m_CameraY = m_player.getCurrentTile()->getPosY()*TILE_RECT_HEIGHT*0.5 - 250;
 }
 
 GameTile::~GameTile()
@@ -121,19 +128,34 @@ GameTile::~GameTile()
         delete(m_tabSprite[i]);
 }
 
-void GameTile::updateBoatPos(Boat* boat, int cursorX, int cursorY)
+Boat* GameTile::createBoat(TYPE_BOAT type, Tile* startingTile)
 {
+    Boat* boat = NULL;
+    switch(type)
+    {
+        case Cruiser:
+            boat = new Boat(m_renderer, m_textureArray[25], m_textureArray[26], Cruiser);
+            break;
+        case Armored:
+            boat = new Boat(m_renderer, m_textureArray[27], m_textureArray[28], Armored);
+            break;
+        case Raider:
+            boat = new Boat(m_renderer, m_textureArray[25], m_textureArray[26], Raider);
+            break;
+        default:
+            return NULL;
+    }
 
+    // set the starting point
+    boat->setCurrentTile(startingTile);
+    boat->setCurrentTile(startingTile);
+
+    return boat;
 }
+
 
 void GameTile::update(Input* input)
 {
-//    m_CameraX += 0.2;
-//    m_CameraY += 0.1;
-
-    m_OriginCameraX = 50;
-    m_OriginCameraY = 50;
-
     int offset = 0;
 
     // Update the Boat's position
@@ -174,6 +196,7 @@ void GameTile::update(Input* input)
         }
     }
 
+
     // Update Camera
 //    return (1-t)*V1 + t*V2;
     m_CameraX = (1-CAMERA_SPEED)*m_CameraX + CAMERA_SPEED * (m_player.getCurrentTile()->getPosX()*TILE_RECT_WIDTH*1.5 - 350);
@@ -208,6 +231,7 @@ void GameTile::update(Input* input)
 
 void GameTile::render()
 {
+
     // render the map
     for(int i=0; i<NB_TILE_X; i++)
     {
@@ -264,7 +288,7 @@ void GameTile::render()
 
 // PLAYER
 
-Player::Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posx, int posy) : Boat(renderer, textureR, textureL, posx, posy)
+Player::Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type) : Boat(renderer, textureR, textureL, type)
 {
     //ctor
 }

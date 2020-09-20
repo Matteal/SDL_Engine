@@ -9,6 +9,7 @@
 #include "../SDL/Scene.h"
 #include "Tile.h"
 #include "Boat.h"
+#include "../Bridge.h"
 
 #include <stdlib.h>
 
@@ -19,11 +20,15 @@ class GameTile : public Scene
         GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
         ~GameTile();
 
-        void updateBoatPos(Boat* boat, int cursorX, int cursorY);
+        Boat* createBoat(TYPE_BOAT type, Tile* startingTile);
+
         void update(Input* input);
         void render();
 
     private:
+
+        SDL_Texture* m_textureArray[NB_IMAGE];
+
         Tile* m_map[NB_TILE_X][NB_TILE_Y];
 
 
@@ -33,7 +38,6 @@ class GameTile : public Scene
         bool inTravel;
         int boatLastPosX, boatLastPosY;
 
-        int m_OriginCameraX, m_OriginCameraY;
         float m_CameraX, m_CameraY;
         int m_hoverCordX, m_hoverCordY;
 

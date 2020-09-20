@@ -532,12 +532,12 @@
 	"Scene.h"
 	<iostream>
 
-1600600745 c:\users\33669\documents\github\alakajam\src\sdl\scene.h
+1600607504 c:\users\33669\documents\github\alakajam\src\sdl\scene.h
 	<SDL.h>
 	<SDL_mixer.h>
+	<vector>
 	"Sprite.h"
 	"Input.h"
-	<vector>
 
 1600600745 c:\users\33669\documents\github\alakajam\src\sdl\sprite.h
 	<iostream>
@@ -567,7 +567,7 @@
 1600465155 c:\users\33669\documents\github\alakajam\src\gametile.h
 	"SDL/Scene.h"
 
-1600604748 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
+1600605745 source:c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.cpp
 	"SDL_Motor.h"
 
 1600569650 c:\users\33669\documents\github\alakajam\src\sdl\sdl_motor.h
@@ -579,14 +579,15 @@
 	"../Tile/GameTile.h"
 	"../Fight/GameFight.h"
 
-1600605573 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
+1600613477 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
 	"GameTile.h"
 
-1600605547 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
+1600612638 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
 	<iostream>
 	"../SDL/Scene.h"
 	"Tile.h"
 	"Boat.h"
+	"../Bridge.h"
 	<stdlib.h>
 
 1600600745 source:c:\users\33669\documents\github\alakajam\src\fight\gamefight.cpp
@@ -595,10 +596,10 @@
 1600569650 c:\users\33669\documents\github\alakajam\src\fight\gamefight.h
 	"../SDL/Scene.h"
 
-1600603845 source:c:\users\33669\documents\github\alakajam\src\tile\tile.cpp
+1600605745 source:c:\users\33669\documents\github\alakajam\src\tile\tile.cpp
 	"Tile.h"
 
-1600603746 c:\users\33669\documents\github\alakajam\src\tile\tile.h
+1600605745 c:\users\33669\documents\github\alakajam\src\tile\tile.h
 	"../SDL/Sprite.h"
 
 1600523800 c:\users\33669\documents\github\alakajam\src\tile\bateau.h
@@ -606,10 +607,10 @@
 1600522559 source:c:\users\33669\documents\github\alakajam\src\tile\bateau.cpp
 	"Bateau.h"
 
-1600603845 source:c:\users\33669\documents\github\alakajam\src\tile\boat.cpp
+1600610377 source:c:\users\33669\documents\github\alakajam\src\tile\boat.cpp
 	"Boat.h"
 
-1600600745 c:\users\33669\documents\github\alakajam\src\tile\boat.h
+1600610377 c:\users\33669\documents\github\alakajam\src\tile\boat.h
 	"../SDL/Sprite.h"
 	"Tile.h"
 
@@ -691,4 +692,10 @@
 
 1600548109 source:c:\users\franc\onedrive\documents\c++\alakajam\alakajam\src\tile\tile.cpp
 	"Tile.h"
+
+1600607819 c:\users\33669\documents\github\alakajam\src\bridge.h
+	"Tile\Boat.h"
+
+1600607768 source:c:\users\33669\documents\github\alakajam\src\bridge.cpp
+	"Bridge.h"
 

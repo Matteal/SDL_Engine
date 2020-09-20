@@ -6,10 +6,10 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 
-#include "Sprite.h"
-#include "Input.h"
 #include <vector>
 
+#include "Sprite.h"
+#include "Input.h"
 
 
 class Scene

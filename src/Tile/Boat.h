@@ -5,11 +5,14 @@
 #include "../SDL/Sprite.h"
 #include "Tile.h"
 
+enum TYPE_BOAT{Cruiser=0, Armored=1, Raider=2}; // Attack, defence, sneaky
+
+TYPE_BOAT findType(int type);
 
 class Boat : public Sprite
 {
     public:
-        Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posx, int posy);
+        Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type);
         ~Boat();
 
         void attack(Boat &target);
@@ -17,14 +20,12 @@ class Boat : public Sprite
         void setCurrentTile(Tile* tile);
         Tile* getCurrentTile();
 
-        int getPosX();
-        int getPosY();
+        TYPE_BOAT getTypeBoat();
 
         void render(float interpolation);
 
     protected:
 
-        //SDL_Texture* textureR;
         SDL_Texture* m_textureL;
 
         bool m_toggleTexture;
@@ -34,12 +35,14 @@ class Boat : public Sprite
 
         int m_posRenderX;
         int m_posRenderY;
+
+        TYPE_BOAT m_typeBoat;
 };
 
 class Player : public Boat
 {
     public:
-        Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posx, int posy);
+        Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type);
 
     private:
         int m_level;

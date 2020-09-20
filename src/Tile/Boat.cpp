@@ -1,6 +1,27 @@
 #include "Boat.h"
 
-Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posX, int posY) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true), m_currentTile(NULL), m_lastTile(NULL)
+
+TYPE_BOAT findType(int type)
+{
+    switch(type)
+    {
+    case 0:
+        return Cruiser;
+        break;
+    case 1:
+        return Armored;
+        break;
+    case 2:
+        return Raider;
+        break;
+    default:
+        std::cout<<"Error : TypeBoat index "<<type<<" doesn't exist"<<std::endl;
+        break;
+    }
+}
+
+
+Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true), m_currentTile(NULL), m_lastTile(NULL), m_typeBoat(type)
 
 {
     //ctor
@@ -43,14 +64,10 @@ Tile* Boat::getCurrentTile()
     return m_currentTile;
 }
 
-int Boat::getPosX()
-{
-    return m_currentTile->getPosX();
-}
 
-int Boat::getPosY()
+TYPE_BOAT Boat::getTypeBoat()
 {
-    return m_currentTile->getPosY();
+    return m_typeBoat;
 }
 
 void Boat::render(float interpolation)
