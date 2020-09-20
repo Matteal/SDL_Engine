@@ -31,6 +31,7 @@ class GameTile : public Scene
         int boatLastPosX, boatLastPosY;
 
         int m_OriginCameraX, m_OriginCameraY;
+        float m_CameraX, m_CameraY;
         int m_hoverCordX, m_hoverCordY;
 
         float m_interpolate;

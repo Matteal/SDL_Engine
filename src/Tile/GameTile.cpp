@@ -84,14 +84,17 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
     }
 
 
-    m_OriginCameraX = 50;
-    m_OriginCameraY = 50;
+//    m_OriginCameraX = 50*TILE_RECT_WIDTH;
+//    m_OriginCameraY = 50*TILE_RECT_HEIGHT;
+
+    m_CameraX = 0*TILE_RECT_WIDTH;
+    m_CameraY = 0;
 
 
 
     // starting point
-    m_boatP.setCurrentTile(m_map[52][52]);
-    m_boatP.setCurrentTile(m_map[52][52]);
+    m_boatP.setCurrentTile(m_map[5][5]);
+    m_boatP.setCurrentTile(m_map[5][5]);
 }
 
 GameTile::~GameTile()
@@ -110,67 +113,71 @@ GameTile::~GameTile()
 
 void GameTile::update(Input* input)
 {
-    if(m_interpolate == 1)
+//    m_CameraX += 0.2;
+//    m_CameraY += 0.1;
+
+    m_OriginCameraX = 50;
+    m_OriginCameraY = 50;
+
+    int offset = 0;
+
+
+    // Update the Boat's position
+    for(int i=0; i<6; i++)
     {
-        int CameraX = 50;
-        int CameraY = 50;
-
-        m_OriginCameraX = 50;
-        m_OriginCameraY = 50;
-
-        int offset = 0;
-
-
-        // Update the Boat's position
-        for(int i=0; i<6; i++)
+        Tile* tile = static_cast <Tile*> (m_boatP.getCurrentTile()->getTile(i));
+        if(tile!= NULL)
         {
-            Tile* tile = static_cast <Tile*> (m_boatP.getCurrentTile()->getTile(i));
-            if(tile!= NULL)
+            if(tile->Sprite::estTouche(input->getX(), input->getY(), input->getRoundDOWN(), input->getRoundUP()))
             {
-                if(tile->Sprite::estTouche(input->getX(), input->getY(), input->getRoundDOWN(), input->getRoundUP()))
-                {
-                    m_boatP.setCurrentTile(tile);
+                m_boatP.setCurrentTile(tile);
 
-                    // reset interpolate for animations
-                    m_interpolate = 0;
-                }
+                // reset interpolate for animations
+                m_interpolate = 0;
+            }
+        }
+    }
+
+    // Update Camera
+//    return (1-t)*V1 + t*V2;
+    m_CameraX = (1-CAMERA_SPEED)*m_CameraX + CAMERA_SPEED * (m_boatP.getCurrentTile()->getPosX()*TILE_RECT_WIDTH*1.5 - 350);
+    m_CameraY = (1-CAMERA_SPEED)*m_CameraY + CAMERA_SPEED * (m_boatP.getCurrentTile()->getPosY()*TILE_RECT_HEIGHT*0.5 - 250);
+
+
+    // Set the tiles positions
+    for(int i=0; i<NB_TILE_Y; i++)
+    {
+        for(int j=0; j<NB_TILE_X; j++)
+        {
+            m_map[j][i]->setPosition( j * (TILE_RECT_WIDTH + 39) + offset -m_CameraX,  i * (TILE_RECT_HEIGHT-21) -m_CameraY);
+
+            // hover update
+            if(m_map[j][i]->estTouche(input->getX(), input->getY()))
+            {
+                m_hoverCordX = j;
+                m_hoverCordY = i;
+
+                SDL_Rect* rectHover = m_map[m_hoverCordX][m_hoverCordY]->getSDL_Rect();
+                m_hover.setPosition(rectHover->x, rectHover->y);
             }
         }
 
-        for(int i=0; i<26; i++)
-        {
-            for(int j=0; j<8; j++)
-            {
-                m_map[j+m_OriginCameraX][i+m_OriginCameraY]->setPosition( j * (TILE_RECT_WIDTH + 39) + offset -(CameraX%TILE_RECT_WIDTH),  i * (TILE_RECT_HEIGHT-21) -(CameraY%TILE_RECT_HEIGHT));
-
-                // hover update
-                if(m_map[j+m_OriginCameraX][i+m_OriginCameraY]->estTouche(input->getX(), input->getY()))
-                {
-                    m_hoverCordX = j+m_OriginCameraX;
-                    m_hoverCordY = i+m_OriginCameraY;
-
-                    SDL_Rect* rectHover = m_map[m_hoverCordX][m_hoverCordY]->getSDL_Rect();
-                    m_hover.setPosition(rectHover->x, rectHover->y);
-                }
-            }
-
-            // Allow an offset between row of tiles
-            if(offset==0)
-                offset=58;
-            else
-                offset=0;
-        }
+        // Allow an offset between row of tiles
+        if(offset==0)
+            offset=58;
+        else
+            offset=0;
     }
 }
 
 void GameTile::render()
 {
     // render the map
-    for(int i=0; i<26; i++)
+    for(int i=0; i<NB_TILE_X; i++)
     {
-        for(int j=0; j<8; j++)
+        for(int j=0; j<NB_TILE_Y; j++)
         {
-            m_map[j+m_OriginCameraX][i+m_OriginCameraY]->render();
+            m_map[i][j]->render();
         }
     }
 

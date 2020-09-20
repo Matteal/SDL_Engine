@@ -4,6 +4,8 @@
 #define TILE_RECT_WIDTH 78
 #define TILE_RECT_HEIGHT 40
 
+#define CAMERA_SPEED 0.1
+
 #include "../SDL/Sprite.h"
 
 //0 haut, puis clockwork
