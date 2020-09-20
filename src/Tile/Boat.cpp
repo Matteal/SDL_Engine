@@ -1,6 +1,7 @@
 #include "Boat.h"
 
-Boat::Boat(SDL_Renderer* renderer, SDL_Texture* texture, int posx, int posy) : Sprite(renderer, texture, 0, 0, 78, 40)
+Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posX, int posY) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true)
+
 {
     //ctor
 }
@@ -18,6 +19,7 @@ void Boat::attack(Boat &target)
 
 void Boat::setCurrentTile(Tile* tile)
 {
+    m_lastTile = m_currentTile;
     m_currentTile = tile;
 }
 
@@ -26,7 +28,36 @@ Tile* Boat::getCurrentTile()
     return m_currentTile;
 }
 
+int Boat::getPosX()
+{
+    return m_currentTile->getPosX();
+}
 
+int Boat::getPosY()
+{
+    return m_currentTile->getPosY();
+}
+
+void Boat::render(float interpolation)
+{
+    SDL_Rect* rectLast = m_lastTile->getSDL_Rect();
+    SDL_Rect* rectCurrent = m_currentTile->getSDL_Rect();
+    setPosition((1-interpolation)*rectLast->x + interpolation*rectCurrent->x, (1-interpolation)*rectLast->y + interpolation*rectCurrent->y -8);
+    //Sprite::render();
+    if(rectLast->x < rectCurrent->x)
+        m_toggleTexture = false;
+    else if(rectLast->x > rectCurrent->x)
+        m_toggleTexture = true;
+
+    if(m_toggleTexture)
+    {
+        SDL_RenderCopy(m_renderer,m_texture,NULL,&m_rect);
+    }else
+    {
+        SDL_RenderCopy(m_renderer,m_textureL,NULL,&m_rect);
+    }
+
+}
 
 
 
