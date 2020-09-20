@@ -17,7 +17,7 @@
 class GameTile : public Scene
 {
     public:
-        GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+        GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE], Bridge* bridge);
         ~GameTile();
 
         Boat* createBoat(TYPE_BOAT type, Tile* startingTile);
@@ -32,7 +32,7 @@ class GameTile : public Scene
         Tile* m_map[NB_TILE_X][NB_TILE_Y];
 
 
-        Player m_player;
+        Boat* m_player;
         Boat* m_TabBoat[NB_ENNEMIES];
 
         bool inTravel;
@@ -42,6 +42,8 @@ class GameTile : public Scene
         int m_hoverCordX, m_hoverCordY;
 
         float m_interpolate;
+
+        Bridge* m_bridge;
 
 
 };

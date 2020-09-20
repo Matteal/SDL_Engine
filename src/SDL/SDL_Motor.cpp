@@ -28,7 +28,7 @@ bool SDL_Motor::init()
     m_textureArray[3] = chargerTexture("data/buttonQuitAlt.png",m_window.getRenderer());
     m_textureArray[4] = chargerTexture("data/audioOn.png",m_window.getRenderer());
     m_textureArray[5] = chargerTexture("data/audioOff.png",m_window.getRenderer());
-    // 6 - Menu background
+    m_textureArray[6] = chargerTexture("data/bgMenu.png",m_window.getRenderer());
 
     // Fight Images
     m_textureArray[9] = chargerTexture("data/hp.png",m_window.getRenderer());
@@ -41,10 +41,12 @@ bool SDL_Motor::init()
     m_textureArray[16] = chargerTexture("data/fightDefend.png",m_window.getRenderer());
 
     // Ships
-    m_textureArray[25] = chargerTexture("data/boat1L.png",m_window.getRenderer());
-    m_textureArray[26] = chargerTexture("data/boat1R.png",m_window.getRenderer());
-    m_textureArray[27] = chargerTexture("data/boat2L.png",m_window.getRenderer());
-    m_textureArray[28] = chargerTexture("data/boat2R.png",m_window.getRenderer());
+    m_textureArray[25] = chargerTexture("data/cruiser.png",m_window.getRenderer());
+    m_textureArray[26] = chargerTexture("data/cruiserAlt.png",m_window.getRenderer());
+    m_textureArray[27] = chargerTexture("data/armored.png",m_window.getRenderer());
+    m_textureArray[28] = chargerTexture("data/armoredAlt.png",m_window.getRenderer());
+    m_textureArray[29] = chargerTexture("data/raider.png",m_window.getRenderer());
+    m_textureArray[30] = chargerTexture("data/raiderAlt.png",m_window.getRenderer());
 
     // Tiles
     m_textureArray[35] = chargerTexture("data/Tiles/tileOutline.png",m_window.getRenderer());
@@ -71,10 +73,12 @@ void SDL_Motor::mainloop()
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
+    Bridge bridge = initBridge();
+
     // Objets Scène
     MainMenu mainMenu(m_renderer, m_textureArray);
     PauseMenu pause(m_renderer, m_textureArray);
-    GameTile gameT(m_renderer, m_textureArray);
+    GameTile gameT(m_renderer, m_textureArray, &bridge);
     GameFight gameF(m_renderer, m_textureArray);
 
     //défini le volume initial de la musique

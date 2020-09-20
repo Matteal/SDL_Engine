@@ -39,15 +39,16 @@ class Boat : public Sprite
         TYPE_BOAT m_typeBoat;
 };
 
-class Player : public Boat
-{
-    public:
-        Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type);
-
-    private:
-        int m_level;
-        int m_type;
-};
+//class Player : public Boat
+//{
+//    public:
+//        Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type);
+//        Player(Boat* boat);
+//
+//    private:
+//        int m_level;
+//        int m_type;
+//};
 
 //class Ennemy : public Bateau
 //{

@@ -16,3 +16,5 @@ struct Bridge
     // both
     Boat* ennemyBoat;
 };
+
+Bridge initBridge();

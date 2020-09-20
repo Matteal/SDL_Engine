@@ -1,6 +1,6 @@
 #include "GameTile.h"
 
-GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_player(m_renderer, textureArray[25], textureArray[26], Cruiser), m_interpolate(1)
+GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE], Bridge* bridge) : Scene(renderer, textureArray), m_player(NULL), m_interpolate(1), m_bridge(bridge)
 {
     for(int i=0; i<NB_IMAGE; i++)
     {
@@ -105,14 +105,12 @@ GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
         m_TabBoat[i] = createBoat(findType(rand()%3), m_map[x][y]);
     }
 
+    // Create the player
+    m_player = createBoat(findType(rand()%3), m_map[97][5]);
 
 
-    // starting point
-    m_player.setCurrentTile(m_map[97][5]);
-    m_player.setCurrentTile(m_map[4][97]);
-
-    m_CameraX = m_player.getCurrentTile()->getPosX()*TILE_RECT_WIDTH*1.5 - 350;
-    m_CameraY = m_player.getCurrentTile()->getPosY()*TILE_RECT_HEIGHT*0.5 - 250;
+    m_CameraX = m_player->getCurrentTile()->getPosX()*TILE_RECT_WIDTH*1.5 - 350;
+    m_CameraY = m_player->getCurrentTile()->getPosY()*TILE_RECT_HEIGHT*0.5 - 250;
 }
 
 GameTile::~GameTile()
@@ -123,6 +121,8 @@ GameTile::~GameTile()
 
     for(int i=0; i<NB_ENNEMIES; i++)
         delete(m_TabBoat[i]);
+
+    delete(m_player);
 
     for(unsigned int i = 0; i < m_tabSprite.size(); i++)
         delete(m_tabSprite[i]);
@@ -140,7 +140,7 @@ Boat* GameTile::createBoat(TYPE_BOAT type, Tile* startingTile)
             boat = new Boat(m_renderer, m_textureArray[27], m_textureArray[28], Armored);
             break;
         case Raider:
-            boat = new Boat(m_renderer, m_textureArray[25], m_textureArray[26], Raider);
+            boat = new Boat(m_renderer, m_textureArray[29], m_textureArray[30], Raider);
             break;
         default:
             return NULL;
@@ -161,7 +161,7 @@ void GameTile::update(Input* input)
     // Update the Boat's position
     for(int i=0; i<6; i++)
     {
-        Tile* tile = static_cast <Tile*> (m_player.getCurrentTile()->getTile(i));
+        Tile* tile = static_cast <Tile*> (m_player->getCurrentTile()->getTile(i));
         if(tile!= NULL)
         {
             if(tile->Sprite::estTouche(input->getX(), input->getY(), input->getRoundDOWN(), input->getRoundUP()))
@@ -175,7 +175,7 @@ void GameTile::update(Input* input)
 
                 // Move the Player
                 if(tile->getIsEmpty())
-                    m_player.setCurrentTile(tile);
+                    m_player->setCurrentTile(tile);
 
                 // Updating Ennemies position
                 for(int i=0; i<NB_ENNEMIES; i++)
@@ -199,8 +199,8 @@ void GameTile::update(Input* input)
 
     // Update Camera
 //    return (1-t)*V1 + t*V2;
-    m_CameraX = (1-CAMERA_SPEED)*m_CameraX + CAMERA_SPEED * (m_player.getCurrentTile()->getPosX()*TILE_RECT_WIDTH*1.5 - 350);
-    m_CameraY = (1-CAMERA_SPEED)*m_CameraY + CAMERA_SPEED * (m_player.getCurrentTile()->getPosY()*TILE_RECT_HEIGHT*0.5 - 250);
+    m_CameraX = (1-CAMERA_SPEED)*m_CameraX + CAMERA_SPEED * (m_player->getCurrentTile()->getPosX()*TILE_RECT_WIDTH*1.5 - 350);
+    m_CameraY = (1-CAMERA_SPEED)*m_CameraY + CAMERA_SPEED * (m_player->getCurrentTile()->getPosY()*TILE_RECT_HEIGHT*0.5 - 250);
 
 
     // Set the tiles positions
@@ -247,7 +247,7 @@ void GameTile::render()
         Tile* tilePtr;
         for(int i=0; i<6; i++)
         {
-            tilePtr = static_cast <Tile*> (m_player.getCurrentTile()->getTile(i));
+            tilePtr = static_cast <Tile*> (m_player->getCurrentTile()->getTile(i));
             if(tilePtr!=NULL)
             {
                 SDL_Rect* rect = tilePtr->getSDL_Rect();
@@ -281,14 +281,14 @@ void GameTile::render()
         m_TabBoat[i]->render(m_interpolate);
     }
 
-    m_player.render(m_interpolate);
+    m_player->render(m_interpolate);
 
 }
 
 
 // PLAYER
 
-Player::Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type) : Boat(renderer, textureR, textureL, type)
-{
-    //ctor
-}
+//Player::Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type) : Boat(renderer, textureR, textureL, type)
+//{
+//    //ctor
+//}
