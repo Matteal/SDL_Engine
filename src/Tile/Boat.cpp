@@ -1,6 +1,7 @@
 #include "Boat.h"
 
-Boat::Boat(SDL_Renderer* renderer, SDL_Texture* texture, int posx, int posy) : Sprite(renderer, texture, 0, 0, 78, 40)
+Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int width, int height) : Sprite(renderer, textureR, 0, 0, width, height), m_textureL(textureL), m_toggleTexture(true)
+
 {
     //ctor
 }
@@ -34,11 +35,23 @@ float interpolation( float V1, float V2, float t)
 
 void Boat::render(float interpolation)
 {
-
     SDL_Rect* rectLast = m_lastTile->getSDL_Rect();
     SDL_Rect* rectCurrent = m_currentTile->getSDL_Rect();
     setPosition((1-interpolation)*rectLast->x + interpolation*rectCurrent->x, (1-interpolation)*rectLast->y + interpolation*rectCurrent->y -8);
-    Sprite::render();
+    //Sprite::render();
+    if(rectLast->x < rectCurrent->x)
+        m_toggleTexture = false;
+    else if(rectLast->x > rectCurrent->x)
+        m_toggleTexture = true;
+
+    if(m_toggleTexture)
+    {
+        SDL_RenderCopy(m_renderer,m_texture,NULL,&m_rect);
+    }else
+    {
+        SDL_RenderCopy(m_renderer,m_textureL,NULL,&m_rect);
+    }
+
 }
 
 

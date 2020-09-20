@@ -2,7 +2,7 @@
 
 GameTile::GameTile(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_hover(m_renderer, textureArray[7], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
                                                                                                                  m_area(m_renderer, textureArray[25], 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT),
-                                                                                                                 m_boatP(m_renderer, textureArray[8], TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_interpolate(1)
+                                                                                                                 m_boatP(m_renderer, textureArray[8], textureArray[6], TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_interpolate(1)
 {
     char tab[NB_TILE_X][NB_TILE_Y];
     for(int i=0; i<NB_TILE_X; i++)

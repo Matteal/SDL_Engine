@@ -74,7 +74,6 @@ void Sprite::render()
         {
             SDL_RenderCopy(m_renderer,m_texture,NULL,&m_rect);
         }
-
     }
 }
 

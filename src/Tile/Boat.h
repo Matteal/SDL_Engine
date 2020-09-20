@@ -9,7 +9,7 @@
 class Boat : public Sprite
 {
     public:
-        Boat(SDL_Renderer* renderer, SDL_Texture* texture, int posx, int posy);
+        Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posx, int posy);
         ~Boat();
 
         void attack(Boat &target);
@@ -22,6 +22,11 @@ class Boat : public Sprite
         void render(float interpolation);
 
     protected:
+
+        //SDL_Texture* textureR;
+        SDL_Texture* m_textureL;
+
+        bool m_toggleTexture;
 
         Tile* m_currentTile;
         Tile* m_lastTile;
