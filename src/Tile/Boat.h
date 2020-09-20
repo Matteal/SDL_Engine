@@ -14,10 +14,11 @@ class Boat : public Sprite
 
         void attack(Boat &target);
 
-        void setCurrentTile(int x, int y);
         void setCurrentTile(Tile* tile);
-
         Tile* getCurrentTile();
+
+        int getPosX();
+        int getPosY();
 
         void render(float interpolation);
 
@@ -33,26 +34,17 @@ class Boat : public Sprite
 
         int m_posRenderX;
         int m_posRenderY;
-
-        int m_argent;
-        int m_tour;
-        int m_armor;
-
-
-    private:
 };
 
+class Player : public Boat
+{
+    public:
+        Player(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posx, int posy);
 
-
-//class Player : public Bateau
-//{
-//    public:
-//        Player(int posx, int posy);
-//
-//    private:
-//        int m_level;
-//        int m_type;
-//};
+    private:
+        int m_level;
+        int m_type;
+};
 
 //class Ennemy : public Bateau
 //{

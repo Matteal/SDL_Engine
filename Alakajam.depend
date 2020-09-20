@@ -579,10 +579,10 @@
 	"../Tile/GameTile.h"
 	"../Fight/GameFight.h"
 
-1600570885 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
+1600579835 source:c:\users\33669\documents\github\alakajam\src\tile\gametile.cpp
 	"GameTile.h"
 
-1600569650 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
+1600580065 c:\users\33669\documents\github\alakajam\src\tile\gametile.h
 	<iostream>
 	"../SDL/Scene.h"
 	"Tile.h"
@@ -606,10 +606,10 @@
 1600522559 source:c:\users\33669\documents\github\alakajam\src\tile\bateau.cpp
 	"Bateau.h"
 
-1600569650 source:c:\users\33669\documents\github\alakajam\src\tile\boat.cpp
+1600575112 source:c:\users\33669\documents\github\alakajam\src\tile\boat.cpp
 	"Boat.h"
 
-1600569650 c:\users\33669\documents\github\alakajam\src\tile\boat.h
+1600575112 c:\users\33669\documents\github\alakajam\src\tile\boat.h
 	"../SDL/Sprite.h"
 	"Tile.h"
 

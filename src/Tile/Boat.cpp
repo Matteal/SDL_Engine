@@ -1,6 +1,6 @@
 #include "Boat.h"
 
-Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int width, int height) : Sprite(renderer, textureR, 0, 0, width, height), m_textureL(textureL), m_toggleTexture(true)
+Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int posX, int posY) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true)
 
 {
     //ctor
@@ -28,9 +28,14 @@ Tile* Boat::getCurrentTile()
     return m_currentTile;
 }
 
-float interpolation( float V1, float V2, float t)
+int Boat::getPosX()
 {
-    return (1-t)*V1 + t*V2;
+    return m_currentTile->getPosX();
+}
+
+int Boat::getPosY()
+{
+    return m_currentTile->getPosY();
 }
 
 void Boat::render(float interpolation)
