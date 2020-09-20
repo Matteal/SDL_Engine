@@ -1,3 +1,6 @@
+#ifndef BRIDGE_H
+#define BRIDGE_H
+
 #include "Tile\Boat.h"
 
 
@@ -18,3 +21,5 @@ struct Bridge
 };
 
 Bridge initBridge();
+
+#endif
