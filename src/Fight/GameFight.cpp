@@ -26,6 +26,10 @@ GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[12], 0,350,400,150));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[13], 400,350,400,150));
 
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[26], 50,100,200,200));
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[25], 550,100,200,200));
+
+
 }
 
 GameFight::~GameFight()

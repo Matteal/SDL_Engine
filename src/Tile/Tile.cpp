@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-Tile::Tile(SDL_Renderer* renderer, SDL_Texture* texture) : Sprite(renderer, texture, 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_isEmpty(true)
+Tile::Tile(SDL_Renderer* renderer, SDL_Texture* texture, int x, int y) : Sprite(renderer, texture, 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_isEmpty(true), m_posX(x), m_posY(y)
 {
     //ctor
 }
@@ -37,4 +37,14 @@ void Tile::SetTile(void* tile, int orientation)
 void* Tile::getTile(int orientation)
 {
     return  m_tile[orientation];
+}
+
+int Tile::getPosX()
+{
+    return m_posX;
+}
+
+int Tile::getPosY()
+{
+    return m_posY;
 }

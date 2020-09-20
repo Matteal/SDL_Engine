@@ -4,6 +4,7 @@
 #define MAX_SPRITE 100
 
 #include <SDL.h>
+#include <SDL_mixer.h>
 
 #include "Sprite.h"
 #include "Input.h"
@@ -35,6 +36,8 @@ class MainMenu : public Scene
         MainMenu (SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
 
         void update(Input* input);
+    private:
+        bool m_isAudioOn;
 };
 
 class PauseMenu : public Scene

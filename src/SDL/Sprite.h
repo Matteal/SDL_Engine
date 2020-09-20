@@ -11,7 +11,7 @@ class Sprite
 {
     public:
         Sprite(SDL_Renderer* renderer, SDL_Texture* texture);
-        Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int w, int h, int posx, int posy, SDL_Texture* texture_toggle = NULL);
+        Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int posx, int posy, int w, int h, SDL_Texture* texture_toggle = NULL);
         ~Sprite();
 
         void setDimensions(int dimensionX, int DimensionY);
@@ -20,6 +20,8 @@ class Sprite
         SDL_Rect* getSDL_Rect();
         bool estTouche(int curseurx, int curseury);
         bool estTouche(int curseurx, int curseury, bool bool1, bool bool2);
+
+        void setVisible(bool visible = true);
 
         void render();
 
