@@ -1,30 +1,40 @@
 #include "GameFight.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
+
+
+GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE], Bridge* bridge) : Scene(renderer, textureArray), m_bridge(bridge), player(Cruiser,true), ennemy()
 {
+    //Background
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[11], 0,0,800,350));
 
+    //Player's lives
     for(int i=0;i<5;i++){
         m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[9], 50*i,0,50,60));
     }
 
+    //Enemy's lives
     for(int i=0;i<5;i++){
-        m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[10], 550+50*i,0,50,60));
+        m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[9], 550+50*i,0,50,60));
     }
 
+    //Battle sprites
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[26], 50,100,4*78,4*40));
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[25], 450,100,4*78,4*40));
 
+    //Battle menu
     for(int i=0;i<3;i++){
         m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[i+14], 10+i*127,360,128,130));
     }
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[12], 0,350,400,150));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[13], 400,350,400,150));
-
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 50,100,200,200));
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[8], 550,100,200,200));
     m_police = NULL;
     strike = Mix_LoadWAV("data/punch.wav");
     defense = Mix_LoadWAV("data/defense.wav");
     surprise = Mix_LoadWAV("data/surprise.wav");
+    Turn = true;
 }
 
 GameFight::~GameFight()
@@ -34,22 +44,73 @@ GameFight::~GameFight()
 
 void GameFight::update(Input* input)
 {
-    // If Pause Button is Pressed
+     // init combat
+    int state;
+    if(m_bridge->giveInfoToFight)
+    {
+       // Updating sprite
+        m_tabSprite[11]->setTexture(m_textureArray[m_bridge->playerBoat->getTypeBoat()+26]);
+        m_tabSprite[12]->setTexture(m_textureArray[m_bridge->ennemyBoat->getTypeBoat()+25]);
+        //delete(m_tabSprite[12]);
+
+//        m_tabSprite[11] = new Sprite(m_renderer, m_textureArray[m_bridge->playerBoat->getTypeBoat()+25], 0,350,400,150);
+//        m_tabSprite[12] = new Sprite(m_renderer, m_textureArray[m_bridge->ennemyBoat->getTypeBoat()+26], 400,350,400,150);
+        //player = Battleship(m_bridge->playerBoat->getTypeBoat(),true);
+        ennemy = Battleship(m_bridge->ennemyBoat->getTypeBoat(),false);
+        m_bridge->giveInfoToFight=false;
+
+//        Mix_PlayMusic(test_music2, -1 );
+    }
+
+
+ // If Pause Button is Pressed
     if (input->getTouche(SDL_SCANCODE_P))
     {
         input->setSelectedScene(1);
     }
-    if (m_tabSprite[11]->estTouche(input->getX(),input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+    if (player.Vivant())
     {
-        Mix_PlayChannel(-1,strike,0);
+        if (ennemy.Vivant())
+        {
+            if(Turn)
+            {
+                if (m_tabSprite[13]->estTouche(input->getX(),input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+                {
+                    Mix_PlayChannel(-1,strike,0);
+                    state = 0;
+                    Fight(state);
+                }
+            if (m_tabSprite[14]->estTouche(input->getX(),input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+                {
+                    state = 1;
+                    Mix_PlayChannel(-1,surprise,0);
+                    //Surprise(ennemy,player);
+                }
+            if (m_tabSprite[15]->estTouche(input->getX(),input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+                {
+                    state = 2;
+                    Mix_PlayChannel(-1,defense,0);
+                    //Defend(player);
+                }
+            }
+            else
+            {
+                action = ennemy.EnnemyActions(player);
+                SDL_Delay(2000);
+                Turn = true;
+            }
+        }
+        else
+        {
+            player.SetLife(player.getLife());
+            Turn = true;
+            input->setSelectedScene(2);
+            m_bridge->giveInfoToTile = true;
+        }
     }
-    if (m_tabSprite[12]->estTouche(input->getX(),input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+    else
     {
-        Mix_PlayChannel(-1,surprise,0);
-    }
-    if (m_tabSprite[13]->estTouche(input->getX(),input->getY(),input->getRoundDOWN(),input->getRoundUP()))
-    {
-        Mix_PlayChannel(-1,defense,0);
+        input->setSelectedScene(0);
     }
 }
 
@@ -58,27 +119,96 @@ void GameFight::render()
     int colorG = (SDL_GetTicks()/10) % 255;
     int colorB = (SDL_GetTicks()/20) % 255;
     SDL_SetRenderDrawColor(m_renderer,0,colorG,colorB,255);
-
     for(unsigned int i = 0; i < m_tabSprite.size(); i++)
         m_tabSprite[i]->render();
+    double object = player.getLife();
+    double object2 = ennemy.getLife();
+    Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Player Life :",object,120,80,0,0);
+    Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Ennemy Life :",object2,120,80,580,0);
+    object = NULL;
+    if (Turn)
+    {
+        Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Player Turn : ",object,100,80,550,380);
+    }
+    else
+    {
+        Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Ennemy Turn : ",object,100,80,450,380);
+        Write("data/police.ttf",18,m_police,255,255,255,m_renderer,action,object,90,80,550,380);
+    }
 }
 
-void GameFight::Write(TTF_Font* police,const char* file, int charsize, unsigned int r, unsigned int g, unsigned int b,char* text, SDL_Renderer* renderer, int width,int height, int posx, int posy)
+/*void GameFight::Heal(Battleship& a,int restore)
 {
-    police = TTF_OpenFont(file,charsize);
-    SDL_Color color = {r,g,b};
-    SDL_Surface* MessageSurface = TTF_RenderText_Blended(police,text,color);
-    SDL_Texture* Text = SDL_CreateTextureFromSurface(renù,MessageSurface);
-    SDL_Rect rect;
-    rect.h = height;
-    rect.w = width;
-    rect.x = posx;
-    rect.y = posy;
-    SDL_RenderCopy(renderer,Text,NULL,&rect);
+    a.AddLife(restore);
 }
 
+void GameFight::ArmorUp(Battleship& a,int armor)
+{
+    a.AddArmor(armor);
+}*/
 
+void GameFight::Fight(int state)
+{
+        switch(state)
+        {
+            case 0:
+                player.Cost(state);
+                player.Strike(ennemy);
+                Turn = false;
+                break;
+            case 1:
+                player.Cost(state);
+                //player.surprise(ennemy);
+                break;
+            case 2:
+                player.Cost(state);
+                //player.defend();
+                break;
+        }
+}
 
+void GameFight::Write(char* file, int charsize, TTF_Font* font, unsigned int r, unsigned int g, unsigned int b, SDL_Renderer* renderer, const std::string &text,int object, int width, int height, int posx, int posy)
+{
+    font = TTF_OpenFont(file,charsize);
+    if (font == NULL)
+    {
+        std::cout <<"NULL"<<std::endl;
+    }
+    if (object != NULL)
+    {
+        std::stringstream sstm;
+        sstm << text << object;
+        const std::string &newText = sstm.str();
+        SDL_Color color = {r,g,b};
+        SDL_Surface* SurfaceMessage = TTF_RenderText_Blended(font,newText.c_str(),color);
+        SDL_Rect rect;
+        rect.h = height;
+        rect.w = width;
+        rect.x = posx;
+        rect.y = posy;
+        SDL_Texture* TextMess = SDL_CreateTextureFromSurface(renderer,SurfaceMessage);
+        SDL_RenderCopy(renderer,TextMess,NULL,&rect);
+        SDL_FreeSurface(SurfaceMessage);
+    }
+    else
+    {
+        SDL_Color color = {r,g,b};
+        SDL_Surface* SurfaceMessage = TTF_RenderText_Blended(font,text.c_str(),color);
+        SDL_Rect rect;
+        rect.h = height;
+        rect.w = width;
+        rect.x = posx;
+        rect.y = posy;
+        SDL_Texture* TextMess = SDL_CreateTextureFromSurface(renderer,SurfaceMessage);
+        SDL_RenderCopy(renderer,TextMess,NULL,&rect);
+        SDL_FreeSurface(SurfaceMessage);
+    }
 
+}
+
+/*void GameFight::Defend(Battleship& a)
+{
+        a.AddLife(1);
+}*/
 
 
