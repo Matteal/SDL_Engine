@@ -21,6 +21,8 @@ class Sprite
         bool estTouche(int curseurx, int curseury);
         bool estTouche(int curseurx, int curseury, bool bool1, bool bool2);
 
+        void setVisible(bool visible = true);
+
         void render();
 
     protected:

@@ -1,6 +1,27 @@
 #include "Boat.h"
 
-Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, int width, int height) : Sprite(renderer, textureR, 0, 0, width, height), m_textureL(textureL), m_toggleTexture(true)
+
+TYPE_BOAT findType(int type)
+{
+    switch(type)
+    {
+    case 0:
+        return Cruiser;
+        break;
+    case 1:
+        return Armored;
+        break;
+    case 2:
+        return Raider;
+        break;
+    default:
+        std::cout<<"Error : TypeBoat index "<<type<<" doesn't exist"<<std::endl;
+        break;
+    }
+}
+
+
+Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true), m_currentTile(NULL), m_lastTile(NULL), m_typeBoat(type)
 
 {
     //ctor
@@ -19,8 +40,23 @@ void Boat::attack(Boat &target)
 
 void Boat::setCurrentTile(Tile* tile)
 {
-    m_lastTile = m_currentTile;
-    m_currentTile = tile;
+
+        if(m_currentTile != NULL)
+        {
+            m_currentTile->setIsEmpty(true);
+            m_currentTile->setIsBoat(false);
+        }
+
+
+        if(tile != NULL)
+        {
+            tile->setIsEmpty(false);
+            tile->setIsBoat(true);
+        }
+
+
+        m_lastTile = m_currentTile;
+        m_currentTile = tile;
 }
 
 Tile* Boat::getCurrentTile()
@@ -28,9 +64,10 @@ Tile* Boat::getCurrentTile()
     return m_currentTile;
 }
 
-float interpolation( float V1, float V2, float t)
+
+TYPE_BOAT Boat::getTypeBoat()
 {
-    return (1-t)*V1 + t*V2;
+    return m_typeBoat;
 }
 
 void Boat::render(float interpolation)
@@ -53,31 +90,3 @@ void Boat::render(float interpolation)
     }
 
 }
-
-
-
-// Player
-//
-//Player::Player(int posx,int posy,float vie,float degat,int type,bool vivant,int argent, int level, bool tour, int armor): Boat(posx,posy,vie,degat,vivant,argent,tour,armor), m_level(level)
-//{
-//
-//}
-//
-//int Player::Depense(int retrait)
-//{
-//    if (m_argent > retrait)
-//    {
-//        m_argent -= retrait;
-//        return m_argent;
-//    }
-//    return m_argent;
-//}
-//
-//
-//// Ennemy
-//
-//Ennemy::Ennemy(int posx,int posy,float vie, float degat,bool vivant,int argent,bool tour,int armor): Boat(posx,posy,vie,degat,vivant,argent,tour,armor)
-//{
-//
-//}
-//

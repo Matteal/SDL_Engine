@@ -17,7 +17,13 @@ class Tile : public Sprite
         virtual ~Tile();
 
         bool estTouche(int curseurx, int curseury);
+
+        void setIsEmpty(bool isEmpty);
         bool getIsEmpty();
+
+        void setIsBoat(bool isBoat);
+        bool getIsBoat();
+
 
 
         // TODO : accesseurs aux pointeurs des tuiles alentours
@@ -32,6 +38,8 @@ class Tile : public Sprite
         void* m_tile[6];
 
         bool m_isEmpty;
+        bool m_isBoat;
+
         int m_posX, m_posY;
 
 };

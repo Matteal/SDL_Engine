@@ -30,6 +30,7 @@ class SDL_Motor
 
         SDL_Texture* m_textureArray[NB_IMAGE];
         SDL_Renderer* m_renderer;
+
 };
 
 SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* rendu);
