@@ -1,6 +1,5 @@
 #include "SDL_Motor.h"
-#include "../Fight/GameFight.h"
-#include "Scene.h"
+
 
 SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
 {
@@ -107,33 +106,6 @@ void SDL_Motor::mainloop()
         {
             m_input.SetTerminer(true);
         }
-
-//        //Play the music & manage the music
-//        if(lastSceneEntered==m_input.getSelectedScene())
-//        {
-//            // TODO : Move the music section into each Scene::update
-//            if( Mix_PlayingMusic() == 0 )
-//            {
-//                std::cout<<"music";
-//                switch(lastSceneEntered)
-//                {
-//                    case 0:
-//
-//                       break;
-//                    case 1:
-//                        break;
-//                    case 2:
-//
-//                        break;
-//                    case 3:
-//
-//                        break;
-//                }
-//            }
-//        }
-
-
-
 
         // *** UPDATE ***
 

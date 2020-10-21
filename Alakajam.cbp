@@ -40,6 +40,8 @@
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Bridge.cpp" />
+		<Unit filename="src/Bridge.h" />
 		<Unit filename="src/Fight/Battleship.cpp" />
 		<Unit filename="src/Fight/Battleship.h" />
 		<Unit filename="src/Fight/GameFight.cpp" />

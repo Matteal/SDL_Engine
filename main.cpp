@@ -3,7 +3,7 @@
 
 #include "src/SDL/SDL_Motor.h"
 #include "src/SDL/Window.h"
-
+#include "math.h"
 
 
 int main(int argc, char **argv)
