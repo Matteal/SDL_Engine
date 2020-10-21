@@ -1,7 +1,7 @@
 #ifndef BRIDGE_H
 #define BRIDGE_H
 
-#include "Tile\Boat.h"
+#include "Boat.h"
 
 
 struct Bridge

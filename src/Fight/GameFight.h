@@ -2,12 +2,12 @@
 #define GAME_FIGHT_H
 
 #include "../SDL/Scene.h"
-#include "../Bridge.h"
+#include "../Tile/Bridge.h"
 #include "Battleship.h"
-#include <SDL_ttf.h>
+#include "../Static/toolbox.h"
 #include <SDL_mixer.h>
 #include <string>
-#include <sstream>
+
 
 
 class GameFight : public Scene
@@ -20,7 +20,7 @@ class GameFight : public Scene
         void render();
 
         void Fight(int state);
-        void Write(char* file, int charsize, TTF_Font* font, unsigned int r, unsigned int g, unsigned int b, SDL_Renderer* renderer, const std::string &text,int object, int width, int height, int posx, int posy);
+        //void Write(char* file, int charsize, TTF_Font* font, unsigned int r, unsigned int g, unsigned int b, SDL_Renderer* renderer, const std::string &text,int object, int width, int height, int posx, int posy);
 
 
 
@@ -39,6 +39,7 @@ class GameFight : public Scene
 
         bool Turn;
         std::string action;
+        std::string pseudo;
 };
 
 #endif // GAME_FIGHT_H

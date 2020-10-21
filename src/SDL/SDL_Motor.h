@@ -12,6 +12,7 @@
 #include "../Tile/GameTile.h"
 #include "../Fight/GameFight.h"
 //#include "../Bridge.h"
+#include "../Static/toolbox.h"
 
 
 class SDL_Motor
@@ -22,7 +23,6 @@ class SDL_Motor
 
         bool init();
         void mainloop();
-        void Write(char* file, int charsize, TTF_Font* font, unsigned int r, unsigned int g, unsigned int b, SDL_Renderer* renderer, const std::string &text,int object, int width, int height, int posx, int posy);
 
     protected:
 

@@ -9,7 +9,7 @@
 #include "../SDL/Scene.h"
 #include "Tile.h"
 #include "Boat.h"
-#include "../Bridge.h"
+#include "Bridge.h"
 
 #include <stdlib.h>
 

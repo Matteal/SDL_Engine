@@ -35,6 +35,7 @@ GameFight::GameFight(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]
     defense = Mix_LoadWAV("data/defense.wav");
     surprise = Mix_LoadWAV("data/surprise.wav");
     Turn = true;
+    pseudo = toolbox::Pull("data/pseudo.txt");
 }
 
 GameFight::~GameFight()
@@ -124,18 +125,17 @@ void GameFight::render()
     double object = player.getLife();
     double object2 = ennemy.getLife();
     double object3 = player.getStamina();
-    Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Player Life :",object,120,80,0,0);
-    Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Ennemy Life :",object2,120,80,580,0);
-    object = NULL;
+    toolbox::Write("data/police.ttf",18,m_police,255,255,255,m_renderer,pseudo," Life : ",object,120,80,0,0);
+    toolbox::Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Ennemy Life :",object2,120,80,580,0);
     if (Turn)
     {
-        Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Player Turn : ",object,100,80,550,380);
-        Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Stamina : ",object3,100,80,550,420);
+        toolbox::Write("data/police.ttf",18,m_police,255,255,255,m_renderer,pseudo," Turn ",100,80,550,360);
+        toolbox::Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Stamina : ",object3,100,80,550,420);
     }
     else
     {
-        Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Ennemy Turn : ",object,100,80,450,380);
-        Write("data/police.ttf",18,m_police,255,255,255,m_renderer,action,object,90,80,550,380);
+        toolbox::Write("data/police.ttf",18,m_police,255,255,255,m_renderer,"Ennemy Turn : ",100,80,450,380);
+        toolbox::Write("data/police.ttf",18,m_police,255,255,255,m_renderer,action,90,80,550,380);
     }
 }
 
@@ -164,44 +164,6 @@ void GameFight::Fight(int state)
         }
 }
 
-void GameFight::Write(char* file, int charsize, TTF_Font* font, unsigned int r, unsigned int g, unsigned int b, SDL_Renderer* renderer, const std::string &text,int object, int width, int height, int posx, int posy)
-{
-    font = TTF_OpenFont(file,charsize);
-    if (font == NULL)
-    {
-        std::cout <<"NULL"<<std::endl;
-    }
-    if (object != NULL)
-    {
-        std::stringstream sstm;
-        sstm << text << object;
-        const std::string &newText = sstm.str();
-        SDL_Color color = {r,g,b};
-        SDL_Surface* SurfaceMessage = TTF_RenderText_Blended(font,newText.c_str(),color);
-        SDL_Rect rect;
-        rect.h = height;
-        rect.w = width;
-        rect.x = posx;
-        rect.y = posy;
-        SDL_Texture* TextMess = SDL_CreateTextureFromSurface(renderer,SurfaceMessage);
-        SDL_RenderCopy(renderer,TextMess,NULL,&rect);
-        SDL_FreeSurface(SurfaceMessage);
-    }
-    else
-    {
-        SDL_Color color = {r,g,b};
-        SDL_Surface* SurfaceMessage = TTF_RenderText_Blended(font,text.c_str(),color);
-        SDL_Rect rect;
-        rect.h = height;
-        rect.w = width;
-        rect.x = posx;
-        rect.y = posy;
-        SDL_Texture* TextMess = SDL_CreateTextureFromSurface(renderer,SurfaceMessage);
-        SDL_RenderCopy(renderer,TextMess,NULL,&rect);
-        SDL_FreeSurface(SurfaceMessage);
-    }
-
-}
 
 
 
