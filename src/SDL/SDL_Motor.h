@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "../Tile/GameTile.h"
 #include "../Fight/GameFight.h"
+//#include "../Bridge.h"
 
 
 class SDL_Motor
@@ -21,6 +22,7 @@ class SDL_Motor
 
         bool init();
         void mainloop();
+        void Write(char* file, int charsize, TTF_Font* font, unsigned int r, unsigned int g, unsigned int b, SDL_Renderer* renderer, const std::string &text,int object, int width, int height, int posx, int posy);
 
     protected:
 
@@ -30,6 +32,7 @@ class SDL_Motor
 
         SDL_Texture* m_textureArray[NB_IMAGE];
         SDL_Renderer* m_renderer;
+        std::string text;
 
 };
 

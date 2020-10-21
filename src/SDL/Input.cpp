@@ -13,6 +13,7 @@ Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false), m_sele
 
     for(int i(0); i < 8; i++)
         m_boutonsSouris[i] = false;
+
 }
 
 Input::~Input()
@@ -117,6 +118,11 @@ bool Input::getRoundDOWN()
 bool Input::getTouche(const SDL_Scancode touche) const
 {
     return m_touches[touche];
+}
+
+SDL_Event Input::getEvement()
+{
+    return m_evenements;
 }
 
 bool Input::getBoutonSouris(const Uint8 bouton) const

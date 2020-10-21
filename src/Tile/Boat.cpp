@@ -5,26 +5,25 @@ TYPE_BOAT findType(int type)
 {
     switch(type)
     {
-    case 0:
-        return Cruiser;
-        break;
-    case 1:
-        return Armored;
-        break;
-    case 2:
-        return Raider;
-        break;
-    default:
-        std::cout<<"Error : TypeBoat index "<<type<<" doesn't exist"<<std::endl;
-        break;
+        case 0:
+            return Cruiser;
+            break;
+        case 1:
+            return Armored;
+            break;
+        case 2:
+            return Raider;
+            break;
+        default:
+            std::cout<<"Error : TypeBoat index "<<type<<" doesn't exist"<<std::endl;
+            break;
     }
 }
 
 
 Boat::Boat(SDL_Renderer* renderer, SDL_Texture* textureR, SDL_Texture* textureL, TYPE_BOAT type) : Sprite(renderer, textureR, 0, 0, 78, 40), m_textureL(textureL), m_toggleTexture(true), m_currentTile(NULL), m_lastTile(NULL), m_typeBoat(type)
-
 {
-    //ctor
+
 }
 
 Boat::~Boat()
@@ -45,6 +44,7 @@ void Boat::setCurrentTile(Tile* tile)
         {
             m_currentTile->setIsEmpty(true);
             m_currentTile->setIsBoat(false);
+            m_currentTile->m_boat = NULL;
         }
 
 
@@ -52,6 +52,7 @@ void Boat::setCurrentTile(Tile* tile)
         {
             tile->setIsEmpty(false);
             tile->setIsBoat(true);
+            tile->m_boat = this;
         }
 
 

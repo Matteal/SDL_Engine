@@ -156,6 +156,12 @@ Boat* GameTile::createBoat(TYPE_BOAT type, Tile* startingTile)
 
 void GameTile::update(Input* input)
 {
+    if(m_bridge->giveInfoToTile)
+    {
+        m_bridge->giveInfoToTile = false;
+        m_bridge->ennemyBoat->setCurrentTile(m_map[0][0]);
+        m_bridge->ennemyBoat->setVisible(false);
+    }
     int offset = 0;
 
     // Update the Boat's position
@@ -169,7 +175,12 @@ void GameTile::update(Input* input)
                 // Combat detection
                 if(tile->getIsBoat())
                 {
-                    std::cout<<"Combat!";
+                    m_bridge->playerBoat = m_player;
+                    m_bridge->ennemyBoat = static_cast<Boat*>(tile->m_boat); // a trouver
+
+                    m_bridge->giveInfoToFight=true;
+                    input->setSelectedScene(3);
+        //            Mix_PlayMusic(test_music1), -1 );
                     break;
                 }
 

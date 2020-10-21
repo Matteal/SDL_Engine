@@ -1,6 +1,7 @@
 #include "Battleship.h"
 #include "stdlib.h"
 #include "time.h"
+#include "math.h"
 
 Battleship::Battleship()
 {
@@ -17,16 +18,22 @@ Battleship::Battleship(TYPE_BOAT b, bool player)
                 m_armor = rand()%1+1;
                 m_life = rand()%10+20;
                 m_damage = rand()%3+3;
+                m_stamina = 10;
+                m_LIFEMAX = m_life;
                 break;
             case 1:
                 m_armor = rand()%3+2;
                 m_life = rand()%10+30;
                 m_damage = rand()%1+1;
+                m_stamina = 10;
+                m_LIFEMAX = m_life;
                 break;
             case 2:
                 m_armor = rand()%2+1;
                 m_life = rand()%15+20;
                 m_damage = rand()%2+1;
+                m_stamina = 10;
+                m_LIFEMAX = m_life;
                 break;
         }
     }
@@ -51,7 +58,11 @@ Battleship::Battleship(TYPE_BOAT b, bool player)
                 break;
         }
     }
+    m_compteur = 0;
+    m_Normalize = false;
 }
+
+// Getter
 
 int Battleship::getArmor()
 {
@@ -63,19 +74,21 @@ int Battleship::getDamage()
     return m_damage;
 }
 
-double Battleship::getEnnemyLife() const
+int Battleship::getStamina()
 {
-    return m_Ennemylife;
+    return m_stamina;
 }
+
+double Battleship::getLife()
+{
+    return m_life;
+}
+
+// Setter
 
 void Battleship::SetArmor(int a)
 {
     m_armor = a;
-}
-
-void Battleship::AddArmor(int p)
-{
-    m_armor += p;
 }
 
 void Battleship::SetLife(int l)
@@ -83,20 +96,88 @@ void Battleship::SetLife(int l)
     m_life = l;
 }
 
-void Battleship::AddLife(int p)
-{
-    m_life += p;
-}
-
-
 void Battleship::SetDamage(int d)
 {
     m_life = d;
 }
 
+// Player
+
+void Battleship::Heal(int p)
+{
+    if (p == 1)
+    {
+        if(m_LIFEMAX-m_life > m_LIFEMAX*.6)
+        {
+            if (m_LIFEMAX%2 == 0)
+            {
+                m_life+=m_LIFEMAX/4;
+                std::cout <<"Even > 0.6 "<<std::endl;
+            }
+            else
+            {
+                m_LIFEMAX++;
+                m_life+=m_LIFEMAX/4;
+                std::cout <<"Odd > 0.6 "<<std::endl;
+            }
+        }
+        else
+        {
+            if (m_LIFEMAX%2 == 0)
+            {
+                m_life+=m_LIFEMAX/8;
+                std::cout <<"Even < 0.6" << std::endl;
+            }
+            else
+            {
+                m_LIFEMAX++;
+                m_life+=m_LIFEMAX/8;
+                std::cout <<"Odd < 0.6" << std::endl;
+            }
+        }
+    }
+    else
+    {
+        if(m_LIFEMAX-m_life < m_LIFEMAX*.4)
+        {
+            if (m_LIFEMAX%2 == 0)
+            {
+                m_life-=m_LIFEMAX/4;
+                std::cout <<"Even < 0.4 "<<std::endl;
+            }
+            else
+            {
+                m_LIFEMAX++;
+                m_life-=m_LIFEMAX/4;
+                std::cout <<"Odd < 0.4 "<<std::endl;
+            }
+        }
+        else
+            {
+            if (m_LIFEMAX%2 == 0)
+            {
+                m_life-=m_LIFEMAX/8;
+                std::cout <<"Even > 0.4" << std::endl;
+            }
+            else
+            {
+                m_LIFEMAX++;
+                m_life-=m_LIFEMAX/8;
+                std::cout <<"Odd > 0.4" << std::endl;
+            }
+        }
+    }
+}
+
+void Battleship::stamina()
+{
+    m_stamina += 1;
+}
+
 void Battleship::Strike(Battleship& a)
 {
-    a.m_life -= m_damage;
+    double tmp = (m_damage*(1-m_armor/5));
+    a.m_life -= round(tmp);
 }
 
 bool Battleship::Vivant()
@@ -109,10 +190,92 @@ bool Battleship::Vivant()
     return true;
 }
 
-double Battleship::getLife()
+void Battleship::DamageBoost(int bo)
 {
-    return m_life;
+    m_damage+=bo;
 }
+
+void Battleship::Defend()
+{
+    double tmp = round(m_armor+m_damage/5);
+    m_armor *= tmp;
+    std::cout << "Armure = " <<m_armor << std::endl;
+}
+
+void Battleship::Surprise()
+{
+    srand(time(NULL));
+    int action = rand()%2;
+    if(action == 1)
+    {
+        int chaos = rand()%2;
+        if (chaos == 1)
+        {
+            switch(m_damage)
+            {
+                case 0:
+                        DamageBoost(2);
+                        std::cout << "Damage = " << m_damage << std::endl;
+                case 1:
+                        break;
+                case 2:
+                        DamageBoost(-1);
+                        std::cout <<"Damage -1"<<std::endl;
+                        std::cout << "Damage = " << m_damage << std::endl;
+                        break;
+                default:
+                        DamageBoost(-2);
+                        std::cout <<"Damage -2"<<std::endl;
+                        std::cout << "Damage = " << m_damage << std::endl;
+                        break;
+            }
+        }
+        else
+        {
+            DamageBoost(2);
+            std::cout << "Damage +2" <<std::endl;
+            std::cout << "Damage = " << m_damage << std::endl;
+        }
+
+    }
+    else
+    {
+        int chaos = rand()%2;
+        if(chaos == 1)
+        {
+            std::cout << "Heal+ : " << m_life <<std::endl;
+            Heal(chaos);
+        }
+        else
+        {
+            std::cout << "Heal- : " << m_life << std::endl;
+            Heal(chaos);
+        }
+    }
+}
+
+void Battleship::LowerStats(bool normalize)
+{
+    if (normalize)
+    {
+        std::cout << "Before LS : Armor = " << m_armor << "Life = " << m_life << "Damage = " << m_damage << std::endl;
+        m_armor = round(m_armor*1.15);
+        m_life = round(m_life*1.15);
+        m_damage = round(m_damage*1.15);
+        std::cout << "After LS : Armor = " << m_armor << "Life = " << m_life << "Damage = " << m_damage << std::endl;
+    }
+    else
+    {
+        std::cout << "Before LS : Armor = " << m_armor << "Life = " << m_life << "Damage = " << m_damage << std::endl;
+        m_armor = round(m_armor*0.85);
+        m_life = round(m_life*0.85);
+        m_damage = round(m_damage*0.85);
+        std::cout << "After LS : Armor = " << m_armor << "Life = " << m_life << "Damage = " << m_damage << std::endl;
+    }
+
+}
+
+//Ennemy
 
 void Battleship::Canon(Battleship &a)
 {
@@ -126,43 +289,8 @@ void Battleship::Canon_Vache(Battleship &a)
 
 void Battleship::Abordage(Battleship &a)
 {
-
+    //a.LowerStats();
 }
-
-/*void Battleship::DamageBoost(Battleship b,int bo)
-{
-    //this.AddLife(-(b.getDamage()-this.getArmor()) + bo);
-}
-
-void Battleship::Surprise()
-{
-    srand(time(NULL));
-    int action = rand()%1;
-    if(action)
-    {
-        int chaos = rand()%1;
-        if(chaos)
-        {
-            //this.DamageBoost(-2);
-        }
-        else
-        {
-            //this.DamageBoost(2);
-        }
-    }
-    else
-    {
-        int chaos = rand()%1;
-        if(chaos)
-        {
-            this.Heal(-1);
-        }
-        else
-        {
-            this.Heal(2);
-        }
-    }
-}*/
 
 std::string Battleship::EnnemyActions(Battleship &a)
 {
@@ -190,40 +318,59 @@ std::string Battleship::EnnemyActions(Battleship &a)
 }
 
 
-
-void Battleship::stamina()
-{
-    m_stamina += 1;
-}
-
-void Battleship::LowerStats()
-{
-    srand(time(NULL));
-}
-
-bool Battleship::Cost(int state)
+void Battleship::Cost(int state)
 {
     if (m_stamina > 2)
     {
         switch (state)
-        {
-        case 0:
-            m_stamina -= 3;
-            return true;
-        case 1:
-            m_stamina -= 2;
-            return true;
-        case 2:
-            m_stamina += 1;
-            return true;
-        }
+            {
+                case 0:
+                    m_compteur ++;
+                    m_stamina -= 3;
+                    break;
+                case 1:
+                    m_compteur ++;
+                    m_stamina -= 2;
+                    break;
+                case 2:
+                    m_compteur ++;
+                    m_stamina += 1;
+                    break;
+            }
     }
     else
     {
-        LowerStats();
-        return false;
+        switch (state)
+            {
+                case 0:
+                    m_compteur ++;
+                    break;
+                case 1:
+                    m_compteur ++;
+                    break;
+                case 2:
+                    m_compteur ++;
+                    break;
+            }
     }
-    return true;
+    if(!m_Normalize && m_stamina < 2)
+    {
+        tmp = m_compteur;
+        LowerStats(false);
+        std::cout << "Not Normalize" << std::endl;
+        m_Normalize = true;
+    }
+    if(m_Normalize)
+    {
+        std::cout << "tmp = " << tmp << std::endl;
+        std::cout << "compteur :" << m_compteur << std::endl;
+        if(m_compteur == tmp+3)
+        {
+            std::cout << "NORMALIZE" << std::endl;
+            LowerStats(true);
+            m_Normalize = false;
+        }
+    }
 }
 
 

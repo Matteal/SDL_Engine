@@ -8,52 +8,50 @@ class Battleship
     public:
         Battleship();
         Battleship(TYPE_BOAT b, bool player);
+
+        // getteur
+
         int getArmor();
         double getLife();
-        double getEnnemyLife() const;
         int getDamage();
+        int getStamina();
+
+        //setteur
+
         void SetArmor (int a);
         void SetLife (int l);
         void SetDamage (int d);
-        void AddLife(int p);
-        void AddArmor(int p);
+
+        // player
+
+        void DamageBoost(int bo);
+        void Heal(int p);
+        void Defend();
         void Strike(Battleship& a);
         bool Vivant();
         void stamina();
-
-        void LowerStats();
-
+        void LowerStats(bool normalize);
         void DamageBoost(Battleship b ,int bo);
-
         void Surprise();
 
         //Ennmy
+
         std::string EnnemyActions(Battleship& a);
         void Canon(Battleship& a);
         void Canon_Vache(Battleship& a);
         void Abordage(Battleship& a);
-
-
-        bool Cost(int state);
+        void Cost(int state);
 
     protected:
         int m_armor;
         int m_damage;
-        double m_life;
-        double m_Ennemylife;
+        int m_life;
         int m_stamina;
+        int m_LIFEMAX;
+        bool m_Normalize;
+        int m_compteur;
+        int tmp;
 
-    private:
-
-};
-
-class Ennemy : public Battleship
-{
-    public:
-        Ennemy(TYPE_BOAT b);
-
-
-    protected:
 
     private:
 

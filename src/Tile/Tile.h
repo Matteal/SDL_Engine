@@ -33,12 +33,15 @@ class Tile : public Sprite
         int getPosX();
         int getPosY();
 
+        void* m_boat;
+
     private:
 
         void* m_tile[6];
 
         bool m_isEmpty;
         bool m_isBoat;
+
 
         int m_posX, m_posY;
 

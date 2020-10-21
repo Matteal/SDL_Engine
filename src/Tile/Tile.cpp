@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-Tile::Tile(SDL_Renderer* renderer, SDL_Texture* texture, int x, int y) : Sprite(renderer, texture, 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_isEmpty(true), m_isBoat(false), m_posX(x), m_posY(y)
+Tile::Tile(SDL_Renderer* renderer, SDL_Texture* texture, int x, int y) : Sprite(renderer, texture, 0, 0, TILE_RECT_WIDTH, TILE_RECT_HEIGHT), m_isEmpty(true), m_isBoat(false), m_posX(x), m_posY(y), m_boat(NULL)
 {
     //ctor
 }

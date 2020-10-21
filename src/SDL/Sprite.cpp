@@ -25,6 +25,10 @@ void Sprite::setPosition(int PositionX, int PositionY)
     m_rect = SDL_Rect{PositionX, PositionY, m_rect.w, m_rect.h};
 }
 
+void Sprite::setTexture(SDL_Texture* texture)
+{
+    m_texture = texture;
+}
 SDL_Rect* Sprite::getSDL_Rect()
 {
 
@@ -81,3 +85,4 @@ void Sprite::render()
         }
     }
 }
+

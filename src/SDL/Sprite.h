@@ -17,6 +17,8 @@ class Sprite
         void setDimensions(int dimensionX, int DimensionY);
         void setPosition(int PositionX, int PositionY);
 
+        void setTexture(SDL_Texture* texture);
+
         SDL_Rect* getSDL_Rect();
         bool estTouche(int curseurx, int curseury);
         bool estTouche(int curseurx, int curseury, bool bool1, bool bool2);

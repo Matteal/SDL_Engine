@@ -4,6 +4,8 @@
 // Include
 
 #include <SDL.h>
+#include <string>
+#include <iostream>
 
 
 
@@ -45,9 +47,11 @@ class Input
 
     bool getRoundUP();
     bool getRoundDOWN();
+    SDL_Event getEvement();
 
     int getSelectedScene() const;
     void setSelectedScene(int select);
+
 
 
     private:

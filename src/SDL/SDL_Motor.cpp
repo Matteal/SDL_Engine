@@ -1,4 +1,6 @@
 #include "SDL_Motor.h"
+#include "../Fight/GameFight.h"
+#include "Scene.h"
 
 SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
 {
@@ -61,14 +63,13 @@ bool SDL_Motor::init()
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();
 
-
-
     return true;
 }
 
 void SDL_Motor::mainloop()
 {
-
+    bool rt = true;
+    Scene s(m_renderer,m_textureArray);
     // Framerate variables
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
@@ -84,6 +85,11 @@ void SDL_Motor::mainloop()
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);
 
+    int lastSceneEntered = 0;
+
+    Mix_PlayMusic(m_window.getMusic(1), -1 );
+
+    SDL_StartTextInput();
 
     // Core Loop
     while(!m_input.terminer())
@@ -102,17 +108,52 @@ void SDL_Motor::mainloop()
             m_input.SetTerminer(true);
         }
 
+//        //Play the music & manage the music
+//        if(lastSceneEntered==m_input.getSelectedScene())
+//        {
+//            // TODO : Move the music section into each Scene::update
+//            if( Mix_PlayingMusic() == 0 )
+//            {
+//                std::cout<<"music";
+//                switch(lastSceneEntered)
+//                {
+//                    case 0:
+//
+//                       break;
+//                    case 1:
+//                        break;
+//                    case 2:
+//
+//                        break;
+//                    case 3:
+//
+//                        break;
+//                }
+//            }
+//        }
 
-        // TODO : Move the music section into each Scene::update
-        if( Mix_PlayingMusic() == 0 )
-        {
-            //Play the music & manage the music
-            Mix_PlayMusic(m_window.getMusic(), -1 );
 
-        }
 
 
         // *** UPDATE ***
+
+            if (m_input.getEvement().type == SDL_TEXTINPUT)
+            {
+                //Append character
+                if (rt)
+                {
+                    text += m_input.getEvement().text.text;
+                    rt = false;
+                }
+            }
+            else
+            {
+                rt = true;
+            }
+            if (m_input.getTouche(SDL_SCANCODE_RETURN))
+            {
+                SDL_StopTextInput();
+            }
 
         switch(m_input.getSelectedScene())
         {
@@ -132,6 +173,8 @@ void SDL_Motor::mainloop()
                 std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
         }
 
+        //update music
+        lastSceneEntered=m_input.getSelectedScene();
 
 
         // *** GRAPHICS ***
@@ -142,8 +185,13 @@ void SDL_Motor::mainloop()
         switch(m_input.getSelectedScene())
         {
             case 0:
-                mainMenu.render();
-                break;
+                {
+                    mainMenu.render();
+                    TTF_Font* p;
+                    int o = NULL;
+                    Write("data/police.ttf",18,p,255,255,255,m_renderer,text,o,100,100,310,200);
+                    break;
+                }
             case 1:
                 pause.render();
                 break;
@@ -173,9 +221,7 @@ void SDL_Motor::mainloop()
         if(tempsEcoule < frameRate)
             SDL_Delay(frameRate - tempsEcoule);
     }
-
 }
-
 
 
 SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* renderer)
@@ -192,4 +238,43 @@ SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* renderer)
         SDL_FreeSurface(surface);
         return texture;
     }
+}
+
+void SDL_Motor::Write(char* file, int charsize, TTF_Font* font, unsigned int r, unsigned int g, unsigned int b, SDL_Renderer* renderer, const std::string &text,int object, int width, int height, int posx, int posy)
+{
+    font = TTF_OpenFont(file,charsize);
+    if (font == NULL)
+    {
+        std::cout <<"NULL"<<std::endl;
+    }
+    if (object != NULL)
+    {
+        std::stringstream sstm;
+        sstm << text << object;
+        const std::string &newText = sstm.str();
+        SDL_Color color = {r,g,b};
+        SDL_Surface* SurfaceMessage = TTF_RenderText_Blended(font,newText.c_str(),color);
+        SDL_Rect rect;
+        rect.h = height;
+        rect.w = width;
+        rect.x = posx;
+        rect.y = posy;
+        SDL_Texture* TextMess = SDL_CreateTextureFromSurface(renderer,SurfaceMessage);
+        SDL_RenderCopy(renderer,TextMess,NULL,&rect);
+        SDL_FreeSurface(SurfaceMessage);
+    }
+    else
+    {
+        SDL_Color color = {r,g,b};
+        SDL_Surface* SurfaceMessage = TTF_RenderText_Blended(font,text.c_str(),color);
+        SDL_Rect rect;
+        rect.h = height;
+        rect.w = width;
+        rect.x = posx;
+        rect.y = posy;
+        SDL_Texture* TextMess = SDL_CreateTextureFromSurface(renderer,SurfaceMessage);
+        SDL_RenderCopy(renderer,TextMess,NULL,&rect);
+        SDL_FreeSurface(SurfaceMessage);
+    }
+
 }

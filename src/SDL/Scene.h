@@ -19,9 +19,10 @@ class Scene
         ~Scene();
 
         void render();
+        SDL_Renderer* m_renderer;
 
     protected:
-        SDL_Renderer* m_renderer;
+
         SDL_Texture* m_textureArray[NB_IMAGE];
 
         std::vector<Sprite*> m_tabSprite;
