@@ -19,6 +19,7 @@ class Scene
         ~Scene();
 
         void render();
+        virtual void update(Input* input){};
         SDL_Renderer* m_renderer;
 
     protected:

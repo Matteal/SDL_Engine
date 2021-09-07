@@ -1,6 +1,5 @@
 #include "Scene.h"
 #include <iostream>
-#include "../Fight/GameFight.h"
 
 Scene::Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_renderer(renderer)
 {

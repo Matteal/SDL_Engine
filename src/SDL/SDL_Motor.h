@@ -9,8 +9,6 @@
 #include "Sprite.h"
 
 #include "Scene.h"
-#include "../Tile/GameTile.h"
-#include "../Fight/GameFight.h"
 //#include "../Bridge.h"
 #include "../Static/toolbox.h"
 

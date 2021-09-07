@@ -1,5 +1,5 @@
 #include "SDL_Motor.h"
-
+#include "SceneManager.h"
 
 SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
 {
@@ -73,13 +73,9 @@ void SDL_Motor::mainloop()
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
-    Bridge bridge = initBridge();
 
     // Objets Scène
-    MainMenu mainMenu(m_renderer, m_textureArray);
-    PauseMenu pause(m_renderer, m_textureArray);
-    GameTile gameT(m_renderer, m_textureArray, &bridge);
-    GameFight gameF(m_renderer, m_textureArray, &bridge);
+    SceneManager sceneM(m_renderer, m_textureArray);
 
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);
@@ -128,23 +124,7 @@ void SDL_Motor::mainloop()
                 toolbox::Push("data/pseudo.txt",text);
             }
 
-        switch(m_input.getSelectedScene())
-        {
-            case 0:
-                mainMenu.update(&m_input);
-                break;
-            case 1:
-                pause.update(&m_input);
-                break;
-            case 2:
-                gameT.update(&m_input);
-                break;
-            case 3:
-                gameF.update(&m_input);
-                break;
-            default:
-                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
-        }
+        sceneM.update(&m_input);
 
         //update music
         lastSceneEntered=m_input.getSelectedScene();
@@ -155,27 +135,22 @@ void SDL_Motor::mainloop()
         // Clear the Canvas
         SDL_RenderClear(m_renderer);
 
-        switch(m_input.getSelectedScene())
-        {
-            case 0:
-                {
-                    mainMenu.render();
-                    TTF_Font* p;
-                    toolbox::Write("data/police.ttf",18,p,255,255,255,m_renderer,text,100,100,310,200);
-                    break;
-                }
-            case 1:
-                pause.render();
-                break;
-            case 2:
-                gameT.render();
-                break;
-            case 3:
-                gameF.render();
-                break;
-            default:
-                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
-        }
+        sceneM.render();
+//        switch(m_input.getSelectedScene())
+//        {
+//            case 0:
+//                {
+//                    mainMenu.render();
+//                    TTF_Font* p;
+//                    toolbox::Write("data/police.ttf",18,p,255,255,255,m_renderer,text,100,100,310,200);
+//                    break;
+//                }
+//            case 1:
+//                pause.render();
+//                break;
+//            default:
+//                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
+//        }
 
         // Print the Canvas
         SDL_RenderPresent(m_renderer);
