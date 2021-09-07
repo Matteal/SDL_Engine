@@ -1,5 +1,6 @@
 #include "SDL_Motor.h"
 #include "SceneManager.h"
+#include "TextureManager.h"
 
 SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
 {
@@ -21,6 +22,8 @@ bool SDL_Motor::init()
     }
 
     // *** LOADING TEXTURES *** //
+    TextureManager tm(m_renderer);
+
 
     // Buttons
     m_textureArray[0] = chargerTexture("data/buttonPlay.png",m_window.getRenderer());
