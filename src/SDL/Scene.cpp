@@ -41,36 +41,38 @@ MainMenu::MainMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
 
 void MainMenu::update(Input* input)
 {
+    if(input->isMouseEvent(SDL_BUTTON_RIGHT)&&!input->getBoutonSouris(SDL_BUTTON_RIGHT))
+        std::cout<<"yee";
     // "Play" Button is pressed
-    if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
-    {
-        input->setSelectedScene(2);
-    }
-
-    // "Quit" Button is pressed
-    else if(m_tabSprite[2]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
-    {
-        input->SetTerminer(true);
-    }
-
-    // Toggle Music Button
-    if(m_tabSprite[3]->estTouche(input->getX(), input->getY(), input->getRoundDOWN(), input->getRoundUP()))
-    {
-        if(m_isAudioOn)
-        {
-            Mix_VolumeMusic(0);
-            Mix_Volume(-1,0);
-            m_tabSprite[3]->setVisible(false);
-            m_tabSprite[4]->setVisible();
-            m_isAudioOn = false;
-        }else{
-            Mix_VolumeMusic(30);
-            m_tabSprite[3]->setVisible();
-            m_tabSprite[4]->setVisible(false);
-            m_isAudioOn = true;
-
-        }
-    }
+//    if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+//    {
+//        input->setSelectedScene(2);
+//    }
+//
+//    // "Quit" Button is pressed
+//    else if(m_tabSprite[2]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
+//    {
+//        input->SetTerminer(true);
+//    }
+//
+//    // Toggle Music Button
+//    if(m_tabSprite[3]->estTouche(input->getX(), input->getY(), input->getRoundDOWN(), input->getRoundUP()))
+//    {
+//        if(m_isAudioOn)
+//        {
+//            Mix_VolumeMusic(0);
+//            Mix_Volume(-1,0);
+//            m_tabSprite[3]->setVisible(false);
+//            m_tabSprite[4]->setVisible();
+//            m_isAudioOn = false;
+//        }else{
+//            Mix_VolumeMusic(30);
+//            m_tabSprite[3]->setVisible();
+//            m_tabSprite[4]->setVisible(false);
+//            m_isAudioOn = true;
+//
+//        }
+//    }
 }
 
 // ***** PAUSEMENU ***** //
@@ -85,7 +87,7 @@ void PauseMenu::update(Input* input)
     // If Pause Button is Pressed
     if (input->getTouche(SDL_SCANCODE_P))
     {
-        input->setSelectedScene(2);
+        //input->setSelectedScene(2);
     }
 
 }

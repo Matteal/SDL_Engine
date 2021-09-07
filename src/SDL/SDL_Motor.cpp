@@ -103,14 +103,21 @@ void SDL_Motor::mainloop()
             m_input.SetTerminer(true);
         }
 
+        SDL_Event evt = m_input.getEvenement();
+        while(SDL_PollEvent(&evt))
+        {
+            if(evt.type == SDL_KEYUP)
+                m_input.SetTerminer(true);
+        }
+
         // *** UPDATE ***
 
-            if (m_input.getEvement().type == SDL_TEXTINPUT)
+            if (m_input.getEvenement().type == SDL_TEXTINPUT)
             {
                 //Append character
                 if (rt)
                 {
-                    text += m_input.getEvement().text.text;
+                    text += m_input.getEvenement().text.text;
                     rt = false;
                 }
             }
@@ -127,7 +134,7 @@ void SDL_Motor::mainloop()
         sceneM.update(&m_input);
 
         //update music
-        lastSceneEntered=m_input.getSelectedScene();
+       // lastSceneEntered=m_input.getSelectedScene();
 
 
         // *** GRAPHICS ***
@@ -186,3 +193,22 @@ SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* renderer)
     }
 }
 
+// Cache le curseur quand activé
+void SDL_Motor::afficherPointeur(bool reponse) const
+{
+    if(reponse)
+        SDL_ShowCursor(SDL_ENABLE);
+
+    else
+        SDL_ShowCursor(SDL_DISABLE);
+}
+
+// Capture et cache le curseur quand activé
+void SDL_Motor::capturerPointeur(bool reponse) const
+{
+    if(reponse)
+        SDL_SetRelativeMouseMode(SDL_TRUE);
+
+    else
+        SDL_SetRelativeMouseMode(SDL_FALSE);
+}

@@ -22,6 +22,9 @@ class SDL_Motor
         bool init();
         void mainloop();
 
+        void afficherPointeur(bool reponse) const;
+        void capturerPointeur(bool reponse) const;
+
     protected:
 
     private:
