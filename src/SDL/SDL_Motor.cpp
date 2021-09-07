@@ -158,7 +158,6 @@ void SDL_Motor::mainloop()
 //            default:
 //                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
 //        }
-
         // Print the Canvas
         SDL_RenderPresent(m_renderer);
 

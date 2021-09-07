@@ -39,7 +39,7 @@ class Input
     SDL_Event getEvenement() const;
     bool isKeyboardEvent(const SDL_Scancode scancode) const;
     bool isMouseEvent(const Uint8 scancode) const;
-
+    SDL_Scancode getPressedKeys();
 
     private:
 
@@ -48,7 +48,8 @@ class Input
     bool m_boutonsSouris[8];
 
     std::vector<int> m_mouseEvents;
-    std::vector<int> m_keyboardEvents;
+    std::vector<SDL_Event> m_keyboardEvents;
+    //std::vector<int> m_keyboardEventsBuffer;
 
 
     int m_x;

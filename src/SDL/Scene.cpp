@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include <iostream>
 
+#include <Windows.h>
 Scene::Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_renderer(renderer)
 {
     for(int i=0; i<NB_IMAGE; i++)
@@ -41,8 +42,8 @@ MainMenu::MainMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
 
 void MainMenu::update(Input* input)
 {
-    if(input->isMouseEvent(SDL_BUTTON_RIGHT)&&!input->getBoutonSouris(SDL_BUTTON_RIGHT))
-        std::cout<<"yee";
+    std::cout<<input->getPressedKeys()<<std::endl;
+    Sleep(100);
     // "Play" Button is pressed
 //    if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
 //    {

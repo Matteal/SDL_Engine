@@ -1,6 +1,5 @@
 #include "Input.h"
 
-#include "fstream"
 Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false), m_selectedScene(0)
 {
     // Initialisation du tableau m_touches[]
@@ -42,15 +41,12 @@ void Input::updateEvenements()
     m_yRel = 0;
 
     //réinitialiser les vectors
-    for(int i=m_keyboardEvents.size(); i>0; --i)
+    if(!m_keyboardEvents.empty())
     {
         m_keyboardEvents.pop_back();
     }
 
-    for(int i=m_mouseEvents.size(); i>0; --i)
-    {
-        m_mouseEvents.pop_back();
-    }
+    m_mouseEvents.clear();
 
     //boucle d'évènements
     while(SDL_PollEvent(&m_evenements))
@@ -62,13 +58,13 @@ void Input::updateEvenements()
             // Cas d'une touche enfoncée
             case SDL_KEYDOWN:
                 m_touches[m_evenements.key.keysym.scancode] = true;
-                m_keyboardEvents.push_back(m_evenements.key.keysym.scancode);
+                m_keyboardEvents.push_back(m_evenements);
             break;
 
             // Cas d'une touche relâchée
             case SDL_KEYUP:
                 m_touches[m_evenements.key.keysym.scancode] = false;
-                m_keyboardEvents.push_back(m_evenements.key.keysym.scancode);
+                m_keyboardEvents.push_back(m_evenements);
             break;
 
 
@@ -120,12 +116,20 @@ SDL_Event Input::getEvenement() const
 
 bool Input::isKeyboardEvent(const SDL_Scancode scancode) const
 {
-    for(int i=0; i<m_mouseEvents.size(); i++)
+    for(unsigned int i=0; i<m_mouseEvents.size(); i++)
     {
-        if(m_keyboardEvents[i]==scancode)
+        if(m_keyboardEvents[i].key.keysym.scancode == scancode)
             return true;
     }
     return false;
+}
+
+SDL_Scancode Input::getPressedKeys()
+{
+    if(!m_keyboardEvents.empty() && m_keyboardEvents.back().type == SDL_KEYDOWN)
+        return m_keyboardEvents.back().key.keysym.scancode;
+    else
+        return SDL_SCANCODE_POWER;
 }
 
 bool Input::isMouseEvent(const Uint8 scancode) const
