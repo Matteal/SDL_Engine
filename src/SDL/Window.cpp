@@ -91,6 +91,7 @@ bool Window::initWindow()
         std::cout<<"SDL_ttf could not initialize! SDL_ttf Error: "<< TTF_GetError() <<std::endl;
         return false;
     }
+
     return true;
 }
 
@@ -114,3 +115,4 @@ Mix_Music* Window::getMusic(int index)
             break;
     }
 }
+

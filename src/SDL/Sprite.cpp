@@ -2,7 +2,13 @@
 
 Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2, SDL_Texture* texture_toggle) : m_renderer(renderer), m_texture(texture), m_texture_toggle(texture_toggle), m_rect({x1, y1, x2, y2}), m_visible(true), m_toggle(false)
 {
-    //ctor
+    SDL_DisplayMode dm;
+    if (SDL_GetDesktopDisplayMode(0, &dm) != 0)
+    {
+        SDL_Log("SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
+    }
+    ScreenHeight = dm.h;
+    ScreenWidth = dm.w;
 }
 
 Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture): m_renderer(renderer), m_texture(texture), m_visible(true)
@@ -31,7 +37,6 @@ void Sprite::setTexture(SDL_Texture* texture)
 }
 SDL_Rect* Sprite::getSDL_Rect()
 {
-
     return &m_rect;
 }
 
@@ -84,5 +89,10 @@ void Sprite::render()
             SDL_RenderCopy(m_renderer,m_texture,NULL,&m_rect);
         }
     }
+}
+
+void Sprite::ScreenSize()
+{
+
 }
 

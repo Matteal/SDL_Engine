@@ -1155,7 +1155,7 @@
 	"Scene.h"
 	"../Static/toolbox.h"
 
-1631006776 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.h
+1631136260 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.h
 	<iostream>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -1166,7 +1166,7 @@
 	<iostream>
 	<vector>
 
-1631006776 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sprite.h
+1631136386 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sprite.h
 	<iostream>
 	"SDL.h"
 
@@ -1187,10 +1187,11 @@
 1631122470 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\input.cpp
 	"Input.h"
 
-1631122470 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\scene.cpp
+1631134281 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\scene.cpp
 	"Scene.h"
 	<iostream>
 	<Windows.h>
+	"Window.h"
 
 1631006776 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\scenemanager.cpp
 	"SceneManager.h"
@@ -1198,10 +1199,10 @@
 1631006776 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\scenemanager.h
 	"Scene.h"
 
-1631006776 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sprite.cpp
+1631136422 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sprite.cpp
 	"Sprite.h"
 
-1631122470 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\texturemanager.cpp
+1631122780 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\texturemanager.cpp
 	"TextureManager.h"
 	<iostream>
 
@@ -1213,12 +1214,12 @@
 1631006776 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\static\toolbox.cpp
 	"toolbox.h"
 
-1631122566 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.cpp
+1631136252 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.cpp
 	"Window.h"
 	<stdlib.h>
 	<SDL_ttf.h>
 
-1631122689 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sdl_motor.cpp
+1631136356 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sdl_motor.cpp
 	"SDL_Motor.h"
 	"SceneManager.h"
 	"TextureManager.h"

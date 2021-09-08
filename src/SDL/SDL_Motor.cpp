@@ -2,9 +2,9 @@
 #include "SceneManager.h"
 #include "TextureManager.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
 {
-    // ctor
+    //ctor
 }
 
 SDL_Motor::~SDL_Motor()
@@ -81,7 +81,7 @@ void SDL_Motor::mainloop()
     SceneManager sceneM(m_renderer, m_textureArray);
 
     //défini le volume initial de la musique
-    Mix_VolumeMusic(30);
+    Mix_VolumeMusic(0);
 
     int lastSceneEntered = 0;
 

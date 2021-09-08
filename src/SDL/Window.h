@@ -9,11 +9,11 @@
 #include <SDL_mixer.h>
 
 
-
 class Window
 {
     public:
         Window(const char* m_title, const int m_width, const int m_height, const Uint32 m_flags);
+        Window();
         ~Window();
 
         bool initWindow();
