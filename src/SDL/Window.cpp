@@ -63,7 +63,7 @@ bool Window::initWindow()
 
         std::cout << "WARNING! RENDERER SOFTWARE ENABLED" << std::endl;
     }
-    int IMGflags = IMG_INIT_PNG;
+    int IMGflags = IMG_INIT_JPG | IMG_INIT_PNG ;
     if (! ( IMG_Init(IMGflags) & IMGflags ))
     {
         std::cout << "Error : " << IMG_GetError() << std::endl;
@@ -78,9 +78,9 @@ bool Window::initWindow()
     }
     else
     {
-        test_music0 = Mix_LoadMUS("data/music.wav");
-        test_music1 = Mix_LoadMUS("data/main_theme.wav");
-        test_music2 = Mix_LoadMUS("data/battle_theme.wav");
+        //test_music0 = Mix_LoadMUS("data/music.wav");
+        //test_music1 = Mix_LoadMUS("data/main_theme.wav");
+        //test_music2 = Mix_LoadMUS("data/battle_theme.wav");
         if(test_music0 == NULL)
         {
             std::cout<<"Erreur"<<std::endl;

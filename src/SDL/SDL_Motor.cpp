@@ -1,7 +1,7 @@
 #include "SDL_Motor.h"
 #include "SceneManager.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_MAXIMIZED | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
 {
     // ctor
 }
@@ -30,7 +30,6 @@ bool SDL_Motor::init()
     m_textureArray[4] = chargerTexture("data/audioOn.png",m_window.getRenderer());
     m_textureArray[5] = chargerTexture("data/audioOff.png",m_window.getRenderer());
     m_textureArray[6] = chargerTexture("data/bgMenu.png",m_window.getRenderer());
-
     // Fight Images
     m_textureArray[9] = chargerTexture("data/hp.png",m_window.getRenderer());
     m_textureArray[10] = chargerTexture("data/hpEmpty.png",m_window.getRenderer());
