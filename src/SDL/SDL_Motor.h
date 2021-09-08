@@ -12,6 +12,8 @@
 //#include "../Bridge.h"
 #include "../Static/toolbox.h"
 
+#include "TextureManager.h"
+#include "SceneManager.h"
 
 class SDL_Motor
 {
@@ -33,6 +35,8 @@ class SDL_Motor
 
         SDL_Texture* m_textureArray[NB_IMAGE];
         SDL_Renderer* m_renderer;
+        TextureManager m_textureManager;
+        SceneManager* m_sceneManager;
         std::string text;
 
 };

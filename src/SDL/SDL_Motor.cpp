@@ -2,7 +2,8 @@
 #include "SceneManager.h"
 #include "TextureManager.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED),
+                    m_input(), m_renderer(nullptr), m_textureManager(m_window.getRenderer())
 {
     // ctor
 }
@@ -21,47 +22,6 @@ bool SDL_Motor::init()
         return false;
     }
 
-    // *** LOADING TEXTURES *** //
-    //TextureManager tm(m_renderer);
-
-
-    // Buttons
-    m_textureArray[0] = chargerTexture("data/buttonPlay.png",m_window.getRenderer());
-    m_textureArray[1] = chargerTexture("data/buttonPlayAlt.png",m_window.getRenderer());
-    m_textureArray[2] = chargerTexture("data/buttonQuit.png",m_window.getRenderer());
-    m_textureArray[3] = chargerTexture("data/buttonQuitAlt.png",m_window.getRenderer());
-    m_textureArray[4] = chargerTexture("data/audioOn.png",m_window.getRenderer());
-    m_textureArray[5] = chargerTexture("data/audioOff.png",m_window.getRenderer());
-    m_textureArray[6] = chargerTexture("data/bgMenu.png",m_window.getRenderer());
-
-    // Fight Images
-    m_textureArray[9] = chargerTexture("data/hp.png",m_window.getRenderer());
-    m_textureArray[10] = chargerTexture("data/hpEmpty.png",m_window.getRenderer());
-    m_textureArray[11] = chargerTexture("data/bg.png",m_window.getRenderer());
-    m_textureArray[12] = chargerTexture("data/fightMenu.png",m_window.getRenderer());
-    m_textureArray[13] = chargerTexture("data/fightMenu2.png",m_window.getRenderer());
-    m_textureArray[14] = chargerTexture("data/fightStrike.png",m_window.getRenderer());
-    m_textureArray[15] = chargerTexture("data/fightSurprise.png",m_window.getRenderer());
-    m_textureArray[16] = chargerTexture("data/fightDefend.png",m_window.getRenderer());
-
-    // Ships
-    m_textureArray[25] = chargerTexture("data/cruiser.png",m_window.getRenderer());
-    m_textureArray[26] = chargerTexture("data/cruiserAlt.png",m_window.getRenderer());
-    m_textureArray[27] = chargerTexture("data/armored.png",m_window.getRenderer());
-    m_textureArray[28] = chargerTexture("data/armoredAlt.png",m_window.getRenderer());
-    m_textureArray[29] = chargerTexture("data/raider.png",m_window.getRenderer());
-    m_textureArray[30] = chargerTexture("data/raiderAlt.png",m_window.getRenderer());
-
-    // Tiles
-    m_textureArray[35] = chargerTexture("data/Tiles/tileOutline.png",m_window.getRenderer());
-    m_textureArray[36] = chargerTexture("data/Tiles/tileOutline1.png",m_window.getRenderer());
-    m_textureArray[37] = chargerTexture("data/Tiles/tileOutline2.png",m_window.getRenderer());
-    m_textureArray[38] = chargerTexture("data/Tiles/tile1.png",m_window.getRenderer());
-    m_textureArray[39] = chargerTexture("data/Tiles/tile2.png",m_window.getRenderer());
-    m_textureArray[40] = chargerTexture("data/Tiles/tile3.png",m_window.getRenderer());
-    m_textureArray[41] = chargerTexture("data/Tiles/tile4.png",m_window.getRenderer());
-    m_textureArray[42] = chargerTexture("data/Tiles/tileIsland1.png",m_window.getRenderer());
-
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();
 
@@ -70,17 +30,19 @@ bool SDL_Motor::init()
 
 void SDL_Motor::mainloop()
 {
+
     TextureManager tm(m_renderer);
 
     bool rt = true; //wtf is this?
-    Scene s(m_renderer,m_textureArray);
-    std::cout<<"Motor : " << tm["bgMenu"]<<std::endl;
+
+
     // Framerate variables
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
     // Objets Scène
     SceneManager sceneM(m_renderer, tm);
+
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);
 

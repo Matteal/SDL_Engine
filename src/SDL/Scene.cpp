@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include <Windows.h>
-Scene::Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_renderer(renderer)
+Scene::Scene(SDL_Renderer* renderer): m_renderer(renderer)
 {
 }
 
@@ -24,8 +24,8 @@ void Scene::render()
 
 // ***** MAINMENU ***** //
 
-MainMenu::MainMenu(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene(renderer, nullptr), m_isAudioOn(true)
-
+MainMenu::MainMenu(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene(renderer), m_isAudioOn(true)
+{
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["bgMenu"], 0, 0, 800, 500));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonPlay"], 300,100,200,100, m_textureMap["buttonPlayAlt"])); //Bouton Jouer
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonQuit"], 300,300,200,100, m_textureMap["buttonQuitAlt"])); //Bouton Quitter
@@ -72,7 +72,7 @@ void MainMenu::update(Input* input)
 
 // ***** PAUSEMENU ***** //
 
-PauseMenu::PauseMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray)
+PauseMenu::PauseMenu(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene(renderer)
 {
 
 }

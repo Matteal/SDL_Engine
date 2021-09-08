@@ -4,6 +4,7 @@
 
 TextureManager::TextureManager(SDL_Renderer* renderer): m_renderer(renderer)
 {
+    //TODO: charger asynchroniquement les images
     // Buttons
     chargerTexture("buttonPlay.png");
     chargerTexture("buttonPlayAlt.png");
@@ -52,7 +53,6 @@ TextureManager::~TextureManager()
 
 SDL_Texture* TextureManager::operator[](const std::string str)
 {
-    std::cout<<"in getter : " << m_textureMap[str]<<std::endl;
     return m_textureMap[str];
 }
 
