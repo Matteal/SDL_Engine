@@ -64,7 +64,5 @@ void TextureManager::chargerTexture(const std::string &chemin)
 
         std::string name = chemin.substr(chemin.find_last_of('/')+1);
         name = name.substr(0, name.find('.'));
-
-        std::cout<<"name : "<<name<<std::endl;
     }
 }

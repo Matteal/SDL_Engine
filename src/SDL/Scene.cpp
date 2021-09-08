@@ -42,8 +42,6 @@ MainMenu::MainMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) 
 
 void MainMenu::update(Input* input)
 {
-    std::cout<<input->getPressedKeys()<<std::endl;
-    Sleep(100);
     // "Play" Button is pressed
 //    if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
 //    {

@@ -16,6 +16,7 @@
 					<Add directory="include" />
 					<Add directory="C:/Users/joaki/OneDrive/Documents/GameJam/Projet/Alakajam/" />
 					<Add directory="src/Tile" />
+					<Add directory="C:/Users/joaki/OneDrive/Documents/Projets/SDL_Engine/" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -40,28 +41,22 @@
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Bridge.cpp" />
-		<Unit filename="src/Bridge.h" />
-		<Unit filename="src/Fight/Battleship.cpp" />
-		<Unit filename="src/Fight/Battleship.h" />
-		<Unit filename="src/Fight/GameFight.cpp" />
-		<Unit filename="src/Fight/GameFight.h" />
 		<Unit filename="src/SDL/Input.cpp" />
 		<Unit filename="src/SDL/Input.h" />
 		<Unit filename="src/SDL/SDL_Motor.cpp" />
 		<Unit filename="src/SDL/SDL_Motor.h" />
 		<Unit filename="src/SDL/Scene.cpp" />
 		<Unit filename="src/SDL/Scene.h" />
+		<Unit filename="src/SDL/SceneManager.cpp" />
+		<Unit filename="src/SDL/SceneManager.h" />
 		<Unit filename="src/SDL/Sprite.cpp" />
 		<Unit filename="src/SDL/Sprite.h" />
+		<Unit filename="src/SDL/TextureManager.cpp" />
+		<Unit filename="src/SDL/TextureManager.h" />
 		<Unit filename="src/SDL/Window.cpp" />
 		<Unit filename="src/SDL/Window.h" />
-		<Unit filename="src/Tile/Boat.cpp" />
-		<Unit filename="src/Tile/Boat.h" />
-		<Unit filename="src/Tile/GameTile.cpp" />
-		<Unit filename="src/Tile/GameTile.h" />
-		<Unit filename="src/Tile/Tile.cpp" />
-		<Unit filename="src/Tile/Tile.h" />
+		<Unit filename="src/Static/toolbox.cpp" />
+		<Unit filename="src/Static/toolbox.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 			<code_completion />
