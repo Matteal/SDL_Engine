@@ -22,7 +22,7 @@ bool SDL_Motor::init()
     }
 
     // *** LOADING TEXTURES *** //
-    TextureManager tm(m_renderer);
+    //TextureManager tm(m_renderer);
 
 
     // Buttons
@@ -70,16 +70,17 @@ bool SDL_Motor::init()
 
 void SDL_Motor::mainloop()
 {
-    bool rt = true;
+    TextureManager tm(m_renderer);
+
+    bool rt = true; //wtf is this?
     Scene s(m_renderer,m_textureArray);
+    std::cout<<"Motor : " << tm["bgMenu"]<<std::endl;
     // Framerate variables
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
-
     // Objets Scène
-    SceneManager sceneM(m_renderer, m_textureArray);
-
+    SceneManager sceneM(m_renderer, tm);
     //défini le volume initial de la musique
     Mix_VolumeMusic(30);
 

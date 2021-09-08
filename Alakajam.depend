@@ -392,7 +392,7 @@
 
 1547325890 D
 
-1561873968 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
+1561870368 c:\program files (x86)\codeblocks\mingw\sdl-2.0.12\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -1222,4 +1222,88 @@
 	"SDL_Motor.h"
 	"SceneManager.h"
 	"TextureManager.h"
+
+1631054273 source:c:\users\33669\documents\dev\github\alakajam\main.cpp
+	<SDL.h>
+	<iostream>
+	"src/SDL/SDL_Motor.h"
+	"src/SDL/Window.h"
+	"math.h"
+
+1631002955 c:\users\33669\documents\dev\github\alakajam\src\sdl\sdl_motor.h
+	<iostream>
+	"Window.h"
+	"Input.h"
+	"Sprite.h"
+	"Scene.h"
+	"../Static/toolbox.h"
+
+1630961618 c:\users\33669\documents\dev\github\alakajam\src\sdl\window.h
+	<iostream>
+	<SDL_image.h>
+	<SDL_mixer.h>
+
+1631050719 c:\users\33669\documents\dev\github\alakajam\src\sdl\input.h
+	<SDL.h>
+	<string>
+	<iostream>
+	<vector>
+
+1630961618 c:\users\33669\documents\dev\github\alakajam\src\sdl\sprite.h
+	<iostream>
+	"SDL.h"
+
+1631126521 c:\users\33669\documents\dev\github\alakajam\src\sdl\scene.h
+	<SDL.h>
+	<SDL_mixer.h>
+	<vector>
+	"Sprite.h"
+	"Input.h"
+	"TextureManager.h"
+
+1630961618 c:\users\33669\documents\dev\github\alakajam\src\static\toolbox.h
+	<SDL.h>
+	<SDL_ttf.h>
+	<iostream>
+	<sstream>
+	<fstream>
+
+1631051010 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\input.cpp
+	"Input.h"
+
+1631124828 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\scenemanager.cpp
+	"SceneManager.h"
+
+1631122335 c:\users\33669\documents\dev\github\alakajam\src\sdl\scenemanager.h
+	"Scene.h"
+
+1630961618 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\sprite.cpp
+	"Sprite.h"
+
+1631125722 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\window.cpp
+	"Window.h"
+	<stdlib.h>
+	<SDL_ttf.h>
+
+1630961618 source:c:\users\33669\documents\dev\github\alakajam\src\static\toolbox.cpp
+	"toolbox.h"
+
+1631127462 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\scene.cpp
+	"Scene.h"
+	<iostream>
+	<Windows.h>
+
+1631127456 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\sdl_motor.cpp
+	"SDL_Motor.h"
+	"SceneManager.h"
+	"TextureManager.h"
+
+1631127655 c:\users\33669\documents\dev\github\alakajam\src\sdl\texturemanager.h
+	<SDL_image.h>
+	<string>
+	<map>
+
+1631128146 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\texturemanager.cpp
+	"TextureManager.h"
+	<iostream>
 

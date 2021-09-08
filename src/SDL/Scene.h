@@ -10,7 +10,7 @@
 
 #include "Sprite.h"
 #include "Input.h"
-
+#include "TextureManager.h"
 
 class Scene
 {
@@ -24,7 +24,7 @@ class Scene
 
     protected:
 
-        SDL_Texture* m_textureArray[NB_IMAGE];
+        //SDL_Texture* m_textureArray[NB_IMAGE];
 
         std::vector<Sprite*> m_tabSprite;
 
@@ -35,7 +35,7 @@ class Scene
 class MainMenu : public Scene
 {
     public:
-        MainMenu (SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+    MainMenu (SDL_Renderer* renderer, TextureManager&);
 
         void update(Input* input);
     private:

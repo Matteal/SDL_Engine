@@ -113,4 +113,5 @@ Mix_Music* Window::getMusic(int index)
             return test_music2;
             break;
     }
+    return nullptr;
 }

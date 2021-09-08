@@ -14,6 +14,8 @@ class TextureManager
         TextureManager(SDL_Renderer* renderer);
         ~TextureManager();
 
+        SDL_Texture* operator[](const std::string);
+
     protected:
 
     private:

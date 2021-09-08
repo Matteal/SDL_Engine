@@ -1,9 +1,9 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_selectedScene(0)
+SceneManager::SceneManager(SDL_Renderer* renderer, TextureManager& tm): m_selectedScene(0)
 {
-    m_tabScene[0] = new MainMenu(renderer, textureArray);
-    m_tabScene[1] = new PauseMenu(renderer, textureArray);
+    m_tabScene[0] = new MainMenu(renderer, tm);
+    //m_tabScene[1] = new PauseMenu(renderer, nullptr);
 }
 
 SceneManager::~SceneManager()

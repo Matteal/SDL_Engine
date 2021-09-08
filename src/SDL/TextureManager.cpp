@@ -50,6 +50,12 @@ TextureManager::~TextureManager()
     //dtor
 }
 
+SDL_Texture* TextureManager::operator[](const std::string str)
+{
+    std::cout<<"in getter : " << m_textureMap[str]<<std::endl;
+    return m_textureMap[str];
+}
+
 void TextureManager::chargerTexture(const std::string &chemin)
 {
     SDL_Surface* surface = IMG_Load((DATA_PATH + chemin).c_str());
@@ -64,5 +70,7 @@ void TextureManager::chargerTexture(const std::string &chemin)
 
         std::string name = chemin.substr(chemin.find_last_of('/')+1);
         name = name.substr(0, name.find('.'));
+
+        m_textureMap[name] = texture;
     }
 }

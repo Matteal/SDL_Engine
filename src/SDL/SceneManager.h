@@ -8,7 +8,7 @@
 class SceneManager
 {
     public:
-        SceneManager(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+        SceneManager(SDL_Renderer* renderer, TextureManager&);
         ~SceneManager();
 
         void render();
