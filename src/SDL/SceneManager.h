@@ -19,6 +19,7 @@ class SceneManager
     private:
         Scene* m_tabScene[MAX_SCENE];
         int m_selectedScene;
+        int m_nextScene;
 };
 
 #endif // SCENEMANAGER_H

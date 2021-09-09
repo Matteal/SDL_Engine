@@ -36,7 +36,7 @@ MainMenu::MainMenu(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene
     m_tabSprite[4]->setVisible(false);
 }
 
-void MainMenu::update(Input* input)
+int MainMenu::update(Input* input)
 {
     // "Play" Button is pressed
 //    if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
@@ -68,6 +68,7 @@ void MainMenu::update(Input* input)
 //
 //        }
 //    }
+    return 0;
 }
 
 // ***** PAUSEMENU ***** //
@@ -77,14 +78,14 @@ PauseMenu::PauseMenu(SDL_Renderer* renderer, TextureManager& m_textureMap) : Sce
 
 }
 
-void PauseMenu::update(Input* input)
+int PauseMenu::update(Input* input)
 {
     // If Pause Button is Pressed
     if (input->getTouche(SDL_SCANCODE_P))
     {
         //input->setSelectedScene(2);
     }
-
+    return 1;
 }
 
 void PauseMenu::render()

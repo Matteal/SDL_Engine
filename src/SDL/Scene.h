@@ -19,7 +19,7 @@ class Scene
         ~Scene();
 
         void render();
-        virtual void update(Input* input){};
+        virtual int update(Input* input){};
         SDL_Renderer* m_renderer;
 
     protected:
@@ -37,7 +37,7 @@ class MainMenu : public Scene
     public:
     MainMenu (SDL_Renderer* renderer, TextureManager&);
 
-        void update(Input* input);
+        int update(Input* input);
     private:
         bool m_isAudioOn;
 };
@@ -47,7 +47,7 @@ class PauseMenu : public Scene
     public:
         PauseMenu(SDL_Renderer* renderer, TextureManager& m_textureMap);
 
-        void update(Input* input);
+        int update(Input* input);
         void render();
 };
 
