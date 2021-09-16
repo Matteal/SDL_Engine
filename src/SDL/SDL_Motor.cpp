@@ -114,17 +114,17 @@ void SDL_Motor::mainloop()
             //SDL_SetWindowPosition(m_window.getWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
         }
 
-        if (m_input.getTouche(SDL_SCANCODE_F11) && !m_window.fullscreen)
+        if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && m_window.fullscreen)
         {
-                std::cout << "out" << std::endl;
-                SDL_SetWindowMaximumSize(m_window.getWindow(),800,1001);
-                m_window.fullscreen = true;
+            std::cout << "out" << std::endl;
+            SDL_SetWindowFullscreen(m_window.getWindow(),0);
+            m_window.fullscreen = false;
         }
-        else
+        else if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && !m_window.fullscreen)
         {
-                std::cout << "in" << std::endl;
-                SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
-                m_window.fullscreen = false;
+            std::cout << "in" << std::endl;
+            SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
+            m_window.fullscreen = true;
         }
 
         SDL_Event evt = m_input.getEvenement();
