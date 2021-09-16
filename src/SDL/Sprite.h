@@ -27,6 +27,11 @@ class Sprite
 
         void render();
 
+        void ScreenSize();
+
+        float ScreenWidth;
+        float ScreenHeight;
+
     protected:
 
         SDL_Renderer* m_renderer;

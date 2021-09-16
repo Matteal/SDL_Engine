@@ -5,7 +5,7 @@
 SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED),
                     m_input(), m_renderer(nullptr), m_textureManager(m_window.getRenderer())
 {
-    // ctor
+    //ctor
 }
 
 SDL_Motor::~SDL_Motor()
@@ -20,11 +20,13 @@ bool SDL_Motor::init()
 {
     if(!m_window.initWindow())
     {
+        std::cout << "bug" << std::endl;
         return false;
     }
 
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();
+
 
     return true;
 }
@@ -45,7 +47,7 @@ void SDL_Motor::mainloop()
     SceneManager sceneM(m_renderer, tm);
 
     //défini le volume initial de la musique
-    Mix_VolumeMusic(30);
+    Mix_VolumeMusic(0);
 
     int lastSceneEntered = 0;
 
@@ -56,7 +58,9 @@ void SDL_Motor::mainloop()
     // Core Loop
     while(!m_input.terminer())
     {
-
+        int w, h;
+    SDL_GetWindowSize(m_window.m_window, &w, &h);
+    //std::cout<< w << " : " << h << std::endl;
         // Defining timestamp
         debutBoucle = SDL_GetTicks();
 
@@ -67,7 +71,9 @@ void SDL_Motor::mainloop()
         // Close the window when asked
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
         {
-            m_input.SetTerminer(true);
+            //m_input.SetTerminer(true);
+            SDL_SetWindowSize(m_window.m_window,800,500);
+            SDL_SetWindowPosition(m_window.getWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
         }
 
         SDL_Event evt = m_input.getEvenement();
@@ -178,4 +184,9 @@ void SDL_Motor::capturerPointeur(bool reponse) const
 
     else
         SDL_SetRelativeMouseMode(SDL_FALSE);
+}
+
+Window SDL_Motor::getWindow()
+{
+    return m_window;
 }

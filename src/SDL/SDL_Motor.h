@@ -5,7 +5,7 @@
 
 
 #include "Window.h"
-#include "Input.h"
+
 #include "Sprite.h"
 
 #include "Scene.h"
@@ -26,6 +26,7 @@ class SDL_Motor
 
         void afficherPointeur(bool reponse) const;
         void capturerPointeur(bool reponse) const;
+        Window getWindow();
 
     protected:
 
