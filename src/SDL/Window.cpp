@@ -11,6 +11,7 @@ Window::Window(const char* titleWindow, const int widhtWindow, const int heightW
     test_music0 = NULL;
     test_music1 = NULL;
     test_music2 = NULL;
+    fullscreen = false;
 }
 
 Window::~Window()

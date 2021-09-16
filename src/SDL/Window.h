@@ -26,6 +26,7 @@ class Window
         Mix_Music* test_music0;
         Mix_Music* test_music1;
         Mix_Music* test_music2;
+        bool fullscreen;
 //SDL_Window* m_window;
 
     protected:
