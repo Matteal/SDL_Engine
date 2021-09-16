@@ -21,7 +21,14 @@ void Scene::render()
         m_tabSprite[i]->render();
 }
 
-
+void Scene::changeRatio(float ratioX, float ratioY)
+{
+    for (auto &sprite : m_tabSprite) // access by reference to avoid copying
+    {
+        SDL_Rect* pos = sprite->getSDL_Rect();
+        sprite->setPosition((int)(pos->x*ratioX), (int)(pos->y*ratioY));//,(int)(pos->w*ratioX), (int)(pos->h*ratioY))
+    }
+}
 
 // ***** MAINMENU ***** //
 

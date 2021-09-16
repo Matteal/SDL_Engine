@@ -103,6 +103,8 @@ void SDL_Motor::mainloop()
         debutBoucle = SDL_GetTicks();
 
 
+        sceneM.changeRatio(m_window.m_window);
+
         // *** Managing Events ***
         m_input.updateEvenements();
 

@@ -11,6 +11,7 @@ class SceneManager
         SceneManager(SDL_Renderer* renderer, TextureManager&);
         ~SceneManager();
 
+        void changeRatio(SDL_Window* window);
         void render();
         void update(Input* input);
 
@@ -20,6 +21,9 @@ class SceneManager
         Scene* m_tabScene[MAX_SCENE];
         int m_selectedScene;
         int m_nextScene;
+
+
+        float m_ratioX, m_ratioY;
 };
 
 #endif // SCENEMANAGER_H

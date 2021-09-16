@@ -19,6 +19,8 @@ class Scene
         ~Scene();
 
         void render();
+        void changeRatio(float ratioX, float ratioY);
+
         virtual int update(Input* input){};
         SDL_Renderer* m_renderer;
 

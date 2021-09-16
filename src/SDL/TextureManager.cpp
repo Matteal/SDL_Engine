@@ -74,3 +74,4 @@ void TextureManager::chargerTexture(const std::string &chemin)
         m_textureMap[name] = texture;
     }
 }
+
