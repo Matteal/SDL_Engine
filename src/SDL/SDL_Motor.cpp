@@ -116,13 +116,11 @@ void SDL_Motor::mainloop()
 
         if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && m_window.fullscreen)
         {
-            std::cout << "out" << std::endl;
             SDL_SetWindowFullscreen(m_window.getWindow(),0);
             m_window.fullscreen = false;
         }
         else if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && !m_window.fullscreen)
         {
-            std::cout << "in" << std::endl;
             SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
             m_window.fullscreen = true;
         }
