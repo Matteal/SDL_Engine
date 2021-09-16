@@ -21,7 +21,7 @@ class TextureManager
     private:
         SDL_Renderer* m_renderer;
         std::map<std::string, SDL_Texture*> m_textureMap;
-        void chargerTexture(const std::string &chemin);
+        void loadTexture(const std::string &path);
 };
 
 #endif // TEXTUREMANAGER_H

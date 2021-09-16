@@ -13,9 +13,6 @@ SDL_Motor::~SDL_Motor()
     //dtor
 }
 
-
-#include <windows.h>
-
 bool SDL_Motor::init()
 {
     if(!m_window.initWindow())
@@ -158,22 +155,6 @@ void SDL_Motor::mainloop()
         // Si nécessaire, on met en pause le programme
         if(tempsEcoule < frameRate)
             SDL_Delay(frameRate - tempsEcoule);
-    }
-}
-
-SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* renderer)
-{
-    SDL_Surface* surface = IMG_Load(chemin.c_str());
-    if (surface == NULL)
-    {
-        std::cout << "Erreur de chargement de surface " <<std::endl;
-        return NULL;
-    }
-    else
-    {
-        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
-        SDL_FreeSurface(surface);
-        return texture;
     }
 }
 

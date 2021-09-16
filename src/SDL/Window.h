@@ -27,7 +27,6 @@ class Window
         Mix_Music* test_music1;
         Mix_Music* test_music2;
         bool fullscreen;
-//SDL_Window* m_window;
 
     protected:
 
@@ -39,8 +38,6 @@ class Window
         const Uint32 m_flags;
 
         SDL_Renderer* m_renderer;
-
-//        SDL_Event m_events;
 };
 
 

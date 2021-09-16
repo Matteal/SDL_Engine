@@ -69,7 +69,7 @@ bool Window::initWindow()
     int IMGflags = IMG_INIT_JPG | IMG_INIT_PNG ;
     if (! ( IMG_Init(IMGflags) & IMGflags ))
     {
-        std::cout << "Error : " << IMG_GetError() << std::endl;
+        std::cout << "SDL_Image could not initialize! SDL_Image Error: " << IMG_GetError() << std::endl;
         IMG_Quit();
         return false;
     }

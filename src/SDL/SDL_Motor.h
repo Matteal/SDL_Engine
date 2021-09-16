@@ -41,7 +41,5 @@ class SDL_Motor
 
 };
 
-SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* rendu);
-
 
 #endif // SDL_MOTOR_H
