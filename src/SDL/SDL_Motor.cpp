@@ -110,8 +110,6 @@ void SDL_Motor::mainloop()
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
         {
             m_input.SetTerminer(true);
-            //SDL_SetWindowSize(m_window.m_window,800,500);
-            //SDL_SetWindowPosition(m_window.getWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
         }
 
         if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && m_window.fullscreen)
@@ -119,6 +117,7 @@ void SDL_Motor::mainloop()
             SDL_SetWindowFullscreen(m_window.getWindow(),0);
             m_window.fullscreen = false;
         }
+
         else if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && !m_window.fullscreen)
         {
             SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
