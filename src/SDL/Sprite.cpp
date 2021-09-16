@@ -92,8 +92,3 @@ void Sprite::render()
     }
 }
 
-void Sprite::ScreenSize()
-{
-
-}
-
