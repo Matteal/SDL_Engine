@@ -2,16 +2,9 @@
 
 MainScene::MainScene(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene(renderer), m_isAudioOn(true)
 {
-    int windowHeight;
-    int windowWidth;
-
-        //SDL_GetWindowSize(m.getWindow().getWindow(),&windowWidth,&windowHeight);
-    //std::cout << "WW : " << windowWidth << ", WH : " << windowHeight << std::endl;
-    //SDL_GetWindowSize(w.m_window,windowWidth,windowHeight);
-
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["bgMenu"], 0, 0, 1920,1080));
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonPlay"], (800/2)-(200/2),(500-150)/2,200,100, m_textureMap["buttonPlayAlt"])); //Bouton Jouer
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonQuit"], (800-200)/2,(500+100)/2,200,100, m_textureMap["buttonQuitAlt"])); //Bouton Quitter
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonPlay"], (1920-200)/2,(800-100)/2,200,100, m_textureMap["buttonPlayAlt"])); //Bouton Jouer
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonQuit"], (1920-200)/2,(800+200)/2,200,100, m_textureMap["buttonQuitAlt"])); //Bouton Quitter
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["audioOn"], 10, 10, 100, 100)); //Bouton AudioOn
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["audioOff"], 10, 10, 100, 100)); //Bouton AudioOff
 
@@ -52,4 +45,5 @@ int MainScene::update(Input* input)
 //    }
     return 0;
 }
+
 

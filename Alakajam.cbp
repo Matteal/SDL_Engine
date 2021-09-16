@@ -44,6 +44,10 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/SDL/Input.cpp" />
 		<Unit filename="src/SDL/Input.h" />
+		<Unit filename="src/SDL/MainScene.cpp" />
+		<Unit filename="src/SDL/MainScene.h" />
+		<Unit filename="src/SDL/PauseScene.cpp" />
+		<Unit filename="src/SDL/PauseScene.h" />
 		<Unit filename="src/SDL/SDL_Motor.cpp" />
 		<Unit filename="src/SDL/SDL_Motor.h" />
 		<Unit filename="src/SDL/Scene.cpp" />

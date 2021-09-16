@@ -1,7 +1,8 @@
 #ifndef SCENEMANAGER_H
 #define SCENEMANAGER_H
 
-#include "Scene.h"
+#include "PauseScene.h"
+#include "MainScene.h"
 
 #define MAX_SCENE 4
 

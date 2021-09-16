@@ -124,6 +124,7 @@ void SDL_Motor::mainloop()
             m_window.fullscreen = true;
         }
 
+
         SDL_Event evt = m_input.getEvenement();
         while(SDL_PollEvent(&evt))
         {
