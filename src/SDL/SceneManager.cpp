@@ -2,8 +2,8 @@
 
 SceneManager::SceneManager(SDL_Renderer* renderer, TextureManager& tm): m_selectedScene(0), m_nextScene(m_selectedScene),  m_ratioX(1), m_ratioY(1)
 {
-    m_tabScene[0] = new MainMenu(renderer, tm);
-    m_tabScene[1] = new PauseMenu(renderer, tm);
+    m_tabScene[0] = new MainScene(renderer, tm);
+    m_tabScene[1] = new PauseScene(renderer, tm);
 }
 
 SceneManager::~SceneManager()
