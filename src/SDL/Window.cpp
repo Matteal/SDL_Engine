@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <SDL_ttf.h>
 
+
+
 Window::Window(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags) : m_title(titleWindow), m_width(widhtWindow),
                                                                                              m_height(heightWindow), m_flags(flags), m_window(0), m_renderer(0)
 {
@@ -39,7 +41,7 @@ bool Window::initWindow()
     // Création de la fenêtre
     m_window = SDL_CreateWindow(m_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, m_flags);
 
-    if(m_window == 0)
+    if(m_window < 0)
     {
         std::cout << "Error occurred during window creation phase : " << SDL_GetError() << std::endl;
 
@@ -114,5 +116,10 @@ Mix_Music* Window::getMusic(int index)
             return test_music2;
             break;
     }
+}
+
+SDL_Window* Window::getWindow()
+{
+    return m_window;
 }
 

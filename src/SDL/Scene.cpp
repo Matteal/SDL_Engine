@@ -1,8 +1,6 @@
-#include "Scene.h"
 #include <iostream>
 
-#include <Windows.h>
-#include "Window.h"
+#include "SDL_Motor.h"
 Scene::Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_renderer(renderer)
 {
     for(int i=0; i<NB_IMAGE; i++)
@@ -31,7 +29,13 @@ void Scene::render()
 
 MainMenu::MainMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]) : Scene(renderer, textureArray), m_isAudioOn(true)
 {
-    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[6], 0, 0, 1920 , 1080));
+    //SDL_Motor m;
+    int windowHeight;
+    int windowWidth;
+    //SDL_GetWindowSize(m.getWindow().getWindow(),&windowWidth,&windowHeight);
+    //std::cout << "WW : " << windowWidth << ", WH : " << windowHeight << std::endl;
+    //SDL_GetWindowSize(w.m_window,windowWidth,windowHeight);
+    m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[6], 0, 0, 1920 , 1001));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[0], (1920/2)-(200/2),(1080-100)/2,200,100, m_textureArray[1])); //Bouton Jouer
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[2], (1920-200)/2,(1080+300)/2,200,100, m_textureArray[3])); //Bouton Quitter
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureArray[4], 10, 10, 100, 100)); //Bouton AudioOn

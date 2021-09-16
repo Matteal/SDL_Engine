@@ -12,14 +12,16 @@
 class Window
 {
     public:
-        Window(const char* m_title, const int m_width, const int m_height, const Uint32 m_flags);
         Window();
+        Window(const char* m_title, const int m_width, const int m_height, const Uint32 m_flags);
         ~Window();
 
         bool initWindow();
 
         SDL_Renderer* getRenderer();
         Mix_Music* getMusic(int index);
+        SDL_Window* getWindow();
+        SDL_Window* m_window;
 
         Mix_Music* test_music0;
         Mix_Music* test_music1;
@@ -34,7 +36,7 @@ class Window
         const int m_height;
         const Uint32 m_flags;
 
-        SDL_Window* m_window;
+
         SDL_Renderer* m_renderer;
 
 //        SDL_Event m_events;

@@ -1147,15 +1147,14 @@
 	"src/SDL/Window.h"
 	"math.h"
 
-1631122470 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sdl_motor.h
+1631816838 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sdl_motor.h
 	<iostream>
 	"Window.h"
-	"Input.h"
 	"Sprite.h"
 	"Scene.h"
 	"../Static/toolbox.h"
 
-1631136260 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.h
+1631792276 c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.h
 	<iostream>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -1187,11 +1186,9 @@
 1631122470 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\input.cpp
 	"Input.h"
 
-1631134281 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\scene.cpp
-	"Scene.h"
+1631816836 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\scene.cpp
 	<iostream>
-	<Windows.h>
-	"Window.h"
+	"SDL_Motor.h"
 
 1631006776 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\scenemanager.cpp
 	"SceneManager.h"
@@ -1214,12 +1211,12 @@
 1631006776 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\static\toolbox.cpp
 	"toolbox.h"
 
-1631136252 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.cpp
+1631816538 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\window.cpp
 	"Window.h"
 	<stdlib.h>
 	<SDL_ttf.h>
 
-1631136356 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sdl_motor.cpp
+1631816649 source:c:\users\joaki\onedrive\documents\projets\sdl_engine\src\sdl\sdl_motor.cpp
 	"SDL_Motor.h"
 	"SceneManager.h"
 	"TextureManager.h"
