@@ -5,13 +5,15 @@
 
 
 #include "Window.h"
-#include "Input.h"
+
 #include "Sprite.h"
 
 #include "Scene.h"
 //#include "../Bridge.h"
 #include "../Static/toolbox.h"
 
+#include "TextureManager.h"
+#include "SceneManager.h"
 
 class SDL_Motor
 {
@@ -22,6 +24,10 @@ class SDL_Motor
         bool init();
         void mainloop();
 
+        void afficherPointeur(bool reponse) const;
+        void capturerPointeur(bool reponse) const;
+        Window getWindow();
+
     protected:
 
     private:
@@ -30,6 +36,8 @@ class SDL_Motor
 
         SDL_Texture* m_textureArray[NB_IMAGE];
         SDL_Renderer* m_renderer;
+        TextureManager m_textureManager;
+        SceneManager* m_sceneManager;
         std::string text;
 
 };

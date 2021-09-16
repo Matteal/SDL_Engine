@@ -1,6 +1,5 @@
 #include "Input.h"
 
-
 Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false), m_selectedScene(0)
 {
     // Initialisation du tableau m_touches[]
@@ -41,8 +40,13 @@ void Input::updateEvenements()
     m_xRel = 0;
     m_yRel = 0;
 
-    m_DuringRoundDOWN = false;
-    m_DuringRoundUP = false;
+    //réinitialiser les vectors
+    if(!m_keyboardEvents.empty())
+    {
+        m_keyboardEvents.pop_back();
+    }
+
+    m_mouseEvents.clear();
 
     //boucle d'évènements
     while(SDL_PollEvent(&m_evenements))
@@ -54,11 +58,13 @@ void Input::updateEvenements()
             // Cas d'une touche enfoncée
             case SDL_KEYDOWN:
                 m_touches[m_evenements.key.keysym.scancode] = true;
+                m_keyboardEvents.push_back(m_evenements);
             break;
 
             // Cas d'une touche relâchée
             case SDL_KEYUP:
                 m_touches[m_evenements.key.keysym.scancode] = false;
+                m_keyboardEvents.push_back(m_evenements);
             break;
 
 
@@ -66,20 +72,13 @@ void Input::updateEvenements()
             // Cas de pression sur un bouton de la souris
             case SDL_MOUSEBUTTONDOWN:
                 m_boutonsSouris[m_evenements.button.button] = true;
-                if(SDL_BUTTON_LEFT)
-                {
-                    m_DuringRoundDOWN = true;
-                }
-
+                m_mouseEvents.push_back(m_evenements.button.button);
             break;
 
             // Cas du relâchement d'un bouton de la souris
             case SDL_MOUSEBUTTONUP:
-                m_boutonsSouris[m_evenements.button.button] = true;
-               if(SDL_BUTTON_LEFT)
-                {
-                    m_DuringRoundUP = true;
-                }
+                m_boutonsSouris[m_evenements.button.button] = false;
+                m_mouseEvents.push_back(m_evenements.button.button);
             break;
 
 
@@ -105,24 +104,42 @@ void Input::updateEvenements()
     }
 }
 
-bool Input::getRoundUP()
-{
-    return m_DuringRoundUP;
-}
-
-bool Input::getRoundDOWN()
-{
-    return m_DuringRoundDOWN;
-}
-
 bool Input::getTouche(const SDL_Scancode touche) const
 {
     return m_touches[touche];
 }
 
-SDL_Event Input::getEvement()
+SDL_Event Input::getEvenement() const
 {
     return m_evenements;
+}
+
+bool Input::isKeyboardEvent(const SDL_Scancode scancode) const
+{
+    for(unsigned int i=0; i<m_mouseEvents.size(); i++)
+    {
+        if(m_keyboardEvents[i].key.keysym.scancode == scancode)
+            return true;
+    }
+    return false;
+}
+
+SDL_Scancode Input::getPressedKeys()
+{
+    if(!m_keyboardEvents.empty() && m_keyboardEvents.back().type == SDL_KEYDOWN)
+        return m_keyboardEvents.back().key.keysym.scancode;
+    else
+        return SDL_SCANCODE_POWER;
+}
+
+bool Input::isMouseEvent(const Uint8 scancode) const
+{
+    for(int i=0; i<m_mouseEvents.size(); i++)
+    {
+        if(m_mouseEvents[i]==scancode)
+            return true;
+    }
+    return false;
 }
 
 bool Input::getBoutonSouris(const Uint8 bouton) const
@@ -163,23 +180,6 @@ int Input::getYRel() const
 }
 
 
-void Input::afficherPointeur(bool reponse) const
-{
-    if(reponse)
-        SDL_ShowCursor(SDL_ENABLE);
-
-    else
-        SDL_ShowCursor(SDL_DISABLE);
-}
-
-void Input::capturerPointeur(bool reponse) const
-{
-    if(reponse)
-        SDL_SetRelativeMouseMode(SDL_TRUE);
-
-    else
-        SDL_SetRelativeMouseMode(SDL_FALSE);
-}
 
 bool Input::terminer() const
 {
@@ -191,12 +191,3 @@ void Input::SetTerminer (bool b)
     m_terminer = b;
 }
 
-int Input::getSelectedScene() const
-{
-    return m_selectedScene;
-}
-
-void Input::setSelectedScene(int select)
-{
-    m_selectedScene = select;
-}

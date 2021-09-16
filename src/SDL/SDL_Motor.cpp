@@ -1,9 +1,11 @@
 #include "SDL_Motor.h"
 #include "SceneManager.h"
+#include "TextureManager.h"
 
-SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_MAXIMIZED | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE), m_input(), m_renderer() //add flag  | SDL_WINDOW_FULLSCREEN
+SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED),
+                    m_input(), m_renderer(nullptr), m_textureManager(m_window.getRenderer())
 {
-    // ctor
+    //ctor
 }
 
 SDL_Motor::~SDL_Motor()
@@ -12,11 +14,13 @@ SDL_Motor::~SDL_Motor()
 }
 
 
+#include <windows.h>
 
 bool SDL_Motor::init()
 {
     if(!m_window.initWindow())
     {
+        std::cout << "bug" << std::endl;
         return false;
     }
 
@@ -61,23 +65,27 @@ bool SDL_Motor::init()
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();
 
+
     return true;
 }
 
 void SDL_Motor::mainloop()
 {
-    bool rt = true;
-    Scene s(m_renderer,m_textureArray);
+
+    TextureManager tm(m_renderer);
+
+    bool rt = true; //wtf is this?
+
+
     // Framerate variables
     unsigned int frameRate (1000 / 50);
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
-
     // Objets Scène
-    SceneManager sceneM(m_renderer, m_textureArray);
+    SceneManager sceneM(m_renderer, tm);
 
     //défini le volume initial de la musique
-    Mix_VolumeMusic(30);
+    Mix_VolumeMusic(0);
 
     int lastSceneEntered = 0;
 
@@ -88,7 +96,9 @@ void SDL_Motor::mainloop()
     // Core Loop
     while(!m_input.terminer())
     {
-
+        int w, h;
+    SDL_GetWindowSize(m_window.m_window, &w, &h);
+    //std::cout<< w << " : " << h << std::endl;
         // Defining timestamp
         debutBoucle = SDL_GetTicks();
 
@@ -99,17 +109,26 @@ void SDL_Motor::mainloop()
         // Close the window when asked
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
         {
-            m_input.SetTerminer(true);
+            //m_input.SetTerminer(true);
+            SDL_SetWindowSize(m_window.m_window,800,500);
+            SDL_SetWindowPosition(m_window.getWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
+        }
+
+        SDL_Event evt = m_input.getEvenement();
+        while(SDL_PollEvent(&evt))
+        {
+            if(evt.type == SDL_KEYUP)
+                m_input.SetTerminer(true);
         }
 
         // *** UPDATE ***
 
-            if (m_input.getEvement().type == SDL_TEXTINPUT)
+            if (m_input.getEvenement().type == SDL_TEXTINPUT)
             {
                 //Append character
                 if (rt)
                 {
-                    text += m_input.getEvement().text.text;
+                    text += m_input.getEvenement().text.text;
                     rt = false;
                 }
             }
@@ -126,7 +145,7 @@ void SDL_Motor::mainloop()
         sceneM.update(&m_input);
 
         //update music
-        lastSceneEntered=m_input.getSelectedScene();
+       // lastSceneEntered=m_input.getSelectedScene();
 
 
         // *** GRAPHICS ***
@@ -150,9 +169,9 @@ void SDL_Motor::mainloop()
 //            default:
 //                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
 //        }
-
         // Print the Canvas
         SDL_RenderPresent(m_renderer);
+
 
 
 
@@ -185,3 +204,27 @@ SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* renderer)
     }
 }
 
+// Cache le curseur quand activé
+void SDL_Motor::afficherPointeur(bool reponse) const
+{
+    if(reponse)
+        SDL_ShowCursor(SDL_ENABLE);
+
+    else
+        SDL_ShowCursor(SDL_DISABLE);
+}
+
+// Capture et cache le curseur quand activé
+void SDL_Motor::capturerPointeur(bool reponse) const
+{
+    if(reponse)
+        SDL_SetRelativeMouseMode(SDL_TRUE);
+
+    else
+        SDL_SetRelativeMouseMode(SDL_FALSE);
+}
+
+Window SDL_Motor::getWindow()
+{
+    return m_window;
+}

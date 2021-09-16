@@ -1,9 +1,9 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]): m_selectedScene(0)
+SceneManager::SceneManager(SDL_Renderer* renderer, TextureManager& tm): m_selectedScene(0), m_nextScene(m_selectedScene)
 {
-    m_tabScene[0] = new MainMenu(renderer, textureArray);
-    m_tabScene[1] = new PauseMenu(renderer, textureArray);
+    m_tabScene[0] = new MainMenu(renderer, tm);
+    m_tabScene[1] = new PauseMenu(renderer, tm);
 }
 
 SceneManager::~SceneManager()
@@ -18,5 +18,13 @@ void SceneManager::render()
 
 void SceneManager::update(Input* input)
 {
-    m_tabScene[m_selectedScene]->update(input);
+    // Change the selected Scene at the loop's beggining
+    if(m_selectedScene != m_nextScene)
+    {
+        m_selectedScene = m_nextScene;
+    }
+
+    // Call update() of the current Scene
+    m_nextScene = m_tabScene[m_selectedScene]->update(input);
+
 }

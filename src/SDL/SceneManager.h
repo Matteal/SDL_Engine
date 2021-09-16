@@ -8,7 +8,7 @@
 class SceneManager
 {
     public:
-        SceneManager(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+        SceneManager(SDL_Renderer* renderer, TextureManager&);
         ~SceneManager();
 
         void render();
@@ -19,6 +19,7 @@ class SceneManager
     private:
         Scene* m_tabScene[MAX_SCENE];
         int m_selectedScene;
+        int m_nextScene;
 };
 
 #endif // SCENEMANAGER_H

@@ -10,21 +10,21 @@
 
 #include "Sprite.h"
 #include "Input.h"
-
+#include "TextureManager.h"
 
 class Scene
 {
     public:
-        Scene(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+        Scene(SDL_Renderer* renderer);
         ~Scene();
 
         void render();
-        virtual void update(Input* input){};
+        virtual int update(Input* input){};
         SDL_Renderer* m_renderer;
 
     protected:
 
-        SDL_Texture* m_textureArray[NB_IMAGE];
+        //SDL_Texture* m_textureArray[NB_IMAGE];
 
         std::vector<Sprite*> m_tabSprite;
 
@@ -35,9 +35,9 @@ class Scene
 class MainMenu : public Scene
 {
     public:
-        MainMenu (SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+    MainMenu (SDL_Renderer* renderer, TextureManager&);
 
-        void update(Input* input);
+        int update(Input* input);
     private:
         bool m_isAudioOn;
 };
@@ -45,9 +45,9 @@ class MainMenu : public Scene
 class PauseMenu : public Scene
 {
     public:
-        PauseMenu(SDL_Renderer* renderer, SDL_Texture* textureArray[NB_IMAGE]);
+        PauseMenu(SDL_Renderer* renderer, TextureManager& m_textureMap);
 
-        void update(Input* input);
+        int update(Input* input);
         void render();
 };
 
