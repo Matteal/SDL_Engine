@@ -34,7 +34,7 @@ class SDL_Motor
         Window m_window;
         Input m_input;
 
-        SDL_Texture* m_textureArray[NB_IMAGE];
+//        SDL_Texture* m_textureArray[NB_IMAGE];
         SDL_Renderer* m_renderer;
         TextureManager m_textureManager;
         SceneManager* m_sceneManager;

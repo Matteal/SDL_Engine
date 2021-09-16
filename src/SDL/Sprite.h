@@ -5,7 +5,6 @@
 
 #include "SDL.h"
 
-#define NB_IMAGE 50
 
 class Sprite
 {
@@ -14,21 +13,19 @@ class Sprite
         Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int posx, int posy, int w, int h, SDL_Texture* texture_toggle = NULL);
         ~Sprite();
 
-        void setDimensions(int dimensionX, int DimensionY);
-        void setPosition(int PositionX, int PositionY);
+        void setDimensions(int dimensionX, int dimensionY);
+        void setPosition(int positionX, int positionY);
         void actuSDL_Rect(float ratioX, float ratioY);
 
         void setTexture(SDL_Texture* texture);
 
         SDL_Rect* getSDL_Rect();
-        bool estTouche(int curseurx, int curseury);
-        bool estTouche(int curseurx, int curseury, bool bool1, bool bool2);
+        bool isTouched(int cursorX, int cursorY);
+        bool isTouched(int cursorX, int cursorY, bool bool1, bool bool2);
 
         void setVisible(bool visible = true);
 
         void render();
-
-        void ScreenSize();
 
         float ScreenWidth;
         float ScreenHeight;

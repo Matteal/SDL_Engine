@@ -47,18 +47,18 @@ SDL_Rect* Sprite::getSDL_Rect()
     return &m_rect;
 }
 
-bool Sprite::estTouche(int curseurX, int curseurY)
+bool Sprite::isTouched(int cursorX, int cursorY)
 {
-    return (curseurX < m_rect.w + m_rect.x) && (curseurX > m_rect.x) && (curseurY < m_rect.h + m_rect.y) && (curseurY > m_rect.y);
+    return (cursorX < m_rect.w + m_rect.x) && (cursorX > m_rect.x) && (cursorY < m_rect.h + m_rect.y) && (cursorY > m_rect.y);
 }
 
 // Allow not
-bool Sprite::estTouche(int curseurX, int curseurY, bool isDown, bool isUp)
+bool Sprite::isTouched(int cursorX, int cursorY, bool isDown, bool isUp)
 {
     // if LeftClick pressed
     if (isDown)
     {
-        if (estTouche(curseurX, curseurY))
+        if (isTouched(cursorX, cursorY))
         {
             m_toggle = true;
         }
@@ -70,7 +70,7 @@ bool Sprite::estTouche(int curseurX, int curseurY, bool isDown, bool isUp)
         if (isUp)
         {
             m_toggle = false;
-            if(estTouche(curseurX, curseurY))
+            if(isTouched(cursorX, cursorY))
             {
                 return true;
             }
@@ -98,8 +98,4 @@ void Sprite::render()
     }
 }
 
-void Sprite::ScreenSize()
-{
-
-}
 
