@@ -20,7 +20,7 @@ bool SDL_Motor::init()
 {
     if(!m_window.initWindow())
     {
-        std::cout << "bug" << std::endl;
+        std::cout << "Window has not been successfully created" << std::endl;
         return false;
     }
 

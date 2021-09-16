@@ -1,6 +1,6 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager(SDL_Renderer* renderer, TextureManager& tm): m_selectedScene(0), m_nextScene(m_selectedScene),  m_ratioX(1), m_ratioY(1)
+SceneManager::SceneManager(SDL_Renderer* renderer, TextureManager& tm): m_selectedScene(0), m_nextScene(m_selectedScene), m_ratioX(1), m_ratioY(1)
 {
     m_tabScene[0] = new MainScene(renderer, tm);
     m_tabScene[1] = new PauseScene(renderer, tm);
@@ -13,20 +13,21 @@ SceneManager::~SceneManager()
 
 void SceneManager::changeRatio(SDL_Window* window)
 {
+    // get real screen size
     int windowHeight;
     int windowWidth;
 
     SDL_GetWindowSize(window,&windowWidth,&windowHeight);
 
+    // compute ratio window/screen
     float new_ratioX = (float) windowWidth/1920;
     float new_ratioY = (float) windowHeight/1080;
 
-    //std::cout << new_ratioX << ':' << new_ratioY << std::endl;
+    // change the ratio in the current screen
     m_tabScene[m_selectedScene]->changeRatio(new_ratioX, new_ratioY);
 
     m_ratioX = new_ratioX;
     m_ratioY = new_ratioY;
-   //m_textureM->changeRatio((1-m_ratioX)+new_ratioX, (1-m_ratioY)+new_ratioY);
 }
 
 void SceneManager::render()

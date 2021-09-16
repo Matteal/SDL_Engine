@@ -5,6 +5,7 @@
 TextureManager::TextureManager(SDL_Renderer* renderer): m_renderer(renderer)
 {
     //TODO: charger asynchroniquement les images
+
     // Buttons
     chargerTexture("buttonPlay.png");
     chargerTexture("buttonPlayAlt.png");

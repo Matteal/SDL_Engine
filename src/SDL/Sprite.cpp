@@ -21,6 +21,7 @@ void Sprite::setDimensions(int dimensionX, int dimensionY)
     m_dimX = dimensionX;
     m_dimY = dimensionY;
 }
+
 void Sprite::setPosition(int positionX, int positionY)
 {
     m_posX = positionX;
@@ -36,6 +37,7 @@ void Sprite::setTexture(SDL_Texture* texture)
 {
     m_texture = texture;
 }
+
 SDL_Rect* Sprite::getSDL_Rect()
 {
     return &m_rect;
