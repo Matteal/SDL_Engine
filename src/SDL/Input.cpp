@@ -1,17 +1,17 @@
 #include "Input.h"
 
-Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_terminer(false), m_selectedScene(0)
+Input::Input() : m_x(0), m_y(0), m_xRel(0), m_yRel(0), m_closeWindow(false)
 {
-    // Initialisation du tableau m_touches[]
+    // Initialisation du tableau m_keys[]
 
     for(int i(0); i < SDL_NUM_SCANCODES; i++)
-        m_touches[i] = false;
+        m_keys[i] = false;
 
 
-    // Initialisation du tableau m_boutonsSouris[]
+    // Initialisation du tableau m_mouse[]
 
     for(int i(0); i < 8; i++)
-        m_boutonsSouris[i] = false;
+        m_mouse[i] = false;
 
 }
 
@@ -49,53 +49,53 @@ void Input::updateEvenements()
     m_mouseEvents.clear();
 
     //boucle d'évènements
-    while(SDL_PollEvent(&m_evenements))
+    while(SDL_PollEvent(&m_events))
     {
 
-        switch(m_evenements.type)
+        switch(m_events.type)
         {
 
             // Cas d'une touche enfoncée
             case SDL_KEYDOWN:
-                m_touches[m_evenements.key.keysym.scancode] = true;
-                m_keyboardEvents.push_back(m_evenements);
+                m_keys[m_events.key.keysym.scancode] = true;
+                m_keyboardEvents.push_back(m_events);
             break;
 
             // Cas d'une touche relâchée
             case SDL_KEYUP:
-                m_touches[m_evenements.key.keysym.scancode] = false;
-                m_keyboardEvents.push_back(m_evenements);
+                m_keys[m_events.key.keysym.scancode] = false;
+                m_keyboardEvents.push_back(m_events);
             break;
 
 
 
             // Cas de pression sur un bouton de la souris
             case SDL_MOUSEBUTTONDOWN:
-                m_boutonsSouris[m_evenements.button.button] = true;
-                m_mouseEvents.push_back(m_evenements.button.button);
+                m_mouse[m_events.button.button] = true;
+                m_mouseEvents.push_back(m_events.button.button);
             break;
 
             // Cas du relâchement d'un bouton de la souris
             case SDL_MOUSEBUTTONUP:
-                m_boutonsSouris[m_evenements.button.button] = false;
-                m_mouseEvents.push_back(m_evenements.button.button);
+                m_mouse[m_events.button.button] = false;
+                m_mouseEvents.push_back(m_events.button.button);
             break;
 
 
             // Cas d'un mouvement de souris
             case SDL_MOUSEMOTION:
-                m_x = m_evenements.motion.x;
-                m_y = m_evenements.motion.y;
+                m_x = m_events.motion.x;
+                m_y = m_events.motion.y;
 
-                m_xRel = m_evenements.motion.xrel;
-                m_yRel = m_evenements.motion.yrel;
+                m_xRel = m_events.motion.xrel;
+                m_yRel = m_events.motion.yrel;
             break;
 
 
             // Cas de la fermeture de la fenêtre
             case SDL_WINDOWEVENT:
-                if(m_evenements.window.event == SDL_WINDOWEVENT_CLOSE)
-                    m_terminer = true;
+                if(m_events.window.event == SDL_WINDOWEVENT_CLOSE)
+                    m_closeWindow = true;
             break;
 
             default:
@@ -104,14 +104,14 @@ void Input::updateEvenements()
     }
 }
 
-bool Input::getTouche(const SDL_Scancode touche) const
+bool Input::getKey(const SDL_Scancode key) const
 {
-    return m_touches[touche];
+    return m_keys[key];
 }
 
-SDL_Event Input::getEvenement() const
+SDL_Event Input::getEvent() const
 {
-    return m_evenements;
+    return m_events;
 }
 
 bool Input::isKeyboardEvent(const SDL_Scancode scancode) const
@@ -142,12 +142,12 @@ bool Input::isMouseEvent(const Uint8 scancode) const
     return false;
 }
 
-bool Input::getBoutonSouris(const Uint8 bouton) const
+bool Input::getMouseButton(const Uint8 bouton) const
 {
-    return m_boutonsSouris[bouton];
+    return m_mouse[bouton];
 }
 
-bool Input::mouvementSouris() const
+bool Input::isMouseMoving() const
 {
     if(m_xRel == 0 && m_yRel == 0)
         return false;
@@ -181,13 +181,13 @@ int Input::getYRel() const
 
 
 
-bool Input::terminer() const
+bool Input::isWindowClosed() const
 {
-    return m_terminer;
+    return m_closeWindow;
 }
 
-void Input::SetTerminer (bool b)
+void Input::SetCloseWindow (bool b)
 {
-    m_terminer = b;
+    m_closeWindow = b;
 }
 

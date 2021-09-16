@@ -21,9 +21,9 @@ class Input
     void updateEvenements();
 
     //Gestion évènement
-    bool getTouche(const SDL_Scancode touche) const;
-    bool getBoutonSouris(const Uint8 bouton) const;
-    bool mouvementSouris() const;
+    bool getKey(const SDL_Scancode key) const;
+    bool getMouseButton(const Uint8 bouton) const;
+    bool isMouseMoving() const;
 
     // Getters curseur
     int getX() const;
@@ -32,20 +32,20 @@ class Input
     int getXRel() const;
     int getYRel() const;
 
-    bool terminer() const;
-    void SetTerminer(bool b);
+    bool isWindowClosed() const;
+    void SetCloseWindow(bool b);
     bool clic();
 
-    SDL_Event getEvenement() const;
+    SDL_Event getEvent() const;
     bool isKeyboardEvent(const SDL_Scancode scancode) const;
     bool isMouseEvent(const Uint8 scancode) const;
     SDL_Scancode getPressedKeys();
 
     private:
 
-    SDL_Event m_evenements;
-    bool m_touches[SDL_NUM_SCANCODES];
-    bool m_boutonsSouris[8];
+    SDL_Event m_events;
+    bool m_keys[SDL_NUM_SCANCODES];
+    bool m_mouse[8];
 
     std::vector<int> m_mouseEvents;
     std::vector<SDL_Event> m_keyboardEvents;
@@ -57,11 +57,7 @@ class Input
     int m_xRel;
     int m_yRel;
 
-    bool m_terminer;
-    int m_selectedScene;
-    /*  0 -> Main Menu
-        1 -> Game Scene
-        2 -> Pause Menu */
+    bool m_closeWindow;
 };
 
 #endif // INPUT_H

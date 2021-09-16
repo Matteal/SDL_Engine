@@ -8,7 +8,7 @@ PauseScene::PauseScene(SDL_Renderer* renderer, TextureManager& m_textureMap) : S
 int PauseScene::update(Input* input)
 {
     // If Pause Button is Pressed
-    if (input->getTouche(SDL_SCANCODE_P))
+    if (input->getKey(SDL_SCANCODE_P))
     {
         //input->setSelectedScene(2);
     }

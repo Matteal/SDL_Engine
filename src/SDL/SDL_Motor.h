@@ -24,8 +24,8 @@ class SDL_Motor
         bool init();
         void mainloop();
 
-        void afficherPointeur(bool reponse) const;
-        void capturerPointeur(bool reponse) const;
+        void showPointer(bool answer) const;
+        void capturePointer(bool answer) const;
         Window getWindow();
 
     protected:
@@ -34,7 +34,6 @@ class SDL_Motor
         Window m_window;
         Input m_input;
 
-//        SDL_Texture* m_textureArray[NB_IMAGE];
         SDL_Renderer* m_renderer;
         TextureManager m_textureManager;
         SceneManager* m_sceneManager;

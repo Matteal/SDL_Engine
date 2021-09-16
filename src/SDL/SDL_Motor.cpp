@@ -24,44 +24,6 @@ bool SDL_Motor::init()
         return false;
     }
 
-    // *** LOADING TEXTURES *** //
-
-//    // Buttons
-//    m_textureArray[0] = chargerTexture("data/buttonPlay.png",m_window.getRenderer());
-//    m_textureArray[1] = chargerTexture("data/buttonPlayAlt.png",m_window.getRenderer());
-//    m_textureArray[2] = chargerTexture("data/buttonQuit.png",m_window.getRenderer());
-//    m_textureArray[3] = chargerTexture("data/buttonQuitAlt.png",m_window.getRenderer());
-//    m_textureArray[4] = chargerTexture("data/audioOn.png",m_window.getRenderer());
-//    m_textureArray[5] = chargerTexture("data/audioOff.png",m_window.getRenderer());
-//    m_textureArray[6] = chargerTexture("data/bgMenu.png",m_window.getRenderer());
-//    // Fight Images
-//    m_textureArray[9] = chargerTexture("data/hp.png",m_window.getRenderer());
-//    m_textureArray[10] = chargerTexture("data/hpEmpty.png",m_window.getRenderer());
-//    m_textureArray[11] = chargerTexture("data/bg.png",m_window.getRenderer());
-//    m_textureArray[12] = chargerTexture("data/fightMenu.png",m_window.getRenderer());
-//    m_textureArray[13] = chargerTexture("data/fightMenu2.png",m_window.getRenderer());
-//    m_textureArray[14] = chargerTexture("data/fightStrike.png",m_window.getRenderer());
-//    m_textureArray[15] = chargerTexture("data/fightSurprise.png",m_window.getRenderer());
-//    m_textureArray[16] = chargerTexture("data/fightDefend.png",m_window.getRenderer());
-//
-//    // Ships
-//    m_textureArray[25] = chargerTexture("data/cruiser.png",m_window.getRenderer());
-//    m_textureArray[26] = chargerTexture("data/cruiserAlt.png",m_window.getRenderer());
-//    m_textureArray[27] = chargerTexture("data/armored.png",m_window.getRenderer());
-//    m_textureArray[28] = chargerTexture("data/armoredAlt.png",m_window.getRenderer());
-//    m_textureArray[29] = chargerTexture("data/raider.png",m_window.getRenderer());
-//    m_textureArray[30] = chargerTexture("data/raiderAlt.png",m_window.getRenderer());
-//
-//    // Tiles
-//    m_textureArray[35] = chargerTexture("data/Tiles/tileOutline.png",m_window.getRenderer());
-//    m_textureArray[36] = chargerTexture("data/Tiles/tileOutline1.png",m_window.getRenderer());
-//    m_textureArray[37] = chargerTexture("data/Tiles/tileOutline2.png",m_window.getRenderer());
-//    m_textureArray[38] = chargerTexture("data/Tiles/tile1.png",m_window.getRenderer());
-//    m_textureArray[39] = chargerTexture("data/Tiles/tile2.png",m_window.getRenderer());
-//    m_textureArray[40] = chargerTexture("data/Tiles/tile3.png",m_window.getRenderer());
-//    m_textureArray[41] = chargerTexture("data/Tiles/tile4.png",m_window.getRenderer());
-//    m_textureArray[42] = chargerTexture("data/Tiles/tileIsland1.png",m_window.getRenderer());
-
     // Keep this after any renderer modification
     m_renderer = m_window.getRenderer();
 
@@ -92,7 +54,7 @@ void SDL_Motor::mainloop()
     SDL_StartTextInput();
 
     // Core Loop
-    while(!m_input.terminer())
+    while(!m_input.isWindowClosed())
     {
         int w, h;
     SDL_GetWindowSize(m_window.m_window, &w, &h);
@@ -107,9 +69,9 @@ void SDL_Motor::mainloop()
         m_input.updateEvenements();
 
         // Close the window when asked
-        if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
+        if(m_input.getKey(SDL_SCANCODE_ESCAPE))
         {
-            m_input.SetTerminer(true);
+            m_input.SetCloseWindow(true);
             //SDL_SetWindowSize(m_window.m_window,800,500);
             //SDL_SetWindowPosition(m_window.getWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
         }
@@ -125,21 +87,21 @@ void SDL_Motor::mainloop()
             m_window.fullscreen = true;
         }
 
-        SDL_Event evt = m_input.getEvenement();
+        SDL_Event evt = m_input.getEvent();
         while(SDL_PollEvent(&evt))
         {
             if(evt.type == SDL_KEYUP)
-                m_input.SetTerminer(true);
+                m_input.SetCloseWindow(true);
         }
 
         // *** UPDATE ***
 
-            if (m_input.getEvenement().type == SDL_TEXTINPUT)
+            if (m_input.getEvent().type == SDL_TEXTINPUT)
             {
                 //Append character
                 if (rt)
                 {
-                    text += m_input.getEvenement().text.text;
+                    text += m_input.getEvent().text.text;
                     rt = false;
                 }
             }
@@ -147,7 +109,7 @@ void SDL_Motor::mainloop()
             {
                 rt = true;
             }
-            if (m_input.getTouche(SDL_SCANCODE_RETURN))
+            if (m_input.getKey(SDL_SCANCODE_RETURN))
             {
                 SDL_StopTextInput();
                 toolbox::Push("data/pseudo.txt",text);
@@ -216,9 +178,9 @@ SDL_Texture* chargerTexture(const std::string &chemin, SDL_Renderer* renderer)
 }
 
 // Cache le curseur quand activé
-void SDL_Motor::afficherPointeur(bool reponse) const
+void SDL_Motor::showPointer(bool answer) const
 {
-    if(reponse)
+    if(answer)
         SDL_ShowCursor(SDL_ENABLE);
 
     else
@@ -226,9 +188,9 @@ void SDL_Motor::afficherPointeur(bool reponse) const
 }
 
 // Capture et cache le curseur quand activé
-void SDL_Motor::capturerPointeur(bool reponse) const
+void SDL_Motor::capturePointer(bool answer) const
 {
-    if(reponse)
+    if(answer)
         SDL_SetRelativeMouseMode(SDL_TRUE);
 
     else
