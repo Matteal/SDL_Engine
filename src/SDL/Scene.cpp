@@ -5,6 +5,7 @@
 
 Scene::Scene(SDL_Renderer* renderer): m_renderer(renderer)
 {
+    //ctr
 }
 
 Scene::~Scene()

@@ -18,6 +18,8 @@
 					<Add directory="C:/Users/joaki/OneDrive/Documents/GameJam/Projet/Alakajam/" />
 					<Add directory="src/Tile" />
 					<Add directory="C:/Users/joaki/OneDrive/Documents/Projets/SDL_Engine/" />
+					<Add directory="./" />
+					<Add directory="src/SDL" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -44,6 +46,10 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/SDL/Input.cpp" />
 		<Unit filename="src/SDL/Input.h" />
+		<Unit filename="src/SDL/MainScene.cpp" />
+		<Unit filename="src/SDL/MainScene.h" />
+		<Unit filename="src/SDL/PauseScene.cpp" />
+		<Unit filename="src/SDL/PauseScene.h" />
 		<Unit filename="src/SDL/SDL_Motor.cpp" />
 		<Unit filename="src/SDL/SDL_Motor.h" />
 		<Unit filename="src/SDL/Scene.cpp" />
@@ -60,9 +66,6 @@
 		<Unit filename="src/Static/toolbox.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
-			<code_completion />
-			<envvars />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
