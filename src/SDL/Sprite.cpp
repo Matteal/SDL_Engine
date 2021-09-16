@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2, SDL_Texture* texture_toggle) : m_renderer(renderer), m_texture(texture), m_texture_toggle(texture_toggle), m_rect({x1, y1, x2, y2}), m_visible(true), m_toggle(false)
+Sprite::Sprite(SDL_Renderer* renderer, SDL_Texture* texture, int x1, int y1, int x2, int y2, SDL_Texture* texture_toggle) : m_renderer(renderer), m_texture(texture), m_texture_toggle(texture_toggle), m_rect({x1, y1, x2, y2}), m_posX(x1), m_posY(y1), m_dimX(x2), m_dimY(y2), m_visible(true), m_toggle(false)
 {
     SDL_DisplayMode dm;
     if (SDL_GetDesktopDisplayMode(0, &dm) != 0)
@@ -22,13 +22,20 @@ Sprite::~Sprite()
 }
 
 //Re-size
-void Sprite::setDimensions(int dimensionX, int DimensionY)
+void Sprite::setDimensions(int dimensionX, int dimensionY)
 {
-    m_rect = SDL_Rect{m_rect.x, m_rect.y, dimensionX, DimensionY};
+    m_dimX = dimensionX;
+    m_dimY = dimensionY;
 }
-void Sprite::setPosition(int PositionX, int PositionY)
+void Sprite::setPosition(int positionX, int positionY)
 {
-    m_rect = SDL_Rect{PositionX, PositionY, m_rect.w, m_rect.h};
+    m_posX = positionX;
+    m_posY = positionY;
+}
+
+void Sprite::actuSDL_Rect(float ratioX, float ratioY)
+{
+    m_rect = SDL_Rect{(int)(m_posX*ratioX), (int)(m_posY*ratioY), (int)(m_dimX*ratioX), (int)(m_dimY*ratioY)};
 }
 
 void Sprite::setTexture(SDL_Texture* texture)

@@ -16,6 +16,7 @@ class Sprite
 
         void setDimensions(int dimensionX, int DimensionY);
         void setPosition(int PositionX, int PositionY);
+        void actuSDL_Rect(float ratioX, float ratioY);
 
         void setTexture(SDL_Texture* texture);
 
@@ -39,6 +40,9 @@ class Sprite
         SDL_Texture* m_texture_toggle;
 
         SDL_Rect m_rect;
+
+        int m_posX, m_posY;
+        int m_dimX, m_dimY;
 
         bool m_visible;
         bool m_toggle;

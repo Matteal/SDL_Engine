@@ -22,5 +22,9 @@ void Scene::render()
         m_tabSprite[i]->render();
 }
 
-
+void Scene::changeRatio(float ratioX, float ratioY)
+{
+    for (auto &sprite : m_tabSprite)
+        sprite->actuSDL_Rect(ratioX, ratioY);
+}
 

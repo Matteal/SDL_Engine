@@ -87,8 +87,6 @@ void SDL_Motor::mainloop()
     //défini le volume initial de la musique
     Mix_VolumeMusic(0);
 
-    int lastSceneEntered = 0;
-
     Mix_PlayMusic(m_window.getMusic(1), -1 );
 
     SDL_StartTextInput();
@@ -102,6 +100,8 @@ void SDL_Motor::mainloop()
         // Defining timestamp
         debutBoucle = SDL_GetTicks();
 
+
+        sceneM.changeRatio(m_window.m_window);
 
         // *** Managing Events ***
         m_input.updateEvenements();

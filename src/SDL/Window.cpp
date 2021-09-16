@@ -5,8 +5,8 @@
 
 
 
-Window::Window(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags) : m_title(titleWindow), m_width(widhtWindow),
-                                                                                             m_height(heightWindow), m_flags(flags), m_window(0), m_renderer(0)
+Window::Window(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags) : m_window(0), m_title(titleWindow), m_width(widhtWindow),
+                                                                                             m_height(heightWindow), m_flags(flags), m_renderer(0)
 {
     test_music0 = NULL;
     test_music1 = NULL;
