@@ -14,6 +14,7 @@ SDL_Motor::~SDL_Motor()
 }
 
 
+#include <windows.h>
 
 bool SDL_Motor::init()
 {
@@ -126,6 +127,7 @@ void SDL_Motor::mainloop()
 //        }
         // Print the Canvas
         SDL_RenderPresent(m_renderer);
+
 
 
 

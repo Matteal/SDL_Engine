@@ -38,7 +38,7 @@ MainMenu::MainMenu(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene
 
 int MainMenu::update(Input* input)
 {
-    // "Play" Button is pressed
+//     "Play" Button is pressed
 //    if(m_tabSprite[1]->estTouche(input->getX(), input->getY(),input->getRoundDOWN(),input->getRoundUP()))
 //    {
 //        input->setSelectedScene(2);

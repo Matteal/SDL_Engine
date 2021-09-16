@@ -24,6 +24,7 @@ class Window
         Mix_Music* test_music0;
         Mix_Music* test_music1;
         Mix_Music* test_music2;
+SDL_Window* m_window;
 
     protected:
 
@@ -34,7 +35,7 @@ class Window
         const int m_height;
         const Uint32 m_flags;
 
-        SDL_Window* m_window;
+//        SDL_Window* m_window;
         SDL_Renderer* m_renderer;
 
 //        SDL_Event m_events;

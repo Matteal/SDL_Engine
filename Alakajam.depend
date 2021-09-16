@@ -1240,7 +1240,7 @@
 	"TextureManager.h"
 	"SceneManager.h"
 
-1630961618 c:\users\33669\documents\dev\github\alakajam\src\sdl\window.h
+1631185075 c:\users\33669\documents\dev\github\alakajam\src\sdl\window.h
 	<iostream>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -1273,7 +1273,7 @@
 1631051010 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\input.cpp
 	"Input.h"
 
-1631182304 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\scenemanager.cpp
+1631183040 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\scenemanager.cpp
 	"SceneManager.h"
 
 1631182940 c:\users\33669\documents\dev\github\alakajam\src\sdl\scenemanager.h
@@ -1295,10 +1295,11 @@
 	<iostream>
 	<Windows.h>
 
-1631130330 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\sdl_motor.cpp
+1631600191 source:c:\users\33669\documents\dev\github\alakajam\src\sdl\sdl_motor.cpp
 	"SDL_Motor.h"
 	"SceneManager.h"
 	"TextureManager.h"
+	<windows.h>
 
 1631127655 c:\users\33669\documents\dev\github\alakajam\src\sdl\texturemanager.h
 	<SDL_image.h>
