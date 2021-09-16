@@ -109,9 +109,22 @@ void SDL_Motor::mainloop()
         // Close the window when asked
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
         {
-            //m_input.SetTerminer(true);
-            SDL_SetWindowSize(m_window.m_window,800,500);
-            SDL_SetWindowPosition(m_window.getWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
+            m_input.SetTerminer(true);
+            //SDL_SetWindowSize(m_window.m_window,800,500);
+            //SDL_SetWindowPosition(m_window.getWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
+        }
+
+        if (m_input.getTouche(SDL_SCANCODE_F11) && !m_window.fullscreen)
+        {
+                std::cout << "out" << std::endl;
+                SDL_SetWindowMaximumSize(m_window.getWindow(),800,1001);
+                m_window.fullscreen = true;
+        }
+        else
+        {
+                std::cout << "in" << std::endl;
+                SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
+                m_window.fullscreen = false;
         }
 
         SDL_Event evt = m_input.getEvenement();

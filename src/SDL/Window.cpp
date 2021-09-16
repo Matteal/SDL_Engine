@@ -19,9 +19,9 @@ Window::~Window()
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
     SDL_Quit();
-    Mix_FreeMusic(test_music0);
-    Mix_FreeMusic(test_music1);
-    Mix_FreeMusic(test_music2);
+    //Mix_FreeMusic(test_music0);
+    //Mix_FreeMusic(test_music1);
+    //Mix_FreeMusic(test_music2);
 
 }
 
@@ -83,10 +83,6 @@ bool Window::initWindow()
         //test_music0 = Mix_LoadMUS("data/music.wav");
         //test_music1 = Mix_LoadMUS("data/main_theme.wav");
         //test_music2 = Mix_LoadMUS("data/battle_theme.wav");
-        if(test_music0 == NULL)
-        {
-            std::cout<<"Erreur"<<std::endl;
-        }
     }
     if(TTF_Init() < 0)
     {
