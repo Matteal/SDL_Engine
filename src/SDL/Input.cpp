@@ -134,7 +134,7 @@ SDL_Scancode Input::getPressedKeys()
 
 bool Input::isMouseEvent(const Uint8 scancode) const
 {
-    for(int i=0; i<m_mouseEvents.size(); i++)
+    for(unsigned i=0; i<m_mouseEvents.size(); i++)
     {
         if(m_mouseEvents[i]==scancode)
             return true;

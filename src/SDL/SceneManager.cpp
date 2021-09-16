@@ -22,7 +22,7 @@ void SceneManager::changeRatio(SDL_Window* window)
     float new_ratioY = (float) windowHeight/1080;
 
     //std::cout << new_ratioX << ':' << new_ratioY << std::endl;
-    m_tabScene[m_selectedScene]->changeRatio((1-m_ratioX)+new_ratioX, (1-m_ratioY)+new_ratioY);
+    m_tabScene[m_selectedScene]->changeRatio(new_ratioX, new_ratioY);
 
     m_ratioX = new_ratioX;
     m_ratioY = new_ratioY;
