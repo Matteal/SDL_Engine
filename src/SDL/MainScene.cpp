@@ -1,8 +1,9 @@
 #include "MainScene.h"
 
-MainScene::MainScene(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene(renderer), m_isAudioOn(true)
+MainScene::MainScene(SDL_Renderer* renderer, TextureManager& m_textureMap, MusicManager m_musicMap) : Scene(renderer), m_isAudioOn(true)
 {
     // create all sprites needed
+    m_musicMap.playMusic("main_theme");
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["bgMenu"], 0, 0, 1920,1080));
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonPlay"], (1920-200)/2,(800-100)/2,200,100, m_textureMap["buttonPlayAlt"])); //Bouton Play
     m_tabSprite.push_back(new Sprite(m_renderer, m_textureMap["buttonQuit"], (1920-200)/2,(800+200)/2,200,100, m_textureMap["buttonQuitAlt"])); //Bouton Quit

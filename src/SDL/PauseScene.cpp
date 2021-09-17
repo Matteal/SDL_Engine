@@ -1,6 +1,6 @@
 #include "PauseScene.h"
 
-PauseScene::PauseScene(SDL_Renderer* renderer, TextureManager& m_textureMap) : Scene(renderer)
+PauseScene::PauseScene(SDL_Renderer* renderer, TextureManager& m_textureMap, MusicManager m_musicMap) : Scene(renderer)
 {
 
 }

@@ -11,6 +11,7 @@
 #include "Sprite.h"
 #include "Input.h"
 #include "TextureManager.h"
+#include "MusicManager.h"
 
 class Scene
 {

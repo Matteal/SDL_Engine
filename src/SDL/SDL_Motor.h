@@ -36,6 +36,7 @@ class SDL_Motor
 
         SDL_Renderer* m_renderer;
         TextureManager m_textureManager;
+        MusicManager m_musicManager;
         SceneManager* m_sceneManager;
         std::string text;
 

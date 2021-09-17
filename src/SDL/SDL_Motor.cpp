@@ -30,7 +30,7 @@ bool SDL_Motor::init()
 
 void SDL_Motor::mainloop()
 {
-
+    MusicManager mm;
     TextureManager tm(m_renderer);
 
     bool rt = true; //wtf is this?
@@ -41,12 +41,10 @@ void SDL_Motor::mainloop()
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
     // Objets Scène
-    SceneManager sceneM(m_renderer, tm);
+    SceneManager sceneM(m_renderer, tm, mm);
 
     //défini le volume initial de la musique
-    Mix_VolumeMusic(0);
 
-    Mix_PlayMusic(m_window.getMusic(1), -1 );
 
     SDL_StartTextInput();
 
@@ -76,11 +74,25 @@ void SDL_Motor::mainloop()
             SDL_SetWindowFullscreen(m_window.getWindow(),0);
             m_window.fullscreen = false;
         }
-
         else if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && !m_window.fullscreen)
         {
             SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
             m_window.fullscreen = true;
+        }
+
+        if (m_input.getPressedKeys() == SDL_SCANCODE_F4)
+        {
+            m_musicManager.mute();
+        }
+
+        if(m_input.getPressedKeys() == SDL_SCANCODE_F2)
+        {
+            m_musicManager.lowerVolume();
+        }
+
+        if (m_input.getPressedKeys() == SDL_SCANCODE_F3)
+        {
+            m_musicManager.increaseVolume();
         }
 
         SDL_Event evt = m_input.getEvent();

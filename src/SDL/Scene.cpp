@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Scene.h"
 
+
 #include <Windows.h>
 
 Scene::Scene(SDL_Renderer* renderer): m_renderer(renderer)

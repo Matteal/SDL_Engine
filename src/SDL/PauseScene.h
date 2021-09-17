@@ -5,7 +5,7 @@
 class PauseScene : public Scene
 {
     public:
-        PauseScene(SDL_Renderer* renderer, TextureManager& m_textureMap);
+        PauseScene(SDL_Renderer* renderer, TextureManager& m_textureMap, MusicManager);
 
         int update(Input* input);
         void render();

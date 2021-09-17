@@ -10,7 +10,7 @@
 class SceneManager
 {
     public:
-        SceneManager(SDL_Renderer* renderer, TextureManager&);
+        SceneManager(SDL_Renderer* renderer, TextureManager&, MusicManager&);
         ~SceneManager();
 
         void changeRatio(SDL_Window* window);

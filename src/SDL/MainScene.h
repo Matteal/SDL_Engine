@@ -5,7 +5,7 @@
 class MainScene: public Scene
 {
     public:
-    MainScene (SDL_Renderer* renderer, TextureManager&);
+    MainScene (SDL_Renderer* renderer, TextureManager&, MusicManager);
 
         int update(Input* input);
     private:
