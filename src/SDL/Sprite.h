@@ -2,6 +2,7 @@
 #define BUTTON_H
 
 #include <iostream>
+#include "Input.h"
 
 #include "SDL.h"
 
@@ -15,17 +16,22 @@ class Sprite
 
         void setDimensions(int dimensionX, int dimensionY);
         void setPosition(int positionX, int positionY);
+        void getDimensions(int& dimensionX, int& dimensionY);
+        void getPosition(int& positionX, int& positionY);
         void actuSDL_Rect(float ratioX, float ratioY);
+        static bool Intersect(Sprite* sprite1, Sprite* sprite2);
+        void collide(Sprite s);
 
         void setTexture(SDL_Texture* texture);
 
         SDL_Rect* getSDL_Rect();
         bool isTouched(int cursorX, int cursorY);
         bool isTouched(int cursorX, int cursorY, bool bool1, bool bool2);
+        bool isClicked(Input* input);
 
         void setVisible(bool visible = true);
 
-        void render();
+        void render(double Anglerotation = 0);
 
         float ScreenWidth;
         float ScreenHeight;

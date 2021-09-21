@@ -10,7 +10,7 @@
 
 #include "Scene.h"
 //#include "../Bridge.h"
-#include "../Static/toolbox.h"
+#include "../Others/toolbox.h"
 
 #include "TextureManager.h"
 #include "SceneManager.h"
@@ -33,6 +33,9 @@ class SDL_Motor
     private:
         Window m_window;
         Input m_input;
+
+        Uint32 start;
+        Uint32 timer;
 
         SDL_Renderer* m_renderer;
         TextureManager m_textureManager;

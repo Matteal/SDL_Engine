@@ -3,7 +3,8 @@
 
 MusicManager::MusicManager()
 {
-    loadMusic("main_theme.wav");
+    loadMusic("hell_for_eternity.wav");
+    loadSoundEffect("defense.wav");
     onMute = false;
     m_volume = 128;
 }
@@ -21,23 +22,29 @@ void MusicManager::loadMusic(const std::string &path)
     m_musicMap[name] = Mix_LoadMUS((DATA_PATH + path).c_str());
 }
 
-/*void MusicManager::loadSoundEffect(const std::string &path)
+void MusicManager::loadSoundEffect(const std::string &path)
 {
     std::string name = path.substr(path.find_last_of('/')+1);
     name = name.substr(0,name.find('.'));
 
-    m_soundMap[name] =
-}*/
+    m_soundMap[name] = Mix_LoadWAV((DATA_PATH + path).c_str());
+}
 
-bool MusicManager::playMusic(const std::string music)
+bool MusicManager::playMusic(const std::string music, int loop)
 {
     if (!isPlaying())
     {
-        Mix_PlayMusic(m_musicMap[music],-1);
+        Mix_PlayMusic(m_musicMap[music],loop);
         return true;
     }
     std::cout << "An error occured to play " << music << std::endl;
     return false;
+}
+
+bool MusicManager::playSoundEffect(const std::string sound, int loop)
+{
+    Mix_PlayChannel(1,m_soundMap[sound],loop);
+    return true;
 }
 
 void MusicManager::pauseMusic()
@@ -112,4 +119,12 @@ void MusicManager::increaseVolume()
     }
 }
 
+void MusicManager::setMusicVolume(int zeroTo128)
+{
+    Mix_VolumeMusic(zeroTo128);
+}
 
+void MusicManager::setSfxVolume(int zeroTo128)
+{
+    Mix_Volume(1, zeroTo128);
+}

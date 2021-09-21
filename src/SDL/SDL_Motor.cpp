@@ -6,6 +6,8 @@ SDL_Motor::SDL_Motor() : m_window("Ouverture", 800, 500, SDL_WINDOW_SHOWN | SDL_
                     m_input(), m_renderer(nullptr), m_textureManager(m_window.getRenderer())
 {
     //ctor
+   start = 0;
+   timer = 0;
 }
 
 SDL_Motor::~SDL_Motor()
@@ -32,6 +34,7 @@ void SDL_Motor::mainloop()
 {
     MusicManager mm;
     TextureManager tm(m_renderer);
+    start = SDL_GetTicks();
 
     bool rt = true; //wtf is this?
 
@@ -41,7 +44,7 @@ void SDL_Motor::mainloop()
     float debutBoucle(0), finBoucle(0), tempsEcoule(0);
 
     // Objets Scène
-    SceneManager sceneM(m_renderer, tm, mm);
+    SceneManager sceneM(m_renderer, tm, mm, m_window.m_window);
 
     //défini le volume initial de la musique
 
@@ -51,16 +54,20 @@ void SDL_Motor::mainloop()
     // Core Loop
     while(!m_input.isWindowClosed())
     {
-        int w, h;
-    SDL_GetWindowSize(m_window.m_window, &w, &h);
-    //std::cout<< w << " : " << h << std::endl;
+        Uint32 tmp;
+        timer = (SDL_GetTicks() - start)/1000.f;
+        if (tmp != timer)
+        {
+            tmp = timer;
+            //std::cout << timer << std::endl;
+        }
+
         // Defining timestamp
         debutBoucle = SDL_GetTicks();
 
 
-        sceneM.changeRatio(m_window.m_window);
+        // *** Managing Events *** //
 
-        // *** Managing Events ***
         m_input.updateEvenements();
 
         // Close the window when asked
@@ -69,18 +76,20 @@ void SDL_Motor::mainloop()
             m_input.SetCloseWindow(true);
         }
 
-        if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && m_window.fullscreen)
+        if (m_input.getPressedKeys() == SDL_SCANCODE_F11) // Toggle fullscreen/Maximised (1920-1080)
         {
-            SDL_SetWindowFullscreen(m_window.getWindow(),0);
-            m_window.fullscreen = false;
+            if(m_window.fullscreen)
+            {
+                SDL_SetWindowFullscreen(m_window.getWindow(),0);
+                m_window.fullscreen = false;
+            }
+            else
+            {
+                SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
+                m_window.fullscreen = true;
+            }
         }
-        else if (m_input.getPressedKeys() == SDL_SCANCODE_F11 && !m_window.fullscreen)
-        {
-            SDL_SetWindowFullscreen(m_window.getWindow(),SDL_WINDOW_FULLSCREEN_DESKTOP);
-            m_window.fullscreen = true;
-        }
-
-        if (m_input.getPressedKeys() == SDL_SCANCODE_F4)
+        if (m_input.getPressedKeys() == SDL_SCANCODE_F4) //Toggle mute/unmute
         {
             m_musicManager.mute();
         }
@@ -103,7 +112,7 @@ void SDL_Motor::mainloop()
                 m_input.SetCloseWindow(true);
         }
 
-        // *** UPDATE ***
+        // *** UPDATE *** //
 
             if (m_input.getEvent().type == SDL_TEXTINPUT)
             {
@@ -126,34 +135,15 @@ void SDL_Motor::mainloop()
 
         sceneM.update(&m_input);
 
-        //update music
-       // lastSceneEntered=m_input.getSelectedScene();
-
-
         // *** GRAPHICS ***
 
         // Clear the Canvas
         SDL_RenderClear(m_renderer);
 
         sceneM.render();
-//        switch(m_input.getSelectedScene())
-//        {
-//            case 0:
-//                {
-//                    mainMenu.render();
-//                    TTF_Font* p;
-//                    toolbox::Write("data/police.ttf",18,p,255,255,255,m_renderer,text,100,100,310,200);
-//                    break;
-//                }
-//            case 1:
-//                pause.render();
-//                break;
-//            default:
-//                std::cout<<"ON A TOUT PETEEEEEE !!!"<<std::endl;
-//        }
+//
         // Print the Canvas
         SDL_RenderPresent(m_renderer);
-
 
 
 

@@ -2,49 +2,50 @@
 
 #include <iostream>
 
+
 TextureManager::TextureManager(SDL_Renderer* renderer): m_renderer(renderer)
 {
     //TODO: charger asynchroniquement les images
+    loadTexture("Apparition_menu_1.png");
+    loadTexture("Apparition_menu_2.png");
+    loadTexture("Apparition_menu_3.png");
+    loadTexture("Apparition_menu_4.png");
+    loadTexture("Apparition_menu_5.png");
+    loadTexture("Bouton_play_simple.png");
+    loadTexture("Bouton_quit_chaines.png");
+    loadTexture("Bouton_quit_simple.png");
+    loadTexture("Bouton_settings_chaines.png");
+    loadTexture("Bouton_settings_simple.png");
+    loadTexture("Plaque_metal.jpg");
 
-    // Buttons
-    loadTexture("buttonPlay.png");
-    loadTexture("buttonPlayAlt.png");
-    loadTexture("buttonQuit.png");
-    loadTexture("buttonQuitAlt.png");
-    loadTexture("audioOn.png");
-    loadTexture("audioOff.png");
-    loadTexture("bgMenu.png");
+    loadTexture("chains.png");
+    loadTexture("Bouton_play_overlay.png");
+    loadTexture("Bouton_quit_overlay.png");
+    loadTexture("Bouton_settings_overlay.png");
+    loadTexture("menu_button_left.png");
+    loadTexture("menu_button_right.png");
+    loadTexture("Bouton_SFX.png");
+    loadTexture("Bouton_Music.png");
+    loadTexture("Bouton_Resume.png");
+    loadTexture("scaling_cursor.png");
 
-    // Fight Images
-    loadTexture("hp.png");
-    loadTexture("hpEmpty.png");
-    loadTexture("bg.png");
-    loadTexture("fightMenu.png");
-    loadTexture("fightMenu2.png");
-    loadTexture("fightStrike.png");
-    loadTexture("fightSurprise.png");
-    loadTexture("fightDefend.png");
+    loadTexture("Level1.jpg");
+    loadTexture("Player.png");
+    loadTexture("Workbench.png");
+    loadTexture("Part_distributor1.png");
+    loadTexture("Station1.png");
+    loadTexture("Product_drop.png");
 
-    // Ships
-    loadTexture("cruiser.png");
-    loadTexture("cruiserAlt.png");
-    loadTexture("armored.png");
-    loadTexture("armoredAlt.png");
-    loadTexture("raider.png");
-    loadTexture("raiderAlt.png");
+    loadTexture("Rotor.png");
+    loadTexture("Motherboard.png");
+    loadTexture("Screw.png");
+    loadTexture("Cogwheel.png");
+    loadTexture("Material.png");
+    loadTexture("Computer.png");
+    loadTexture("Engine.png");
 
-    // Tiles
-    loadTexture("Tiles/tileOutline.png");
-    loadTexture("Tiles/tileOutline1.png");
-    loadTexture("Tiles/tileOutline2.png");
-    loadTexture("Tiles/tile1.png");
-    loadTexture("Tiles/tile2.png");
-    loadTexture("Tiles/tile3.png");
-    loadTexture("Tiles/tile4.png");
-    loadTexture("Tiles/tileIsland1.png");
 
-    //how to access:
-    //SDL_Texture* sdlt = m_textureMap["buttonPlay"];
+
 }
 
 TextureManager::~TextureManager()
@@ -59,6 +60,7 @@ SDL_Texture* TextureManager::operator[](const std::string str)
 
 void TextureManager::loadTexture(const std::string &path)
 {
+
     SDL_Surface* surface = IMG_Load((DATA_PATH + path).c_str());
     if (surface == NULL)
     {

@@ -34,7 +34,6 @@ class Input
 
     bool isWindowClosed() const;
     void SetCloseWindow(bool b);
-    bool clic();
 
     SDL_Event getEvent() const;
     bool isKeyboardEvent(const SDL_Scancode scancode) const;

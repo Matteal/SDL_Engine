@@ -2,20 +2,18 @@
 #define SCENEMANAGER_H
 
 #include "Scene.h"
-#include "MainScene.h"
-#include "PauseScene.h"
 
-#define MAX_SCENE 4
+#define MAX_SCENE 5
 
 class SceneManager
 {
     public:
-        SceneManager(SDL_Renderer* renderer, TextureManager&, MusicManager&);
+        SceneManager(SDL_Renderer* renderer, TextureManager&, MusicManager&, SDL_Window* window);
         ~SceneManager();
 
-        void changeRatio(SDL_Window* window);
+        void changeRatio();
         void render();
-        void update(Input* input);
+        virtual void update(Input* input);
 
     protected:
 
@@ -23,6 +21,10 @@ class SceneManager
         Scene* m_tabScene[MAX_SCENE];
         int m_selectedScene;
         int m_nextScene;
+        SDL_Window* m_window;
+
+        Uint32 timer;
+        Uint32 start;
 
 
         float m_ratioX, m_ratioY;

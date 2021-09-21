@@ -15,14 +15,20 @@ class MusicManager
     public:
         MusicManager();
         ~MusicManager();
+
         void loadMusic(const std::string &path);
-        bool playMusic(const std::string music);
+        void loadSoundEffect(const std::string &path);
+
+        bool playMusic(const std::string music, int loop);
+        bool playSoundEffect(const std::string sound, int loop);
         void pauseMusic();
+
         void resumeMusic();
         bool isPlaying();
         bool isPaused();
         int getVolume();
-        void setVolume();
+        void setMusicVolume(int zeroTo128);
+        void setSfxVolume(int zeroTo128);
 
 
         void mute();
@@ -35,6 +41,7 @@ class MusicManager
 
     private:
         std::map<std::string, Mix_Music*> m_musicMap;
+        std::map<std::string, Mix_Chunk*> m_soundMap;
         bool onMute;
         int m_volume;
 };

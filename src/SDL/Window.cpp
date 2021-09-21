@@ -8,9 +8,6 @@
 Window::Window(const char* titleWindow, const int widhtWindow, const int heightWindow, const Uint32 flags) : m_window(0), m_title(titleWindow), m_width(widhtWindow),
                                                                                              m_height(heightWindow), m_flags(flags), m_renderer(0)
 {
-    test_music0 = NULL;
-    test_music1 = NULL;
-    test_music2 = NULL;
     fullscreen = false;
 }
 
@@ -20,9 +17,6 @@ Window::~Window()
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
     SDL_Quit();
-    //Mix_FreeMusic(test_music0);
-    //Mix_FreeMusic(test_music1);
-    //Mix_FreeMusic(test_music2);
 
 }
 
@@ -79,12 +73,6 @@ bool Window::initWindow()
         std::cout<<"SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError()<<std::endl;
         return false;
     }
-    else
-    {
-        //test_music0 = Mix_LoadMUS("data/music.wav");
-        //test_music1 = Mix_LoadMUS("data/main_theme.wav");
-        //test_music2 = Mix_LoadMUS("data/battle_theme.wav");
-    }
     if(TTF_Init() < 0)
     {
         std::cout<<"SDL_ttf could not initialize! SDL_ttf Error: "<< TTF_GetError() <<std::endl;
@@ -97,23 +85,6 @@ bool Window::initWindow()
 SDL_Renderer* Window::getRenderer()
 {
     return m_renderer;
-}
-
-Mix_Music* Window::getMusic(int index)
-{
-    switch(index)
-    {
-        case 0:
-            return test_music0;
-            break;
-        case 1:
-            return test_music1;
-            break;
-        case 2:
-            return test_music2;
-            break;
-    }
-    return nullptr;
 }
 
 SDL_Window* Window::getWindow()
